@@ -18,7 +18,7 @@
   },
   "publishConfig": {
     "access": "public"
-  },
+  }, 
   "scripts": {
     "i18n": "rm -rf build/messages && NODE_ENV=production i18n --addon",
     "dry-release": "release-it --dry-run",
@@ -27,13 +27,18 @@
     "release-alpha": "release-it --preRelease=alpha"
   },
   "addons": [],
-  "dependencies": {},
+  "dependencies": {
+    "@plone/volto": "workspace:*",
+    "@plone/registry": "workspace:*",
+    "@kitconcept/volto-light-theme": "^5.0.2"
+  },
   "peerDependencies": {
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
   "devDependencies": {
     "@plone/scripts": "^3.6.1",
-    "release-it": "^17.1.1"
+    "release-it": "^17.1.1",
+    "mrs-developer": "^2.2.0"
   }
 }
