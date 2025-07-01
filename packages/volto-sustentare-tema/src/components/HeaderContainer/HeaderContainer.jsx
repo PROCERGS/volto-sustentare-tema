@@ -1,8 +1,6 @@
-// SemanticUI-free pre-@plone/components
 import React, { useState, useRef, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import './Header.css';
-
 import SearchWidget from '../SearchWidget/SearchWidget';
 
 const HeaderContainer = ({
@@ -18,6 +16,8 @@ const HeaderContainer = ({
   const buttonRef = useRef(null);
   const barRef = useRef(null);
   const [barTop, setBarTop] = useState(0);
+  const [barLeft, setBarLeft] = useState(0);
+  const [barWidth, setBarWidth] = useState(null);
 
   useEffect(() => {
     if (showBar && buttonRef.current) {
@@ -40,6 +40,27 @@ const HeaderContainer = ({
     }
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [showBar]);
+
+  useEffect(() => {
+    function updateBarPosition() {
+      const toolbar = document.getElementById('toolbar');
+      if (toolbar) {
+        const toolbarRect = toolbar.getBoundingClientRect();
+        setBarLeft(toolbarRect.right);
+        setBarWidth(window.innerWidth - toolbarRect.right);
+      } else {
+        setBarLeft(0);
+        setBarWidth(window.innerWidth);
+      }
+    }
+    if (showBar) {
+      updateBarPosition();
+      window.addEventListener('resize', updateBarPosition);
+    }
+    return () => {
+      window.removeEventListener('resize', updateBarPosition);
+    };
   }, [showBar]);
 
   return (
@@ -207,6 +228,10 @@ const HeaderContainer = ({
               ref={barRef}
               style={{
                 top: barTop,
+                left: barLeft,
+                width: barWidth,
+                position: 'absolute',
+                zIndex: 1000,
               }}
             >
               <div style={{ width: '100%', padding: 16 }}>
@@ -214,29 +239,7 @@ const HeaderContainer = ({
               </div>
             </div>
           )}
-          {/* <div className="search-wrapper navigation-desktop">
-                        <div className="search">
-                            <SearchWidget />
-                        </div>
-                    </div> */}
         </div>
-        {/* <div style={{ textAlign: 'right' }}>
-                    <a
-                        href="#main"
-                        className="btn-scroll"
-                        style={{
-                            cursor: 'pointer',
-                            padding: '25px 29px',
-                            color: '#fff',
-                            backgroundColor: '#607F35',
-                            borderRadius: '50px',
-                            boxShadow: '0 2px 5px rgba(0, 0, 0, 0.4)',
-                            border: '3px solid transparent',
-                        }}
-                    >
-                        <FontAwesomeIcon icon={faChevronUp} />
-                    </a>
-                </div> */}
       </div>
     </>
   );
