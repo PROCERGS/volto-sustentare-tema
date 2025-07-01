@@ -1,0 +1,50 @@
+@import '../../theme/variables.css';
+
+@media (max-width: 767px) {
+  .acess-wrapper {
+    display: none !important;
+  }
+}
+
+.acess-wrapper {
+  display: flex;
+  max-width: var(--layout-container-width);
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 var(--padding-default);
+  padding-top: 10px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.acess-menus{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 40%;
+  justify-content: space-around;
+
+}
+
+.acess-ul {
+  display: flex;
+  flex-direction: row;
+  padding: 0; /* Remove o recuo padrão */
+  margin: 0; /* Remove a margem padrão */
+  gap: 20px;
+  list-style-type: none;
+}
+
+.acess-ul > * > * {
+  color: var(--green-matriz-link);
+  font-size: 12px;
+}
+
+.acess-ul > li :hover {
+  color: var(--green-matriz-link-activated);
+  cursor: pointer;
+}
+
+.acess-left > * > * {
+  font-size: 16px;
+}
