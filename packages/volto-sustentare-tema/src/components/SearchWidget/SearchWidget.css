@@ -12,7 +12,7 @@
 }
 
 #s-logo {
-  height: fill-available;
+  height: stretch;
   padding: 15px;
   border: none;
   border-left: 4px solid var(--preto-background);
