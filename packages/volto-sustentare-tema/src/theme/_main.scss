@@ -6,9 +6,9 @@
 }
 
 body {
-    background: var(--preto-background);
-    color: var(--bege-padrao);
-    font-family: 'Saira', Arial, Helvetica, sans-serif !important;
+  background: var(--preto-background);
+  color: var(--bege-padrao);
+  font-family: 'Saira', Arial, Helvetica, sans-serif !important;
 }
 
 h1,
@@ -17,37 +17,37 @@ h3,
 h4,
 h5,
 h6 {
-    color: var(--verde-padrao);
+  color: var(--verde-padrao);
 }
 
 .main a {
-    color: var(--verde-padrao) !important;
-    text-decoration: none;
+  color: var(--verde-padrao) !important;
+  text-decoration: none;
 
-    &:hover {
-        color: var(--bege-padrao) !important;
-    }
+  &:hover {
+    color: var(--bege-padrao) !important;
+  }
 }
 
 .acess-wrapper {
-    max-width: 100%;
-    justify-content: space-around;
-    background: #E5E5E5;
-    color: var(--preto-background);
+  max-width: 100%;
+  justify-content: space-around;
+  background: #e5e5e5;
+  color: var(--preto-background);
 
-    .acess-ul>*>* {
-        color: var(--preto-background);
-    }
+  .acess-ul > * > * {
+    color: var(--preto-background);
+  }
 }
 
 .barra-estado {
-    background-color: var(--cinza-barraEstado);
+  background-color: var(--cinza-barraEstado);
 
-    .barra-estado__menu>li>a {
-        color: var(--branco);
-    }
+  .barra-estado__menu > li > a {
+    color: var(--branco);
+  }
 
-    #rs-gov{
-        fill: var(--branco) !important;
-    }
+  #rs-gov {
+    fill: var(--branco) !important;
+  }
 }
