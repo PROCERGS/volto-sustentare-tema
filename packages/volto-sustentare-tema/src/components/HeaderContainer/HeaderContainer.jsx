@@ -44,15 +44,28 @@ const HeaderContainer = ({
 
   useEffect(() => {
     function updateBarPosition() {
-      const toolbar = document.getElementById('toolbar');
+      const toolbar =
+        document.getElementById('toolbar') ||
+        document.querySelector('.toolbar-container');
+      const sidebar = document.querySelector('.sidebar-container');
+      let left = 0;
+      let width = window.innerWidth;
+
       if (toolbar) {
         const toolbarRect = toolbar.getBoundingClientRect();
-        setBarLeft(toolbarRect.right);
-        setBarWidth(window.innerWidth - toolbarRect.right);
-      } else {
-        setBarLeft(0);
-        setBarWidth(window.innerWidth);
+        left = toolbarRect.right;
+        width = window.innerWidth - left;
       }
+      if (sidebar) {
+        const sidebarRect = sidebar.getBoundingClientRect();
+        if (toolbar) {
+          width = sidebarRect.left - left;
+        } else {
+          width = sidebarRect.left;
+        }
+      }
+      setBarLeft(left);
+      setBarWidth(width);
     }
     if (showBar) {
       updateBarPosition();
