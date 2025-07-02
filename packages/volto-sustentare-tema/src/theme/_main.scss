@@ -20,6 +20,29 @@ h6 {
   color: var(--verde-padrao);
 }
 
+#sidebar {
+  color: var(--preto);
+
+  .row {
+    padding: 15px 20px;
+  }
+}
+
+.content-area button {
+  padding: 10px 20px;
+  border: 4px solid var(--verde-padrao);
+  background: var(--preto-background);
+  color: var(--verde-padrao);
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+
+  &:hover {
+    background: var(--bege-padrao);
+    color: var(--preto-background);
+  }
+}
+
 .main a {
   color: var(--verde-padrao) !important;
   text-decoration: none;
