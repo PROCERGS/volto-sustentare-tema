@@ -59,7 +59,7 @@ export default function imagemTextoAbaSchema({ formData } = {}) {
         description: 'Exemplo: /pagina-ou-link-completo',
       },
     },
-    required: ['image'],
+    required: [],
     dependencies: {
       show_button: {
         oneOf: [

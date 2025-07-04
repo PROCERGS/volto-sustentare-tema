@@ -6,6 +6,10 @@ import ImagemTextoAbaView from './components/blocks/imagemTextoAba/View';
 import ImagemTextoAbaEdit from './components/blocks/imagemTextoAba/Edit';
 import ImagemTextoAbaSchema from './components/blocks/imagemTextoAba/schema';
 
+import CardsView from './components/blocks/Cards/View';
+import CardsEdit from './components/blocks/Cards/Edit';
+import CardsSchema from './components/blocks/Cards/schema';
+
 import videoSVG from '@plone/volto/icons/video.svg';
 import imageSVG from '@plone/volto/icons/image.svg';
 
@@ -34,6 +38,17 @@ const applyConfig = (config) => {
     view: ImagemTextoAbaView,
     edit: ImagemTextoAbaEdit,
     schema: ImagemTextoAbaSchema,
+    sidebarTab: 1,
+  };
+
+  config.blocks.blocksConfig.cards = {
+    id: 'cards',
+    title: 'Cards',
+    icon: imageSVG,
+    group: 'sustentare',
+    view: CardsView,
+    edit: CardsEdit,
+    schema: CardsSchema,
     sidebarTab: 1,
   };
 
