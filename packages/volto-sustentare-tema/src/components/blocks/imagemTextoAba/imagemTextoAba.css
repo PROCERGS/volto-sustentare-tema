@@ -1,11 +1,9 @@
-
-
 .imagem-texto-varia-inner {
   display: flex;
   width: 80%;
+  margin: 120px 0;
   gap: 30px;
   justify-self: center;
-  margin: 120px 0;
 }
 
 .imagem-texto-varia-inner svg {

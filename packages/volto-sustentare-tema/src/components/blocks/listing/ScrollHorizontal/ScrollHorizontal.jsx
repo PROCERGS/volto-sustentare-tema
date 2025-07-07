@@ -7,7 +7,7 @@ const ScrollHorizontal = ({
   items = [],
   loading = false,
   total = 0,
-  loadMore = () => { },
+  loadMore = () => {},
   data = {},
   isEditMode = false,
 }) => {
@@ -21,7 +21,8 @@ const ScrollHorizontal = ({
       if (
         canLoad &&
         !loading &&
-        container.scrollLeft + container.offsetWidth >= container.scrollWidth - 100 &&
+        container.scrollLeft + container.offsetWidth >=
+          container.scrollWidth - 100 &&
         items.length < total
       ) {
         setCanLoad(false);
@@ -54,7 +55,10 @@ const ScrollHorizontal = ({
               {item.description && <p>{item.description}</p>}
             </div>
             <Link to={item['@id']}>
-              <button className="button-noticias-horizontal" aria-label={`Ver notícia: ${item.title}`}>
+              <button
+                className="button-noticias-horizontal"
+                aria-label={`Ver notícia: ${item.title}`}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="42"

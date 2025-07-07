@@ -13,18 +13,12 @@ export default function CardsSchema({ formData } = {}) {
         title: 'Cards',
         widget: 'object_list',
         schema: {
-          title: 'Card', 
+          title: 'Card',
           fieldsets: [
             {
               id: 'default',
               title: 'Card',
-              fields: [
-                'title',
-                'image',
-                'image_hover',
-                'text',
-                'button_text',
-              ],
+              fields: ['title', 'image', 'image_hover', 'text', 'button_text'],
             },
           ],
           properties: {

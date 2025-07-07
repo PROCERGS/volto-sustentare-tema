@@ -1,71 +1,73 @@
 .noticias-horizontal-grid {
-  margin: 2em 0;
   width: 100%;
+  margin: 2em 0;
 }
 
 .noticias-horizontal-container {
   display: flex;
   flex-direction: row;
-  overflow-x: auto;
-  gap: 24px;
   padding-bottom: 16px;
+  gap: 24px;
+  overflow-x: auto;
   scroll-behavior: smooth;
 }
 
 .noticias-horizontal-item {
+  display: flex;
   min-width: 320px;
   max-width: 320px;
-  border: 4px solid var(--verde-padrao, #00b033);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  display: flex;
   flex-direction: column;
-  transition: box-shadow 0.2s, border-color 0.2s;
+  border: 4px solid var(--verde-padrao, #00b033);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition:
+    box-shadow 0.2s,
+    border-color 0.2s;
 }
 
 .noticias-horizontal-image {
+  overflow: hidden;
   width: 100%;
   height: 180px;
-  overflow: hidden;
 }
 
 .noticias-horizontal-img {
+  display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  display: block;
   border-bottom: 4px solid var(--verde-padrao);
+  object-fit: cover;
 }
 
 .noticias-horizontal-content {
-  padding: 20px;
-  flex: 1;
   display: flex;
+  flex: 1;
   flex-direction: column;
   justify-content: space-between;
+  padding: 20px;
 }
 
 .noticias-horizontal-content h3 {
   margin: 0 0 12px 0;
+  color: var(--verde-padrao, #00b033);
   font-size: 28px;
   font-weight: 700;
   line-height: 34px;
-  color: var(--verde-padrao, #00b033);
 }
 
 .noticias-horizontal-content p {
+  overflow: hidden;
+  color: var(--bege-padrao);
   font-size: 16px;
   line-height: 22px;
   text-overflow: ellipsis;
   white-space: nowrap;
-  overflow: hidden;
-  color: var(--bege-padrao);
 }
 
 .noticias-horizontal-loading {
   display: flex;
+  min-width: 120px;
   align-items: center;
   justify-content: center;
-  min-width: 120px;
   font-size: 1.1em;
 }
 
@@ -76,25 +78,27 @@
 }
 
 .button-noticias-horizontal {
-  margin: 20px;
-  background: transparent;
-  border: 4px solid var(--verde-padrao, #00b033);
-  padding: 8px 10px; /* menor padding no estado normal */
   display: inline-flex;
+  width: auto;
+  height: auto;
   align-items: center;
   justify-content: center;
+  padding: 8px 10px; /* menor padding no estado normal */
+  border: 4px solid var(--verde-padrao, #00b033);
+  margin: 20px;
+  background: transparent;
   cursor: pointer;
   transition:
     border-color 0.2s,
-    padding 0.3s cubic-bezier(0.4,0,0.2,1),
-    transform 0.3s cubic-bezier(0.4,0,0.2,1);
-  width: auto;
-  height: auto;
+    padding 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .arrow-path-short,
 .arrow-path-long {
-  transition: opacity 0.3s cubic-bezier(0.4,0,0.2,1), transform 0.3s cubic-bezier(0.4,0,0.2,1);
+  transition:
+    opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .arrow-path-short {
