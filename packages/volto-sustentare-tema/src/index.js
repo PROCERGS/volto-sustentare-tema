@@ -10,6 +10,10 @@ import CardsView from './components/blocks/Cards/View';
 import CardsEdit from './components/blocks/Cards/Edit';
 import CardsSchema from './components/blocks/Cards/schema';
 
+import BlocoSustentabilidadeView from './components/blocks/BlocoSustentabilidade/View';
+import BlocoSustentabilidadeEdit from './components/blocks/BlocoSustentabilidade/Edit';
+import BlocoSustentabilidadeSchema from './components/blocks/BlocoSustentabilidade/schema';
+
 import ScrollHorizontal from './components/blocks/listing/ScrollHorizontal/ScrollHorizontal';
 
 import videoSVG from '@plone/volto/icons/video.svg';
@@ -51,6 +55,17 @@ const applyConfig = (config) => {
     view: CardsView,
     edit: CardsEdit,
     schema: CardsSchema,
+    sidebarTab: 1,
+  };
+
+  config.blocks.blocksConfig.blocoSustentabilidade = {
+    id: 'blocoSustentabilidade',
+    title: 'Bloco Sustentabilidade',
+    icon: imageSVG,
+    group: 'sustentare',
+    view: BlocoSustentabilidadeView,
+    edit: BlocoSustentabilidadeEdit,
+    schema: BlocoSustentabilidadeSchema,
     sidebarTab: 1,
   };
 

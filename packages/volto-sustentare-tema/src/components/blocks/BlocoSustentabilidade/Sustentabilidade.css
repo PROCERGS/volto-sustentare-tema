@@ -1,0 +1,85 @@
+.bloco-sustentabilidade {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+
+.sustentabilidade-coluna-esquerda {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.sustentabilidade-coluna-esquerda h2 {
+  font-size: 41px;
+  font-weight: 800;
+  line-height: 115%;
+  text-transform: uppercase;
+}
+
+.sustentabilidade-coluna-esquerda span {
+  color: var(--bege-padrao);
+}
+
+.sustentabilidade-coluna-esquerda p {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 150%;
+}
+
+.sustentabilidade-coluna-esquerda a {
+  width: fit-content;
+  padding: 10px 20px;
+  border: 4px solid var(--verde-padrao);
+  background: var(--preto-background);
+  color: var(--verde-padrao);
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.sustentabilidade-coluna-esquerda a:hover {
+  background: var(--bege-padrao);
+  color: var(--preto-background);
+}
+
+.sustentabilidade-coluna-direita {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.sustentabilidade-box {
+  display: flex;
+  width: 279px;
+  height: 213px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  border: 4px solid var(--verde-padrao);
+  gap: 8px;
+  text-align: center;
+}
+
+.sustentabilidade-box:hover {
+  background: var(--bege-padrao);
+}
+
+.sustentabilidade-box:hover .sustentabilidade-descricao {
+  color: var(--preto-background);
+}
+.sustentabilidade-numeros {
+  color: var(--verde-padrao);
+  font-size: 60px;
+  font-weight: 900;
+}
+
+.sustentabilidade-descricao {
+  color: var(--bege-padrao);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 150%;
+}
