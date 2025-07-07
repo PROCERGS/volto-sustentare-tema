@@ -10,6 +10,8 @@ import CardsView from './components/blocks/Cards/View';
 import CardsEdit from './components/blocks/Cards/Edit';
 import CardsSchema from './components/blocks/Cards/schema';
 
+import ScrollHorizontal from './components/blocks/listing/ScrollHorizontal/ScrollHorizontal';
+
 import videoSVG from '@plone/volto/icons/video.svg';
 import imageSVG from '@plone/volto/icons/image.svg';
 
@@ -51,6 +53,15 @@ const applyConfig = (config) => {
     schema: CardsSchema,
     sidebarTab: 1,
   };
+
+  config.blocks.blocksConfig.listing.variations = [
+    ...(config.blocks.blocksConfig.listing.variations || []),
+    {
+      id: 'scroll-horizontal',
+      title: 'Grid Scroll Horizontal',
+      template: ScrollHorizontal,
+    },
+  ];
 
   return config;
 };
