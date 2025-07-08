@@ -4,21 +4,19 @@
   margin-bottom: 160px;
 }
 
-.accordion {
+.accordion h3 {
   background-color: var(--preto-background) !important;
 }
-
-.accordion-block .accordion:hover {
+.accordion h3.active {
+  background-color: var(--bege-padrao) !important;
+}
+.accordion h3:hover {
   background-color: var(--bege-padrao) !important;
 }
 
 .accordion:hover .accordion-title span,
 .accordion .accordion-title:hover input {
   color: var(--preto-background) !important;
-}
-
-.accordion h3.active {
-  background-color: var(--bege-padrao) !important;
 }
 
 .accordion .accordion-title.active span,
