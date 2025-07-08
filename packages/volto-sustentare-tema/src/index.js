@@ -14,6 +14,10 @@ import BlocoSustentabilidadeView from './components/blocks/BlocoSustentabilidade
 import BlocoSustentabilidadeEdit from './components/blocks/BlocoSustentabilidade/Edit';
 import BlocoSustentabilidadeSchema from './components/blocks/BlocoSustentabilidade/schema';
 
+import BlocoListaVideosView from './components/blocks/VideosLista/View';
+import BlocoListaVideosEdit from './components/blocks/VideosLista/Edit';
+import BlocoListaVideosSchema from './components/blocks/VideosLista/schema';
+
 import ScrollHorizontal from './components/blocks/listing/ScrollHorizontal/ScrollHorizontal';
 
 import videoSVG from '@plone/volto/icons/video.svg';
@@ -66,6 +70,17 @@ const applyConfig = (config) => {
     view: BlocoSustentabilidadeView,
     edit: BlocoSustentabilidadeEdit,
     schema: BlocoSustentabilidadeSchema,
+    sidebarTab: 1,
+  };
+
+  config.blocks.blocksConfig.blocoListaVideos = {
+    id: 'blocoListaVideos',
+    title: 'Lista de Vídeos',
+    icon: videoSVG,
+    group: 'sustentare',
+    view: BlocoListaVideosView,
+    edit: BlocoListaVideosEdit,
+    schema: BlocoListaVideosSchema,
     sidebarTab: 1,
   };
 
