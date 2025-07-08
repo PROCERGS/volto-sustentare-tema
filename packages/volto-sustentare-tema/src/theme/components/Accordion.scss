@@ -1,0 +1,78 @@
+.accordion-block {
+  width: 100vw;
+  margin-top: 160px;
+  margin-bottom: 160px;
+}
+
+.accordion {
+  background-color: var(--preto-background) !important;
+}
+
+.accordion-block .accordion:hover {
+  background-color: var(--bege-padrao) !important;
+}
+
+.accordion:hover .accordion-title span,
+.accordion .accordion-title:hover input {
+  color: var(--preto-background) !important;
+}
+
+.accordion h3.active {
+  background-color: var(--bege-padrao) !important;
+}
+
+.accordion .accordion-title.active span,
+.accordion .accordion-title.active input {
+  color: var(--preto-background) !important;
+}
+
+.accordion h3 {
+  padding: 10px 0px 10px 38px !important;
+  border: 4px solid var(--verde-padrao) !important;
+}
+
+.accordion .accordion-title span,
+.input-accordion-title input {
+  color: var(--bege-padrao) !important;
+  font-size: 24px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+}
+
+.accordion-block .accordion .content {
+  padding: 24px 55px 0px 75px !important;
+  background-color: var(--verde-escuro);
+  font-size: 18px;
+}
+
+.accordion h2.headline,
+.accordion-block .headline {
+  margin-bottom: 20px !important;
+  font-size: 40px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.accordion-title svg {
+  display: none;
+}
+
+.accordion-title::before {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  background-image: url('../../customizations/images/gridicons_dropdown.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  content: '';
+}
+
+.accordion .accordion-title.active::before {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  background-image: url('../../customizations/images/gridicons_up.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  content: '';
+}
