@@ -195,26 +195,48 @@ const HeaderContainer = ({
           />
         </div>
         <div className="logo-nav-wrapper" style={{ alignItems: 'center' }}>
-          {navigationItems.map((item, idx) => (
-            <a key={item.url || idx} className="nav-item" href={item.url}>
-              {item.url === '' ? (
-                <svg
-                  width="30"
-                  height="31"
-                  viewBox="0 0 30 31"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M12.5 25.356V17.856H17.5V25.356H23.75V15.356H27.5L15 4.10596L2.5 15.356H6.25V25.356H12.5Z"
-                    fill="#F0EAD7"
-                  />
-                </svg>
-              ) : (
-                item.title
-              )}
-            </a>
-          ))}
+          {navigationItems.map((item, idx) => {
+            const hasSubitems = item.items && item.items.length > 0;
+            return (
+              <div
+                key={item.url || idx}
+                className={`nav-item-wrapper${hasSubitems ? ' has-submenu' : ''}`}
+                style={{ position: 'relative', display: 'inline-block' }}
+              >
+                <a className="nav-item" href={item.url || '#'}>
+                  {item.url === '' ? (
+                    <svg
+                      width="30"
+                      height="31"
+                      viewBox="0 0 30 31"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M12.5 25.356V17.856H17.5V25.356H23.75V15.356H27.5L15 4.10596L2.5 15.356H6.25V25.356H12.5Z"
+                        fill="#F0EAD7"
+                      />
+                    </svg>
+                  ) : (
+                    item.title
+                  )}
+                </a>
+                {hasSubitems && (
+                  <div className="submenu">
+                    {item.items.map((sub, subIdx) => (
+                      <a
+                        key={sub.url || subIdx}
+                        href={sub.url}
+                        className="submenu-item"
+                      >
+                        {sub.title}
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
+            );
+          })}
           <button
             className="nav-search-icon"
             ref={buttonRef}
@@ -259,3 +281,5 @@ const HeaderContainer = ({
 };
 
 export default HeaderContainer;
+
+
