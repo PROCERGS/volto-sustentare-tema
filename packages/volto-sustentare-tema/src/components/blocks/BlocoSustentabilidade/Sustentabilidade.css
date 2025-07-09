@@ -1,5 +1,6 @@
 .bloco-sustentabilidade {
   display: flex;
+  width: 95%;
   flex-direction: row;
   gap: 30px;
 }
@@ -82,4 +83,36 @@
   font-size: 20px;
   font-weight: 600;
   line-height: 150%;
+}
+
+@media only screen and (max-width: 991px) {
+  .bloco-sustentabilidade {
+    flex-direction: column;
+  }
+
+  .sustentabilidade-coluna-direita {
+    align-self: center;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, 1fr);
+  }
+
+  .sustentabilidade-coluna-esquerda h2 {
+    font-size: 24px;
+  }
+
+  .sustentabilidade-coluna-esquerda p {
+    font-size: 16px;
+  }
+
+  .sustentabilidade-numeros {
+    font-size: 40px;
+  }
+
+  .sustentabilidade-descricao {
+    font-size: 16px;
+  }
+
+  .sustentabilidade-box {
+    width: 80vw;
+  }
 }

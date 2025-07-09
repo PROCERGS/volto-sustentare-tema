@@ -7,9 +7,11 @@
 .accordion h3 {
   background-color: var(--preto-background) !important;
 }
+
 .accordion h3.active {
   background-color: var(--bege-padrao) !important;
 }
+
 .accordion h3:hover {
   background-color: var(--bege-padrao) !important;
 }
@@ -73,4 +75,11 @@
   background-repeat: no-repeat;
   background-size: contain;
   content: '';
+}
+
+@media only screen and (max-width: 991px) {
+  .accordion-block {
+    width: 93% !important;
+    min-width: 300px;
+  }
 }

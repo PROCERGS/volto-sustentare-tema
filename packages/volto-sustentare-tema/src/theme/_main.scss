@@ -44,6 +44,10 @@ h6 {
     background: var(--bege-padrao) !important;
     color: var(--preto-background) !important;
   }
+
+  @media only screen and (max-width: 767px) {
+    font-size: 16px;
+  }
 }
 
 .main a {

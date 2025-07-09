@@ -18,6 +18,18 @@ const HeaderContainer = ({
   const [barTop, setBarTop] = useState(0);
   const [barLeft, setBarLeft] = useState(0);
   const [barWidth, setBarWidth] = useState(null);
+  const [openMenu, setOpenMenu] = useState(null);
+  const menuRef = useRef();
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setOpenMenu(null);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   useEffect(() => {
     if (showBar && buttonRef.current) {
@@ -64,15 +76,25 @@ const HeaderContainer = ({
           width = sidebarRect.left;
         }
       }
+
+      // Atualiza a posição vertical (top) baseada no botão de busca
+      if (buttonRef.current) {
+        const rect = buttonRef.current.getBoundingClientRect();
+        setBarTop(rect.bottom);
+      }
+
       setBarLeft(left);
       setBarWidth(width);
     }
+
     if (showBar) {
       updateBarPosition();
       window.addEventListener('resize', updateBarPosition);
+      window.addEventListener('scroll', updateBarPosition);
     }
     return () => {
       window.removeEventListener('resize', updateBarPosition);
+      window.removeEventListener('scroll', updateBarPosition);
     };
   }, [showBar]);
 
@@ -194,34 +216,72 @@ const HeaderContainer = ({
             style={{ height: 120 }}
           />
         </div>
-        <div className="logo-nav-wrapper" style={{ alignItems: 'center' }}>
-          {navigationItems.map((item, idx) => {
+        <div
+          className="logo-nav-wrapper home-icon"
+          ref={menuRef}
+          style={{ alignItems: 'center' }}
+        >
+          <a
+            className="nav-item"
+            href="/"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <span className="icon-home-desktop">
+              <svg
+                width="30"
+                height="31"
+                viewBox="0 0 30 31"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12.5 25.356V17.856H17.5V25.356H23.75V15.356H27.5L15 4.10596L2.5 15.356H6.25V25.356H12.5Z"
+                  fill="#F0EAD7"
+                />
+              </svg>
+            </span>
+            <span className="icon-home-mobile">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M8.33329 16.6667V11.6667H11.6666V16.6667H15.8333V10H18.3333L9.99996 2.5L1.66663 10H4.16663V16.6667H8.33329Z"
+                  fill="#F0EAD7"
+                />
+              </svg>
+            </span>
+          </a>
+          {navigationItems.slice(1, 3).map((item, idx) => {
             const hasSubitems = item.items && item.items.length > 0;
             return (
               <div
                 key={item.url || idx}
                 className={`nav-item-wrapper${hasSubitems ? ' has-submenu' : ''}`}
                 style={{ position: 'relative', display: 'inline-block' }}
+                onMouseLeave={() => setOpenMenu(null)}
               >
-                <a className="nav-item" href={item.url || '#'}>
-                  {item.url === '' ? (
-                    <svg
-                      width="30"
-                      height="31"
-                      viewBox="0 0 30 31"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M12.5 25.356V17.856H17.5V25.356H23.75V15.356H27.5L15 4.10596L2.5 15.356H6.25V25.356H12.5Z"
-                        fill="#F0EAD7"
-                      />
-                    </svg>
-                  ) : (
-                    item.title
-                  )}
-                </a>
-                {hasSubitems && (
+                {hasSubitems ? (
+                  <button
+                    type="button"
+                    className="nav-item"
+                    onClick={() => setOpenMenu(openMenu === idx ? null : idx)}
+                  >
+                    {item.title}
+                  </button>
+                ) : (
+                  <a className="nav-item" href={item.url || '#'}>
+                    {item.title}
+                  </a>
+                )}
+                {hasSubitems && openMenu === idx && (
                   <div className="submenu">
                     {item.items.map((sub, subIdx) => (
                       <a
@@ -243,19 +303,37 @@ const HeaderContainer = ({
             onClick={() => setShowBar((v) => !v)}
             aria-label="Abrir busca"
           >
-            <svg
-              width="27"
-              height="27"
-              viewBox="0 0 27 27"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M9.66699 0.855957C12.2169 0.856032 14.3952 1.74621 16.1709 3.52002C17.9467 5.2941 18.8358 7.47191 18.833 10.0229L18.8252 10.4067C18.7892 11.2982 18.6272 12.1498 18.3369 12.9585C18.0624 13.723 17.7022 14.4173 17.2588 15.0415L25.3535 23.1353L25.707 23.4897L23.1338 26.063L22.7793 25.7095L14.6855 17.6147C14.0613 18.0582 13.3671 18.4184 12.6025 18.6929C11.6785 19.0246 10.6986 19.1889 9.66699 19.189C7.11542 19.189 4.93727 18.2998 3.16406 16.5259C1.39097 14.7518 0.500969 12.5737 0.5 10.0229C0.499063 7.47191 1.38906 5.29412 3.16406 3.52002C4.93897 1.74605 7.11689 0.855957 9.66699 0.855957ZM9.66602 4.52295C8.12906 4.52134 6.84077 5.0531 5.77148 6.12646C4.70132 7.2008 4.16956 8.48998 4.16699 10.0229C4.16454 11.5548 4.69554 12.8443 5.77051 13.9194C6.84569 14.9946 8.13509 15.5262 9.66602 15.5229H9.66699C11.2024 15.5229 12.4913 14.9907 13.5635 13.9194C14.6355 12.8482 15.1678 11.5593 15.167 10.0229C15.1662 8.48615 14.6339 7.19686 13.5635 6.12646C12.4931 5.05629 11.2037 4.52459 9.66602 4.52295Z"
-                fill="#F0EAD7"
-                stroke="#F0EAD7"
-              />
-            </svg>
+            <span className="icon-search-desktop">
+              <svg
+                width="27"
+                height="27"
+                viewBox="0 0 27 27"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M9.66699 0.5C12.2169 0.500075 14.3952 1.39025 16.1709 3.16406C17.9467 4.93814 18.8358 7.11596 18.833 9.66699L18.8252 10.0508C18.7892 10.9423 18.6272 11.7938 18.3369 12.6025C18.0624 13.3671 17.7022 14.0613 17.2588 14.6855L25.3535 22.7793L25.707 23.1338L23.1338 25.707L22.7793 25.3535L14.6855 17.2588C14.0613 17.7022 13.3671 18.0624 12.6025 18.3369C11.6785 18.6686 10.6986 18.833 9.66699 18.833C7.11542 18.833 4.93727 17.9439 3.16406 16.1699C1.39097 14.3959 0.500969 12.2177 0.5 9.66699C0.499063 7.11595 1.38906 4.93817 3.16406 3.16406C4.93897 1.39009 7.11689 0.5 9.66699 0.5ZM9.66602 4.16699C8.12906 4.16538 6.84077 4.69714 5.77148 5.77051C4.70132 6.84484 4.16956 8.13403 4.16699 9.66699C4.16454 11.1988 4.69554 12.4883 5.77051 13.5635C6.84569 14.6387 8.13509 15.1703 9.66602 15.167H9.66699C11.2024 15.1669 12.4913 14.6348 13.5635 13.5635C14.6355 12.4922 15.1678 11.2034 15.167 9.66699C15.1662 8.13019 14.6339 6.8409 13.5635 5.77051C12.4931 4.70034 11.2037 4.16863 9.66602 4.16699Z"
+                  fill="#F0EAD7"
+                  stroke="#F0EAD7"
+                />
+              </svg>
+            </span>
+            <span className="icon-search-mobile">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 18 18"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M6.77734 0.75C8.45566 0.75 9.88686 1.33453 11.0547 2.50098C12.2226 3.66761 12.8073 5.09845 12.8057 6.77734L12.8008 7.03027C12.7772 7.61668 12.67 8.1762 12.4795 8.70703C12.2905 9.23351 12.0404 9.70879 11.7305 10.1328L17.3535 15.7559L15.7559 17.3535L10.1328 11.7305C9.70879 12.0404 9.23351 12.2905 8.70703 12.4795C8.10052 12.6972 7.45619 12.8057 6.77734 12.8057C5.09794 12.8056 3.66707 12.2204 2.50098 11.0537C1.33522 9.88715 0.750721 8.45689 0.75 6.77832C0.749384 5.09922 1.33457 3.66774 2.50195 2.50098C3.66908 1.33468 5.09929 0.750101 6.77734 0.75ZM6.77734 3.02734C5.73091 3.02627 4.85073 3.38972 4.12207 4.12109C3.3928 4.85315 3.02902 5.73435 3.02734 6.77832C3.0257 7.82159 3.38954 8.70204 4.12207 9.43457C4.85461 10.1671 5.73474 10.5296 6.77734 10.5273C7.82291 10.5273 8.70392 10.1646 9.43457 9.43457C10.165 8.70467 10.5278 7.82426 10.5273 6.77832C10.5268 5.73204 10.1639 4.85147 9.43457 4.12207C8.70515 3.39265 7.82435 3.02846 6.77734 3.02734Z"
+                  fill="#F0EAD7"
+                  stroke="#F0EAD7"
+                  stroke-width="0.5"
+                />
+              </svg>
+            </span>
           </button>
           {showBar && (
             <div
@@ -265,8 +343,6 @@ const HeaderContainer = ({
                 top: barTop,
                 left: barLeft,
                 width: barWidth,
-                position: 'absolute',
-                zIndex: 1000,
               }}
             >
               <div style={{ width: '100%', padding: 16 }}>
@@ -281,5 +357,3 @@ const HeaderContainer = ({
 };
 
 export default HeaderContainer;
-
-
