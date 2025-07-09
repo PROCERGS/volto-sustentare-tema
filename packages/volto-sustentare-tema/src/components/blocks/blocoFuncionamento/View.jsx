@@ -24,7 +24,7 @@ const BlocoSustView = () => {
   return (
     <div className="bloco-comoFunciona">
       <h1 className="sust-title">como o sustentare funciona</h1>
-      <div className="sust-container" style={{ backgroundColor: '#2D2D2D' }}>
+      <div className="sust-container">
         <div className="sust-one-to-another">
           <div className="sust-item one">
             <img

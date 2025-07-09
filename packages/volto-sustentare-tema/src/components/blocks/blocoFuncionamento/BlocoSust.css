@@ -39,7 +39,7 @@
   display: flex;
   height: 750px;
   flex-direction: row;
-  align-items: end;
+  align-items: flex-end;
   justify-content: center;
   gap: 20px;
 }
@@ -83,14 +83,14 @@
   height: 70px;
   flex-direction: column;
   align-items: flex-start;
-  place-self: end;
+  place-self: flex-end;
 }
 
 .sust-item-text span:nth-child(1) {
   color: #f0ead7;
   font-size: 16px;
   font-weight: bold;
-  place-content: end;
+  place-content: flex-end;
   text-transform: uppercase;
 }
 
