@@ -18,6 +18,8 @@ import BlocoListaVideosView from './components/blocks/VideosLista/View';
 import BlocoListaVideosEdit from './components/blocks/VideosLista/Edit';
 import BlocoListaVideosSchema from './components/blocks/VideosLista/schema';
 
+import BlocoFuncionamentoView from './components/blocks/blocoFuncionamento/View';
+
 import ScrollHorizontal from './components/blocks/listing/ScrollHorizontal/ScrollHorizontal';
 
 import videoSVG from '@plone/volto/icons/video.svg';
@@ -81,6 +83,15 @@ const applyConfig = (config) => {
     view: BlocoListaVideosView,
     edit: BlocoListaVideosEdit,
     schema: BlocoListaVideosSchema,
+    sidebarTab: 1,
+  };
+
+  config.blocks.blocksConfig.blocoFuncionamento = {
+    id: 'blocoFuncionamento',
+    title: 'Como Funciona',
+    icon: imageSVG,
+    group: 'sustentare',
+    view: BlocoFuncionamentoView,
     sidebarTab: 1,
   };
 
