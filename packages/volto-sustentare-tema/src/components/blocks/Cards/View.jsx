@@ -42,7 +42,7 @@ const Card = ({ card }) => {
 const View = ({ data }) => {
   const cards = data.cards || [];
   return (
-    <div className="cards-block">
+    <div className="block cards-block">
       {cards.map((card, idx) => (
         <Card card={card} key={idx} />
       ))}

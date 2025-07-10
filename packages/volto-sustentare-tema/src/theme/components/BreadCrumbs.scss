@@ -1,0 +1,39 @@
+.breadcrumbs {
+  border-bottom: 4px solid var(--verde-padrao);
+  background-color: var(--preto-background) !important;
+}
+
+.breadcrumbs .breadcrumb a {
+  color: var(--bege-padrao) !important;
+  font-size: 20px !important;
+  font-weight: 900 !important;
+  text-transform: uppercase;
+}
+
+.breadcrumbs .breadcrumb .active {
+  color: var(--verde-padrao) !important;
+  font-size: 20px !important;
+  text-transform: uppercase;
+}
+
+.breadcrumbs .breadcrumb .divider::before {
+  margin: 0 20px !important;
+  color: var(--bege-padrao) !important;
+  font-size: 20px !important;
+}
+
+.breadcrumbs .breadcrumb .home .icon {
+  display: none; // Esconde o SVG antigo, se possível
+}
+
+.breadcrumbs .breadcrumb .home::before {
+  display: inline-block;
+  width: 24px;
+  height: 25px;
+  margin-right: 8px;
+  background: url('data:image/svg+xml;utf8,<svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 20.356V14.356H14V20.356H19V12.356H22L12 3.35596L2 12.356H5V20.356H10Z" fill="%23F0EAD7"/></svg>')
+    no-repeat center center;
+  background-size: contain;
+  content: '';
+  vertical-align: middle;
+}

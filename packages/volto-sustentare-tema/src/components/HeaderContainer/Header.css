@@ -79,6 +79,7 @@ header {
   border-right: 4px solid var(--verde-padrao) !important;
   border-left: 2px solid var(--verde-padrao);
   background: transparent;
+  cursor: pointer;
 }
 
 .nav-search-icon:hover {
@@ -131,6 +132,11 @@ header {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
+.nav-item-wrapper.active > .nav-item {
+  background-color: var(--bege-padrao) !important;
+  color: var(--preto-background) !important;
+}
+
 .nav-item-wrapper.has-submenu:hover > a,
 .nav-item-wrapper.has-submenu:focus-within > a,
 .nav-item-wrapper.has-submenu .submenu:hover ~ a,
@@ -172,18 +178,31 @@ header {
   background-color: var(--verde-claro) !important;
 }
 
-.icon-home-mobile {
-  display: none;
-}
-.icon-home-desktop {
-  display: inline;
-}
-
+.icon-home-mobile,
 .icon-search-mobile {
   display: none;
 }
+.icon-home-desktop,
 .icon-search-desktop {
   display: inline;
+}
+
+.logo-nav-wrapper button:hover {
+  background-color: var(--bege-padrao) !important;
+  color: var(--preto-background) !important;
+}
+
+.logo-nav-wrapper .nav-item:hover,
+.logo-nav-wrapper .nav-item:focus {
+  background-color: var(--bege-padrao) !important;
+  color: var(--preto-background) !important;
+}
+
+.icon-home-desktop:hover svg path,
+.icon-search-desktop:hover svg path,
+.icon-home-mobile:hover svg path,
+.icon-search-mobile:hover svg path {
+  fill: var(--preto-background) !important;
 }
 
 .home-icon {
@@ -207,16 +226,11 @@ header {
     padding: 12px;
   }
 
-  .icon-home-desktop {
-    display: none !important;
-  }
-  .icon-home-mobile {
-    display: inline !important;
-  }
-
+  .icon-home-desktop,
   .icon-search-desktop {
     display: none !important;
   }
+  .icon-home-mobile,
   .icon-search-mobile {
     display: inline !important;
   }

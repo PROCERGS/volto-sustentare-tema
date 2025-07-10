@@ -1,6 +1,7 @@
 @import 'variables';
 @import url('https://fonts.googleapis.com/css2?family=Saira:wght@400;700&display=swap');
 @import './components/Accordion.scss';
+@import './components/BreadCrumbs.scss';
 
 * {
   font-family: 'Saira', Arial, Helvetica, sans-serif !important;
@@ -29,7 +30,7 @@ h6 {
   }
 }
 
-.content-area button {
+.block button:not(.delete-button) {
   width: fit-content;
   padding: 10px 20px !important;
   border: 4px solid var(--verde-padrao) !important;
@@ -48,6 +49,15 @@ h6 {
   @media only screen and (max-width: 767px) {
     font-size: 16px;
   }
+}
+
+.content-area .delete-button svg path {
+  fill: var(--bege-padrao);
+}
+
+.content-area .delete-button:hover {
+  background: var(--bege-padrao) !important;
+  fill: var(--vermelho-padrao) !important;
 }
 
 .main a {

@@ -261,18 +261,18 @@ const HeaderContainer = ({
           </a>
           {navigationItems.slice(1, 3).map((item, idx) => {
             const hasSubitems = item.items && item.items.length > 0;
+            const isActive = openMenu === idx;
             return (
               <div
                 key={item.url || idx}
-                className={`nav-item-wrapper${hasSubitems ? ' has-submenu' : ''}`}
+                className={`nav-item-wrapper${hasSubitems ? ' has-submenu' : ''}${isActive ? ' active' : ''}`}
                 style={{ position: 'relative', display: 'inline-block' }}
-                onMouseLeave={() => setOpenMenu(null)}
               >
                 {hasSubitems ? (
                   <button
                     type="button"
                     className="nav-item"
-                    onClick={() => setOpenMenu(openMenu === idx ? null : idx)}
+                    onClick={() => setOpenMenu(isActive ? null : idx)}
                   >
                     {item.title}
                   </button>
@@ -281,7 +281,7 @@ const HeaderContainer = ({
                     {item.title}
                   </a>
                 )}
-                {hasSubitems && openMenu === idx && (
+                {hasSubitems && isActive && (
                   <div className="submenu">
                     {item.items.map((sub, subIdx) => (
                       <a
@@ -300,7 +300,10 @@ const HeaderContainer = ({
           <button
             className="nav-search-icon"
             ref={buttonRef}
-            onClick={() => setShowBar((v) => !v)}
+            onClick={() => {
+              setShowBar((v) => !v);
+              setOpenMenu(null);
+            }}
             aria-label="Abrir busca"
           >
             <span className="icon-search-desktop">
