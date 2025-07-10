@@ -251,3 +251,13 @@ header {
     padding-left: 0 !important;
   }
 }
+
+@media (max-width: 480px) {
+  .logo-nav-wrapper {
+    padding: 0 0 0 2% !important;
+  }
+  .logo-nav-wrapper button {
+    padding: 15px;
+    font-size: 13px;
+  }
+}

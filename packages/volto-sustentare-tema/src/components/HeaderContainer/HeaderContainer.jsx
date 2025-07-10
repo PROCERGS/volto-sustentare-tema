@@ -19,7 +19,18 @@ const HeaderContainer = ({
   const [barLeft, setBarLeft] = useState(0);
   const [barWidth, setBarWidth] = useState(null);
   const [openMenu, setOpenMenu] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
   const menuRef = useRef();
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const handleResize = () => setIsMobile(window.innerWidth < 767);
+      handleResize();
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+    }
+    return undefined;
+  }, []);
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -210,11 +221,19 @@ const HeaderContainer = ({
               fill="#00B033"
             />
           </svg>
-          <img
-            src="/brasao-RS-contraste.png"
-            alt="Brasão do RS"
-            style={{ height: 120 }}
-          />
+          {isMobile ? (
+            <img
+              src="/brasao-RS-contraste-mobile.svg"
+              alt="Brasão do RS"
+              style={{ height: 120 }}
+            />
+          ) : (
+            <img
+              src="/brasao-RS-contraste.png"
+              alt="Brasão do RS"
+              style={{ height: 120 }}
+            />
+          )}
         </div>
         <div
           className="logo-nav-wrapper home-icon"

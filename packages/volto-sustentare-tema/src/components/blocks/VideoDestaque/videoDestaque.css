@@ -119,8 +119,14 @@
     font-size: 16px;
   }
 
+  .video-destaque-video,
+  .video-destaque-iframe,
   .video-destaque-thumb {
-    min-width: 304px;
-    min-height: 171px;
+    width: 100% !important;
+    min-width: 304px !important;
+    max-width: 85% !important;
+    height: 200px !important;
+    min-height: 171px !important;
+    max-height: 100% !important;
   }
 }
