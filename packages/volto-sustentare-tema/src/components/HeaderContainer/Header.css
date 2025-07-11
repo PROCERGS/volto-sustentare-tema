@@ -260,4 +260,21 @@ header {
     padding: 15px;
     font-size: 13px;
   }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .nav-arrow {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 8px;
+    transition: transform 0.2s;
+  }
+
+  .nav-arrow.up svg path {
+    fill: var(--preto-background);
+  }
 }

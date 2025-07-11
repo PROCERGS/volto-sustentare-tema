@@ -445,6 +445,16 @@ const HeaderContainer = ({
                     onClick={() => setOpenMenu(isActive ? null : idx)}
                   >
                     {item.title}
+                    {isMobile && (
+                      <span className={`nav-arrow${isActive ? ' up' : ''}`}>
+                        <svg width="18" height="18" viewBox="0 0 18 18">
+                          <path
+                            d={isActive ? 'M4 12L9 7L14 12' : 'M4 7L9 12L14 7'}
+                            fill="#F0EAD7"
+                          />
+                        </svg>
+                      </span>
+                    )}
                   </button>
                 ) : (
                   <a className="nav-item" href={item.url || '#'}>
