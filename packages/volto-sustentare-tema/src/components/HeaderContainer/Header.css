@@ -38,7 +38,7 @@ header {
   height: 100%;
   box-sizing: border-box;
   align-items: center;
-  padding: 24px 32px;
+  padding: 27px 32px;
   border-right: 2px solid var(--verde-padrao) !important;
   border-left: 2px solid var(--verde-padrao) !important;
   margin: 0;
@@ -49,7 +49,7 @@ header {
 }
 
 .logo-nav-wrapper.home-icon a {
-  padding: 19px 32px;
+  padding: 22px 32px;
   border-right: 2px solid var(--verde-padrao);
   border-left: 4px solid var(--verde-padrao);
 }

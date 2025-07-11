@@ -1,0 +1,136 @@
+.high-contrast #page-login .ui.secondary.segment {
+  color: var(--branco) !important;
+}
+
+.high-contrast #page-login .login-form-submit {
+  background-color: var(--preto) !important;
+}
+
+.high-contrast #page-login .ui.form .login-form-submit {
+  background-color: var(--preto) !important;
+  color: var(--branco) !important;
+}
+
+.high-contrast:not(#page-login):not(#page-login *),
+.high-contrast .ui.segment:not(#page-login):not(#page-login *) {
+  background-color: var(--bege-padrao) !important;
+
+  p {
+    color: var(--preto-background) !important;
+  }
+
+  span {
+    color: var(--preto-background) !important;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--verde-padrao) !important;
+  }
+
+  button,
+  .block button:not(.delete-button) {
+    background-color: var(--bege-padrao) !important;
+    color: var(--preto-background) !important;
+  }
+
+  .acess-wrapper a {
+    color: var(--preto-background) !important;
+  }
+
+  .acess-wrapper .acess-ul > li > a > svg {
+    color: var(--preto-background) !important;
+  }
+
+  .acess-ul > * :hover {
+    fill: var(--preto-background) !important;
+  }
+
+  #btn-contraste {
+    color: var(--preto-background) !important;
+  }
+
+  .nav-item svg path,
+  .logo-nav-wrapper .nav-search-icon svg path {
+    fill: var(--preto-background) !important;
+  }
+
+  #page-login #login-form-submit,
+  #page-login #login-form-cancel {
+    background-color: var(--preto) !important;
+    color: var(--branco) !important;
+    svg path {
+      fill: var(--branco) !important;
+    }
+  }
+
+  .s-wrapper {
+    border: 4px solid var(--preto-background) !important;
+    background-color: var(--bege-padrao) !important;
+    color: var(--preto-background) !important;
+  }
+
+  .breadcrumbs {
+    border: none !important;
+    border-bottom: 4px solid var(--verde-padrao) !important;
+    background-color: var(--bege-padrao) !important;
+  }
+
+  .breadcrumbs .breadcrumb .home::before {
+    background: url('data:image/svg+xml;utf8,<svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 20.356V14.356H14V20.356H19V12.356H22L12 3.35596L2 12.356H5V20.356H10Z" fill="%232D2D2D"/></svg>')
+      no-repeat center center !important;
+  }
+
+  .breadcrumbs .breadcrumb .divider::before {
+    color: var(--preto-background) !important;
+  }
+
+  .accordion h3 {
+    background-color: var(--bege-padrao) !important;
+  }
+
+  .accordion h3.active {
+    background-color: var(--preto-background) !important;
+    span {
+      color: var(--bege-padrao) !important;
+    }
+
+    &:hover {
+      background-color: var(--bege-padrao) !important;
+      span {
+        color: var(--preto-background) !important;
+      }
+    }
+  }
+
+  .accordion-block .accordion .content p {
+    color: var(--bege-padrao) !important;
+  }
+
+  .sustentabilidade-coluna-esquerda a {
+    background-color: var(--bege-padrao) !important;
+    color: var(--preto-background) !important;
+  }
+
+  #footer {
+    background-color: var(--preto-background) !important;
+    color: var(--bege-padrao) !important;
+
+    p {
+      color: var(--bege-padrao) !important;
+    }
+    .rodape-titulo {
+      color: var(--verde-padrao) !important;
+    }
+    a {
+      color: var(--bege-padrao) !important;
+    }
+  }
+  .footer-logo {
+    background-color: var(--branco) !important;
+  }
+}

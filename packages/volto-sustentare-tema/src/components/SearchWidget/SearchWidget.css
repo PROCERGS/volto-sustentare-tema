@@ -11,11 +11,11 @@
   place-content: space-between;
 }
 
-#s-logo {
+.logo-nav-wrapper #s-logo {
   height: stretch;
   padding: 15px;
-  border: none;
-  border-left: 4px solid var(--preto-background);
+  border: none !important;
+  border-left: 4px solid var(--preto-background) !important;
   background-color: transparent;
   color: var(--preto-background);
 }
