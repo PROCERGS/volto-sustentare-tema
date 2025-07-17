@@ -10,6 +10,20 @@
   gap: 20px;
 }
 
+.sust-item .sust-item-text .span-title {
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.sust-item .sust-item-text .span-text {
+  font-size: 14px;
+}
+
+.sust-item.hidden {
+  width: 200px;
+}
+
 .sust-title {
   width: 100%;
   padding: 0 0 0 20px;
@@ -17,6 +31,25 @@
   color: #00b033;
   font-size: 40px;
   font-weight: bold;
+  text-transform: uppercase;
+}
+
+.hidden.subtexto-reaproveitamento {
+  display: flex;
+  width: 100%;
+  height: fit-content;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 100px;
+}
+
+.hidden.subtexto-reaproveitamento h1 {
+  margin-bottom: 0;
+  color: #00b033;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
   text-transform: uppercase;
 }
 

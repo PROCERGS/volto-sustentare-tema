@@ -38,18 +38,8 @@ const BlocoSustView = () => {
               onMouseLeave={(e) => (e.target.src = Camada_1)}
             />
             <div className="sust-item-text" style={{ placeContent: 'end' }}>
-              <span
-                style={{
-                  fontSize: '18px',
-                  fontWeight: 'bold',
-                  textTransform: 'uppercase',
-                }}
-              >
-                Recolhimento do material
-              </span>
-              <span style={{ fontSize: '14px' }}>
-                Pontos de coleta estabelecidos
-              </span>
+              <span className="span-title">Recolhimento do material</span>
+              <span className="span-text">Pontos de coleta estabelecidos</span>
             </div>
           </div>
 
@@ -64,18 +54,8 @@ const BlocoSustView = () => {
               onMouseLeave={(e) => (e.target.src = Camada_2)}
             />
             <div className="sust-item-text">
-              <span
-                style={{
-                  fontSize: '18px',
-                  fontWeight: 'bold',
-                  textTransform: 'uppercase',
-                }}
-              >
-                triagem
-              </span>
-              <span style={{ fontSize: '14px' }}>
-                Feita em tal lugar do projeto
-              </span>
+              <span className="span-title">Triagem</span>
+              <span className="span-text">Feita em tal lugar do projeto</span>
             </div>
           </div>
         </div>
@@ -95,16 +75,8 @@ const BlocoSustView = () => {
                   onMouseLeave={(e) => (e.target.src = Camada_3)}
                 />
                 <div className="sust-item-text">
-                  <span
-                    style={{
-                      fontSize: '18px',
-                      fontWeight: 'bold',
-                      textTransform: 'uppercase',
-                    }}
-                  >
-                    recuperáveis
-                  </span>
-                  <span style={{ fontSize: '14px' }}>
+                  <span className="span-title">Recuperáveis</span>
+                  <span className="span-text">
                     Recondicionamento de peças e softwares
                   </span>
                 </div>
@@ -119,16 +91,8 @@ const BlocoSustView = () => {
                   onMouseLeave={(e) => (e.target.src = Camada_4)}
                 />
                 <div className="sust-item-text">
-                  <span
-                    style={{
-                      fontSize: '18px',
-                      fontWeight: 'bold',
-                      textTransform: 'uppercase',
-                    }}
-                  >
-                    ociosos
-                  </span>
-                  <span style={{ fontSize: '14px' }}>
+                  <span className="span-title">Ociosos</span>
+                  <span className="span-text">
                     Separação e levantamento de necessidades
                   </span>
                 </div>
@@ -142,16 +106,8 @@ const BlocoSustView = () => {
                   onMouseLeave={(e) => (e.target.src = Camada_5)}
                 />
                 <div className="sust-item-text">
-                  <span
-                    style={{
-                      fontSize: '18px',
-                      fontWeight: 'bold',
-                      textTransform: 'uppercase',
-                    }}
-                  >
-                    irrecuperáveis
-                  </span>
-                  <span style={{ fontSize: '14px' }}>
+                  <span className="span-title">Irrecuperáveis</span>
+                  <span className="span-text">
                     Reciclagem assistida onde componentes passam pela
                     descaracterização
                   </span>
@@ -182,25 +138,17 @@ const BlocoSustView = () => {
                   <img
                     src={vector2}
                     alt="vector"
-                    className="sust-one-to-one vector2"
+                    className="vector2"
                     style={{ transform: 'translateX(20%) translateY(80%)' }}
                   />
                 </div>
 
                 <div className="sust-two-vector ">
-                  <img
-                    src={vector1}
-                    alt="vector"
-                    className="sust-one-to-one vector1"
-                  />
+                  <img src={vector1} alt="vector" className="vector1" />
                 </div>
 
                 <div className="sust-two-vector">
-                  <img
-                    src={vector1}
-                    alt="vector"
-                    className="sust-one-to-one vector1"
-                  />
+                  <img src={vector1} alt="vector" className="vector1" />
                 </div>
               </div>
             </div>
@@ -217,16 +165,8 @@ const BlocoSustView = () => {
                       onMouseLeave={(e) => (e.target.src = Camada_6)}
                     />
                     <div className="sust-item-text">
-                      <span
-                        style={{
-                          fontSize: '18px',
-                          fontWeight: 'bold',
-                          textTransform: 'uppercase',
-                        }}
-                      >
-                        doação
-                      </span>
-                      <span style={{ fontSize: '14px' }}>
+                      <span className="span-title">Doação</span>
+                      <span className="span-text">
                         Para instituições necessitadas cadastradas
                       </span>
                     </div>
@@ -243,16 +183,10 @@ const BlocoSustView = () => {
                       onMouseLeave={(e) => (e.target.src = Camada_7)}
                     />
                     <div className="sust-item-text">
-                      <span
-                        style={{
-                          fontSize: '18px',
-                          fontWeight: 'bold',
-                          textTransform: 'uppercase',
-                        }}
-                      >
+                      <span className="span-title">
                         reaproveitamento pela indústria
                       </span>
-                      <span style={{ fontSize: '14px' }}>
+                      <span className="span-text">
                         Envio para empresas que reaproveitam pó residual
                       </span>
                     </div>
@@ -260,33 +194,10 @@ const BlocoSustView = () => {
                 </div>
               </div>
             </div>
-            <div
-              className="hidden"
-              style={{
-                height: 'fit-content',
-                marginTop: '100px',
-                width: '100%',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-            >
-              <h1
-                className="hidden"
-                style={{
-                  fontSize: '20px',
-                  fontWeight: 'bold',
-                  textTransform: 'uppercase',
-                  color: '#00B033',
-                  textAlign: 'center',
-                  marginBottom: '0',
-                }}
-              >
-                Em caso de não reaproveitamento:
-              </h1>
+            <div className="hidden subtexto-reaproveitamento">
+              <h1 className="hidden">Em caso de não reaproveitamento:</h1>
               <div className="sust-one-to-another">
-                <div className="sust-item hidden" style={{ width: '200px' }}>
+                <div className="sust-item hidden">
                   <img
                     src={Camada_5}
                     alt="Bloco Sust"
@@ -298,16 +209,8 @@ const BlocoSustView = () => {
                     className="sust-item-text"
                     style={{ placeContent: 'end' }}
                   >
-                    <span
-                      style={{
-                        fontSize: '18px',
-                        fontWeight: 'bold',
-                        textTransform: 'uppercase',
-                      }}
-                    >
-                      Irrecuperáveis
-                    </span>
-                    <span style={{ fontSize: '14px' }}>
+                    <span className="span-title">Irrecuperáveis</span>
+                    <span className="span-text">
                       Reciclagem assistida onde componentes passam pela
                       descaracterização
                     </span>
@@ -316,7 +219,7 @@ const BlocoSustView = () => {
 
                 <img src={vector1} alt="vector" className="vector1 hidden" />
 
-                <div className="sust-item hidden" style={{ width: '200px' }}>
+                <div className="sust-item hidden">
                   <img
                     src={Camada_7}
                     alt="Bloco Sust"
@@ -325,16 +228,10 @@ const BlocoSustView = () => {
                     onMouseLeave={(e) => (e.target.src = Camada_7)}
                   />
                   <div className="sust-item-text">
-                    <span
-                      style={{
-                        fontSize: '18px',
-                        fontWeight: 'bold',
-                        textTransform: 'uppercase',
-                      }}
-                    >
-                      reaproveitamento pela indústria
+                    <span className="span-title">
+                      Reaproveitamento pela indústria
                     </span>
-                    <span style={{ fontSize: '14px' }}>
+                    <span className="span-text">
                       Envio para empresas que reaproveitam pó residual
                     </span>
                   </div>

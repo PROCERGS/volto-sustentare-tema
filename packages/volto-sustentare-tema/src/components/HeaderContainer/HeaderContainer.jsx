@@ -429,7 +429,7 @@ const HeaderContainer = ({
               </svg>
             </span>
           </a>
-          {navigationItems.slice(1, 3).map((item, idx) => {
+          {navigationItems.slice(1).map((item, idx) => {
             const hasSubitems = item.items && item.items.length > 0;
             const isActive = openMenu === idx;
             return (
