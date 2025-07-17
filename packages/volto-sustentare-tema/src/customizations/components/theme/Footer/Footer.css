@@ -49,3 +49,32 @@
   padding-right: 10%;
   background-color: var(--branco);
 }
+
+.footer-images svg,
+.footer-images img {
+  width: 163px;
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 1279px) and (min-width: 768px) {
+  .footer-images {
+    display: flex;
+    flex-direction: row !important;
+    justify-content: space-around;
+  }
+  .footer-images svg,
+  .footer-images img {
+    width: 200px;
+  }
+}
+
+@media (max-width: 767px) {
+  .footer-images {
+    justify-self: center;
+  }
+  .footer-images svg,
+  .footer-images img {
+    width: 200px;
+  }
+}

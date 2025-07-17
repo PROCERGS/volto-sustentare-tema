@@ -31,9 +31,18 @@ const Card = ({ card }) => {
       <div className="card-content">
         {image_data.title && <h3>{image_data.title}</h3>}
         {image_data.text && <p>{image_data.text}</p>}
-        {image_data.button_text && (
+        {image_data.button_text && image_data.button_url ? (
+          <a
+            className="link-button"
+            href={image_data.button_url}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {image_data.button_text}
+          </a>
+        ) : image_data.button_text ? (
           <button className="card-button">{image_data.button_text}</button>
-        )}
+        ) : null}
       </div>
     </div>
   );

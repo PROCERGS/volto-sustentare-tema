@@ -33,7 +33,8 @@
   }
 
   button,
-  .block button:not(.delete-button) {
+  .block button:not(.delete-button),
+  .block .link-button {
     background-color: var(--bege-padrao) !important;
     color: var(--preto-background) !important;
   }
@@ -86,6 +87,10 @@
   }
 
   .breadcrumbs .breadcrumb .divider::before {
+    color: var(--preto-background) !important;
+  }
+
+  .breadcrumbs .breadcrumb a {
     color: var(--preto-background) !important;
   }
 

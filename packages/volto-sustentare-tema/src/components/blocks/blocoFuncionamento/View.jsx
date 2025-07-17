@@ -19,13 +19,16 @@ import vector3 from './vectors/Vector3.svg';
 import vector2 from './vectors/Vector2.svg';
 import vector1_2 from './vectors/vector1-2.svg';
 import vector2_1 from './vectors/vector2-1.svg';
+import vector4 from './vectors/Vector4.svg';
+import vector5 from './vectors/Vector5.svg';
+import vector6 from './vectors/Vector6.svg';
 
 const BlocoSustView = () => {
   return (
     <div className="bloco-comoFunciona">
       <h1 className="sust-title">como o sustentare funciona</h1>
       <div className="sust-container">
-        <div className="sust-one-to-another">
+        <div className="sust-one-to-another first">
           <div className="sust-item one">
             <img
               src={Camada_1}
@@ -80,6 +83,7 @@ const BlocoSustView = () => {
         <div className="sust-meio">
           <div className="sust-one-to-another">
             <img src={vector1_2} alt="vector" className="vector1_2 hidden" />
+            <img src={vector5} alt="vector" className="vector5 medium" />
             <img src={vector3} alt="vector" className="vector3 gone" />
             <div className="sust-meio-itens">
               <div className="sust-item">
@@ -129,7 +133,7 @@ const BlocoSustView = () => {
                   </span>
                 </div>
               </div>
-              <div className="sust-item gone">
+              <div className="sust-item gone medium">
                 <img
                   src={Camada_5}
                   alt="Bloco Sust"
@@ -157,6 +161,10 @@ const BlocoSustView = () => {
           </div>
 
           <img src={vector2_1} alt="vector" className="vector2_1 hidden" />
+          <div className="vectors-medium medium">
+            <img src={vector4} alt="vector" className="vector4" />
+            <img src={vector6} alt="vector" className="vector6" />
+          </div>
 
           <div className="sust-one-to-another">
             <div className="sust-two-vectors gone">
@@ -198,15 +206,7 @@ const BlocoSustView = () => {
             </div>
 
             <div className="sust-two-vectors">
-              <div
-                style={{
-                  height: '56%',
-                  width: '200px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-between',
-                }}
-              >
+              <div className="two-vectors-container">
                 <div className="sust-two-vector">
                   <div className="sust-item">
                     <img
@@ -233,7 +233,7 @@ const BlocoSustView = () => {
                   </div>
                 </div>
 
-                <div className="sust-two-vector gone">
+                <div className="sust-two-vector gone medium">
                   <div className="sust-item">
                     <img
                       src={Camada_7}
@@ -263,7 +263,8 @@ const BlocoSustView = () => {
             <div
               className="hidden"
               style={{
-                height: '800px',
+                height: 'fit-content',
+                marginTop: '100px',
                 width: '100%',
                 display: 'flex',
                 flexDirection: 'column',

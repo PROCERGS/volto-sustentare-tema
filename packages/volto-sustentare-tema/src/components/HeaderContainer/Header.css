@@ -254,11 +254,14 @@ header {
 
 @media (max-width: 480px) {
   .logo-nav-wrapper {
-    padding: 0 0 0 2% !important;
+    padding: 0 !important;
   }
   .logo-nav-wrapper button {
-    padding: 15px;
+    padding: 15px 8px;
     font-size: 13px;
+  }
+  .logo-nav-wrapper.home-icon a {
+    padding: 15px 8px;
   }
 
   .nav-item {
@@ -270,11 +273,44 @@ header {
   .nav-arrow {
     display: inline-flex;
     align-items: center;
-    margin-left: 8px;
     transition: transform 0.2s;
   }
 
   .nav-arrow.up svg path {
     fill: var(--preto-background);
+  }
+
+  .header-images svg {
+    width: 156px;
+  }
+  .header-images img {
+    width: 99px;
+  }
+
+  .logo-nav-wrapper {
+    padding: 0 !important;
+  }
+  .logo-nav-wrapper button {
+    padding: 15px 8px !important;
+  }
+}
+
+.header-images svg {
+  width: 386px;
+  max-width: 100%;
+  height: auto;
+}
+.header-images img {
+  width: 254px;
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 1279px) and (min-width: 481px) {
+  .header-images svg {
+    width: 333px;
+  }
+  .header-images img {
+    width: 235px;
   }
 }

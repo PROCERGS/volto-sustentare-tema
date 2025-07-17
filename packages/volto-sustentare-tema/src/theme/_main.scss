@@ -4,11 +4,11 @@
 @import './components/BreadCrumbs.scss';
 @import './Contraste.scss';
 
-* {
+*:not(.barra-estado__container):not(.barra-estado__container *) {
   font-family: 'Saira', Arial, Helvetica, sans-serif !important;
 }
 
-body {
+body:not(.barra-estado__container) {
   background: var(--preto-background);
   color: var(--bege-padrao);
   font-family: 'Saira', Arial, Helvetica, sans-serif !important;
@@ -21,6 +21,8 @@ h4,
 h5,
 h6 {
   color: var(--verde-padrao);
+  font-weight: 900 !important;
+  text-transform: uppercase;
 }
 
 #sidebar {
@@ -31,7 +33,8 @@ h6 {
   }
 }
 
-.block button:not(.delete-button) {
+.block button:not(.delete-button),
+.block .link-button {
   width: fit-content;
   padding: 10px 20px !important;
   border: 4px solid var(--verde-padrao) !important;

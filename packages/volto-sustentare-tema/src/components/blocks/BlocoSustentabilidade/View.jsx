@@ -5,14 +5,14 @@ const BlocoSustentabilidade = ({ data = {} }) => (
   <section className="bloco-sustentabilidade">
     <div className="sustentabilidade-coluna-esquerda">
       <h2>
-        SUSTENTABILIDADE COM
-        <br />
-        <span>RESULTADOS REAIS:</span>
-        <br />
-        MENOS DESCARTE, MAIS
-        <br />
-        INCLUSÃO E EFICIÊNCIA NA
-        <br />
+        SUSTENTABILIDADE COM{'\n'}
+        <br className="quebraLinha" />
+        <span> RESULTADOS REAIS:{'\n'}</span>
+        <br className="quebraLinha" />
+        MENOS DESCARTE, MAIS{'\n'}
+        <br className="quebraLinha" />
+        INCLUSÃO E EFICIÊNCIA NA{'\n'}
+        <br className="quebraLinha" />
         GESTÃO PÚBLICA
       </h2>
       <p>

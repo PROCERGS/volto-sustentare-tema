@@ -18,7 +18,14 @@ export default function CardsSchema({ formData } = {}) {
             {
               id: 'default',
               title: 'Card',
-              fields: ['title', 'image', 'image_hover', 'text', 'button_text'],
+              fields: [
+                'title',
+                'image',
+                'image_hover',
+                'text',
+                'button_text',
+                'button_url',
+              ],
             },
           ],
           properties: {
@@ -42,6 +49,11 @@ export default function CardsSchema({ formData } = {}) {
             button_text: {
               title: 'Texto do botão',
               type: 'string',
+            },
+            button_url: {
+              title: 'URL do botão',
+              type: 'string',
+              widget: 'url',
             },
           },
           required: [],

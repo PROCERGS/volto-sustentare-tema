@@ -48,7 +48,48 @@ function Sitemap(props) {
   const renderItems = (items) => {
     return (
       <ul className="rodape__mapa-site rodape__mapa-site__item">
-        <li className="footer-images">
+        {items.slice(0, 3).map((item) => (
+          <React.Fragment key={item.title}>
+            {item.items.length > 0 && (
+              <li className="rodape__mapa-site__item" key={item.title}>
+                <p className="rodape-titulo font-weight-bold">{item.title}</p>
+                <ul>
+                  {item.items &&
+                    item.items.map((innerItem) => (
+                      <li key={innerItem.title}>
+                        <Link to={innerItem.url}>{innerItem.title}</Link>
+                      </li>
+                    ))}
+                </ul>
+              </li>
+            )}
+          </React.Fragment>
+        ))}
+        <li className="rodape__mapa-site__item">
+          <p className="font-weight-bold">PROCERGS</p>
+          <p>
+            Praça dos Açorianos S/N, Centro Histórico, Porto Alegre - RS. CEP
+            90010-340
+          </p>
+          <p className="font-weight-bold">
+            (51) 3210-3837 | (51) 3210-3487
+            <br />
+            (51) 3210-3829 | (51) 3210-3537
+          </p>
+          <p className="font-weight-bold">sustentare@procergs.rs.gov.br</p>
+        </li>
+      </ul>
+    );
+  };
+
+  const Container =
+    config.getComponent({ name: 'Container' }).component || SemanticContainer;
+
+  return (
+    <div>
+      <Helmet title={props.intl.formatMessage(messages.Sitemap)} />
+      <Container className="view-wrapper">
+        <div className="footer-images">
           <svg
             width="164"
             height="96"
@@ -192,48 +233,7 @@ function Sitemap(props) {
               />
             </defs>
           </svg>
-        </li>
-        <li className="rodape__mapa-site__item">
-          <p className="font-weight-bold">PROCERGS</p>
-          <p>
-            Praça dos Açorianos S/N, Centro Histórico, Porto Alegre - RS. CEP
-            90010-340
-          </p>
-          <p className="font-weight-bold">
-            (51) 3210-3837 | (51) 3210-3487
-            <br />
-            (51) 3210-3829 | (51) 3210-3537
-          </p>
-          <p className="font-weight-bold">sustentare@procergs.rs.gov.br</p>
-        </li>
-        {items.map((item) => (
-          <React.Fragment key={item.title}>
-            {item.items.length > 0 && (
-              <li className="rodape__mapa-site__item" key={item.title}>
-                <p className="rodape-titulo font-weight-bold">{item.title}</p>
-                <ul>
-                  {item.items &&
-                    item.items.map((innerItem) => (
-                      <li key={innerItem.title}>
-                        <Link to={innerItem.url}>{innerItem.title}</Link>
-                      </li>
-                    ))}
-                </ul>
-              </li>
-            )}
-          </React.Fragment>
-        ))}
-      </ul>
-    );
-  };
-
-  const Container =
-    config.getComponent({ name: 'Container' }).component || SemanticContainer;
-
-  return (
-    <div>
-      <Helmet title={props.intl.formatMessage(messages.Sitemap)} />
-      <Container className="view-wrapper">
+        </div>
         {props.items && renderItems(props.items, 2)}
       </Container>
     </div>
