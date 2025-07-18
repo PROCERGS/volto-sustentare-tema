@@ -25,6 +25,20 @@ h6 {
   text-transform: uppercase;
 }
 
+.block a {
+  &h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--verde-padrao) !important;
+  }
+  p {
+    color: var(--bege-padrao) !important;
+  }
+}
+
 #sidebar {
   color: var(--preto);
 
