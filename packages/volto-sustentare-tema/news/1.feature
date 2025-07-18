@@ -1,0 +1,1 @@
+Ajuste título do scroll horizontal e ajuste de cores pro bloco listing(@henriquesaenger)
