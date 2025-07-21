@@ -153,7 +153,7 @@ const BlocoSustView = () => {
               </div>
             </div>
 
-            <div className="sust-two-vectors">
+            <div className="sust-two-vectors two-vectors-final">
               <div className="two-vectors-container">
                 <div className="sust-two-vector">
                   <div className="sust-item">
