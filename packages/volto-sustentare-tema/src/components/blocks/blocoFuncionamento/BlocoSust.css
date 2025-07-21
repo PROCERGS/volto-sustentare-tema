@@ -61,7 +61,7 @@
   place-content: flex-end;
 }
 
-.two-vectors-final{
+.two-vectors-final {
   justify-content: flex-end;
 }
 
@@ -73,10 +73,9 @@
   justify-content: space-between;
 }
 
-.two-vectors-final .two-vectors-container{
+.two-vectors-final .two-vectors-container {
   justify-content: space-between;
-} 
-
+}
 
 .sust-two-vector {
   display: flex;

@@ -8,8 +8,8 @@
 .videos-lista-block {
   display: flex;
   flex-wrap: wrap;
-  gap: 30px;
   justify-content: center;
+  gap: 30px;
 }
 
 .video-lista-item {
