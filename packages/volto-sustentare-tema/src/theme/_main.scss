@@ -8,6 +8,14 @@
   max-width: var(--layout-container-width);
   margin-right: auto;
   margin-left: auto;
+
+  @media (max-width: 1440px) and (min-width: 620px) {
+    max-width: var(--default-container-width);
+  }
+
+  @media (max-width: 620px) {
+    max-width: var(--narrow-container-width);
+  }
 }
 
 *:not(.barra-estado__container):not(.barra-estado__container *) {
