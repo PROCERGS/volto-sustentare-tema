@@ -4,17 +4,21 @@
 @import './components/BreadCrumbs.scss';
 @import './Contraste.scss';
 
-#page-document.container {
+#page-document .blocks-group-wrapper > * {
   max-width: var(--layout-container-width);
   margin-right: auto;
   margin-left: auto;
 
-  @media (max-width: 1440px) and (min-width: 620px) {
+  @media (max-width: 1440px) and (min-width: 940px) {
     max-width: var(--default-container-width);
   }
 
-  @media (max-width: 620px) {
+  @media (max-width: 940px) and (min-width: 620px) {
     max-width: var(--narrow-container-width);
+  }
+
+  @media (max-width: 620px) {
+    max-width: 95vw;
   }
 }
 
