@@ -1,5 +1,6 @@
 .video-destaque-block {
-  margin: 80px 0;
+  margin: 80px 2%;
+  justify-self: center;
 }
 
 .video-destaque-inner {
