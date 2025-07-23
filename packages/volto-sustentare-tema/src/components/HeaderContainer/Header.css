@@ -63,6 +63,7 @@ header {
   border: none;
   background: none;
   cursor: pointer;
+  text-transform: uppercase;
 }
 
 .logo-nav-wrapper a.nav-item:hover svg path {
@@ -172,6 +173,7 @@ header {
 
 .logo-nav-wrapper .submenu .submenu-item {
   color: var(--preto-background) !important;
+  text-transform: uppercase;
 }
 
 .logo-nav-wrapper .submenu .submenu-item:hover {
