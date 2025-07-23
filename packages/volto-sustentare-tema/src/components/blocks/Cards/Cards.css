@@ -17,7 +17,6 @@
 }
 
 .card-image figure {
-  display: block;
   max-width: 130px;
   max-height: 130px;
   margin-top: 32px;
