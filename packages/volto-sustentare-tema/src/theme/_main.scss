@@ -13,6 +13,13 @@ body:not(.barra-estado__container) {
   background: var(--preto-background);
   color: var(--bege-padrao);
   font-family: 'Saira', Arial, Helvetica, sans-serif !important;
+  .content-area p > a {
+    color: var(--verde-padrao) !important;
+    text-decoration: underline;
+    &:hover {
+      color: var(--bege-padrao) !important;
+    }
+  }
 }
 
 h1,
