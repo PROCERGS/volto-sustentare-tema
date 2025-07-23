@@ -6,20 +6,25 @@
   }
 }
 
+.acessibilidade {
+  background-color: #fff;
+}
+
+.acess-container {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: var(--layout-container-width);
+}
+
 .acess-wrapper {
   display: flex;
-  max-width: var(--layout-container-width);
   flex-direction: row;
   justify-content: space-between;
-  padding: 0 var(--padding-default);
-  padding-top: 10px;
-  margin-right: auto;
-  margin-left: auto;
 }
 
 .acess-menus {
   display: flex;
-  width: 40%;
+  gap: 75px;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
