@@ -1,10 +1,11 @@
 @import 'variables';
 @import url('https://fonts.googleapis.com/css2?family=Saira:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @import './components/Accordion.scss';
 @import './components/BreadCrumbs.scss';
 @import './Contraste.scss';
 
-*:not(.barra-estado__container):not(.barra-estado__container *) {
+*:not(.barra-estado__container, h2, button):not(.barra-estado__container *) {
   font-family: 'Saira', Arial, Helvetica, sans-serif !important;
 }
 
@@ -37,6 +38,13 @@ h6 {
   p {
     color: var(--bege-padrao) !important;
   }
+}
+
+h2,
+button {
+  font-family: 'Saira Condensed', Arial, Helvetica, sans-serif !important;
+  font-size: 50px;
+  line-height: 1.2;
 }
 
 #sidebar {
