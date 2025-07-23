@@ -2,6 +2,13 @@
   background-color: var(--preto-background);
 }
 
+.rodape__procergs {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  max-width: 360px;
+}
+
 .footer-container {
   max-width: var(--layout-container-width);
   padding: 0 var(--padding-default);
@@ -32,6 +39,8 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  max-height: 270px;
+  flex-wrap: wrap;
 }
 
 .rodape__mapa-site__item > a:hover,
