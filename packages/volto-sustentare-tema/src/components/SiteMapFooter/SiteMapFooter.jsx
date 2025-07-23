@@ -87,7 +87,6 @@ function Sitemap(props) {
 
   return (
     <div>
-      <Helmet title={props.intl.formatMessage(messages.Sitemap)} />
       <Container className="view-wrapper">
         <div className="footer-images">
           <svg
