@@ -77,6 +77,10 @@
   content: '';
 }
 
+.blocks-group-wrapper{
+  padding-bottom: 40px;
+}
+
 @media only screen and (max-width: 991px) {
   .accordion-block {
     width: 93% !important;
