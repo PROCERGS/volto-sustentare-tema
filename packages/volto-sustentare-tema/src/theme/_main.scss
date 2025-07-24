@@ -109,3 +109,7 @@ h6 {
     fill: var(--branco) !important;
   }
 }
+
+.block.separator .line::after {
+  border-top: 4px solid var(--verde-padrao);
+}
