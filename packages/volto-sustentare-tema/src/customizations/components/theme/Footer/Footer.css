@@ -4,9 +4,9 @@
 
 .rodape__procergs {
   display: flex;
+  max-width: 360px;
   flex-direction: column;
   text-align: left;
-  max-width: 360px;
 }
 
 .footer-container {
@@ -37,10 +37,10 @@
 
 .footer-images {
   display: flex;
-  flex-direction: column;
-  gap: 20px;
   max-height: 270px;
+  flex-direction: column;
   flex-wrap: wrap;
+  gap: 20px;
 }
 
 .rodape__mapa-site__item > a:hover,
@@ -85,5 +85,11 @@
   .footer-images svg,
   .footer-images img {
     width: 200px;
+  }
+}
+
+@media (min-width: 1279px) {
+  .footer-images {
+    margin-right: 60px;
   }
 }

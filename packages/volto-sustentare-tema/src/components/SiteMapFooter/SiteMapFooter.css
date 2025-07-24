@@ -70,8 +70,8 @@
   .footer-container .view-wrapper {
     display: flex;
     flex-direction: row;
-    gap: 30px;
     justify-content: space-between;
+    gap: 30px;
   }
 
   .rodape__mapa-site__item {
@@ -79,9 +79,9 @@
     border-bottom: none;
     break-inside: avoid;
     -webkit-column-break-inside: avoid;
-    page-break-inside: avoid;
     margin-block-start: 0;
-    p{
+    page-break-inside: avoid;
+    p {
       text-transform: uppercase;
     }
   }

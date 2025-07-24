@@ -1,45 +1,45 @@
 #contact-form > * > * > * > * > * {
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
 }
 
 #contact-form > * > * > * > * > * > * {
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
 }
 
 #contact-form > * > * > * > * > * > * > * {
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
 }
 
 #contact-form > * > * > * > * > * > * > :nth-child(1) {
-    fill: var(--verde-padrao) !important;
-    color: var(--verde-padrao) !important;
+  color: var(--verde-padrao) !important;
+  fill: var(--verde-padrao) !important;
 }
 
 #contact-form > * > * > * > * > * > * > :nth-child(2) {
-    fill: red !important;
-    color: red !important;
+  color: red !important;
+  fill: red !important;
 }
 
 #contact-form > * > * > * > * > * > * > * > * > * > * > * {
-    border: none !important;
-    box-shadow: none !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 #contact-form > * > * > * > * > * > * > * > * > * > * > textarea {
-    border: none !important;
-    box-shadow: none !important;
-    background: transparent !important;
-    border: 1px solid white !important;
-    color: var(--bege-padrao) !important;
+  border: none !important;
+  border: 1px solid white !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: var(--bege-padrao) !important;
 }
 
-#contact-form > * > * > * > * > * > * > * > * > * > * > * > *{
-    color: var(--bege-padrao) !important;
-    background: transparent !important;
+#contact-form > * > * > * > * > * > * > * > * > * > * > * > * {
+  background: transparent !important;
+  color: var(--bege-padrao) !important;
 }
