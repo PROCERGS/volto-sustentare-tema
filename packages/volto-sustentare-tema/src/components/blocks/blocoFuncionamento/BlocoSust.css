@@ -61,11 +61,19 @@
   place-content: flex-end;
 }
 
+.two-vectors-final {
+  justify-content: flex-end;
+}
+
 .two-vectors-container {
   display: flex;
   width: 200px;
   height: 56%;
   flex-direction: column;
+  justify-content: space-between;
+}
+
+.two-vectors-final .two-vectors-container {
   justify-content: space-between;
 }
 
