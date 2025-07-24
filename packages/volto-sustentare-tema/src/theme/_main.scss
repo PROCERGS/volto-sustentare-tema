@@ -8,6 +8,12 @@
 
 *:not(.barra-estado__container, h2, button):not(.barra-estado__container *) {
   font-family: 'Saira', Arial, Helvetica, sans-serif !important;
+  -webkit-hyphens: none !important;
+  -ms-hyphens: none !important;
+  hyphens: none !important;
+  overflow-wrap: normal !important;
+  white-space: normal !important;
+  word-break: normal !important;
 }
 
 body:not(.barra-estado__container) {
@@ -135,4 +141,8 @@ button {
 
 .blocks-group-wrapper > ul {
   max-width: var(--default-container-width) !important;
+}
+
+.block.separator .line::after {
+  border-top: 4px solid var(--verde-padrao);
 }
