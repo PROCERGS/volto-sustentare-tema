@@ -67,11 +67,20 @@ const BarraAcessibilidade = () => {
       }
 
       if (isAlt3) {
-        const el = document.getElementById('buscageralTextBox');
-        setTimeout(() => {
-          el?.focus();
-          el?.scrollIntoView({ behavior: 'smooth' });
-        }, 0);
+        const el = document.getElementsByClassName('nav-search-icon')[0];
+        if (el) {
+          el.click();
+          const focusInput = () => {
+            const input = document.getElementById('buscageralTextBox');
+            if (input) {
+              input.focus();
+              el?.scrollIntoView({ behavior: 'smooth' });
+            } else {
+              setTimeout(focusInput, 50);
+            }
+          };
+          focusInput();
+        }
       }
     };
 

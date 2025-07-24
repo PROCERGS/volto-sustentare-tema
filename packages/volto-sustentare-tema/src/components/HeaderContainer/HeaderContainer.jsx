@@ -388,6 +388,7 @@ const HeaderContainer = ({
         </div>
         <div
           className="logo-nav-wrapper home-icon"
+          id="navigation"
           ref={menuRef}
           style={{ alignItems: 'center' }}
         >
