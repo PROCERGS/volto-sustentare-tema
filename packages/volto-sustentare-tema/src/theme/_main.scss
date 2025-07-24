@@ -6,6 +6,12 @@
 
 *:not(.barra-estado__container):not(.barra-estado__container *) {
   font-family: 'Saira', Arial, Helvetica, sans-serif !important;
+  word-break: normal !important;
+  overflow-wrap: normal !important;
+  hyphens: none !important;
+  -webkit-hyphens: none !important;
+  -ms-hyphens: none !important;
+  white-space: normal !important;
 }
 
 body:not(.barra-estado__container) {
