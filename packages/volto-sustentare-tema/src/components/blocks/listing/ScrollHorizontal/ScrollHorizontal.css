@@ -18,8 +18,6 @@
 
 .noticias-horizontal-item {
   display: flex;
-  min-width: 320px;
-  max-width: 320px;
   height: auto;
   flex-direction: column;
   border: 4px solid var(--verde-padrao, #00b033);
@@ -99,7 +97,7 @@
   height: auto;
   align-items: center;
   justify-content: center;
-  padding: 8px 10px; /* menor padding no estado normal */
+  padding: 8px 10px;
   border: 4px solid var(--verde-padrao, #00b033);
   margin: 20px;
   background: transparent;
