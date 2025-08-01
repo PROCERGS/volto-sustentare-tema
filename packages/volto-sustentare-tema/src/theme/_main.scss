@@ -1,6 +1,7 @@
 @import 'variables';
 @import url('https://fonts.googleapis.com/css2?family=Saira:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Saira+Semi+Condensed:wght@100;200;300;400;500;600;700;800;900&family=Saira:ital,wght@0,100..900;1,100..900&display=swap');
 @import './components/Accordion.scss';
 @import './components/BreadCrumbs.scss';
 @import './Contraste.scss';
@@ -145,4 +146,11 @@ button {
 
 .block.separator .line::after {
   border-top: 4px solid var(--verde-padrao);
+}
+
+.block-editor-search .listing-item,
+.block.listing .listing-item,
+.block.search .listing-item,
+.column > .block.listing .listing-item {
+  border-bottom: 4px solid var(--verde-padrao);
 }

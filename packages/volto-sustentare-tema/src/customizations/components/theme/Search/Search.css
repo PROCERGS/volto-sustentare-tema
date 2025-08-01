@@ -1,0 +1,205 @@
+.tileDateTime {
+  margin-bottom: 0.5rem;
+  color: var(--bege-padrao);
+  font-family: 'Saira', Arial, Helvetica, sans-serif !important;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.documentFirstHeading {
+  text-transform: uppercase;
+}
+
+.search-term-info {
+  margin-top: 12px;
+  margin-bottom: 32px;
+  color: var(--bege-padrao);
+  font-family: 'Saira Condensed', Arial, Helvetica, sans-serif !important;
+  font-size: 1.25rem;
+}
+
+.search-term-info .search-term {
+  color: var(--bege-padrao);
+  font-weight: bold;
+}
+
+.search-term-info-paging {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  color: var(--bege-padrao);
+  font-family: 'Saira Condensed', Arial, Helvetica, sans-serif !important;
+  font-size: 1.25rem;
+}
+
+.sort-select {
+  width: fit-content;
+  padding: 10px 28px 10px 12px;
+  border: 4px solid var(--verde-padrao);
+  appearance: none;
+  background: var(--preto-background);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6' fill='none'%3E%3Cpath d='M0 0.855957L5 5.85596L10 0.855957L0 0.855957Z' fill='%2300B033'/%3E%3C/svg%3E");
+  background-position: right 12px center;
+  background-repeat: no-repeat;
+  color: var(--verde-padrao);
+  cursor: pointer;
+  font-family: var(saira-condensed) !important;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition:
+    border 0.2s,
+    box-shadow 0.2s;
+}
+
+.sort-select option {
+  padding: 8px 12px;
+  background: var(--bege-padrao);
+  color: var(--preto-background);
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.date-select {
+  min-width: 180px;
+}
+
+.filter-btn {
+  padding: 9px 28px;
+  border: 4px solid var(--verde-padrao);
+  margin-left: 8px;
+  background: var(--preto-background);
+  color: var(--verde-padrao);
+  cursor: pointer;
+  font-family: 'Saira Condensed', Arial, Helvetica, sans-serif !important;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition:
+    border 0.2s,
+    box-shadow 0.2s,
+    background 0.2s;
+}
+
+.filter-btn:hover {
+  background: var(--bege-padrao);
+  color: var(--preto-background);
+  outline: none;
+}
+
+.search-filters {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+}
+
+.tileItem .tileHeadline {
+  margin-top: 0;
+  color: var(--verde-padrao);
+  font-family: 'Saira', Arial, Helvetica, sans-serif !important;
+  font-size: 1.5rem;
+}
+
+.custom-select-arrow {
+  display: inline-block;
+  width: 18px;
+  height: 100%;
+  margin-left: 8px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6' fill='none'%3E%3Cpath d='M0 0.855957L5 5.85596L10 0.855957L0 0.855957Z' fill='%2300B033'/%3E%3C/svg%3E");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 10px 6px;
+  pointer-events: none;
+  vertical-align: middle;
+}
+
+.custom-date-select svg,
+.custom-select svg {
+  display: none !important;
+}
+
+.tileItem-content {
+  display: flex;
+  align-items: flex-start;
+  padding-bottom: 32px;
+  border-bottom: 4px solid var(--verde-padrao);
+  gap: 2rem;
+}
+
+.tileItem-content--last {
+  padding-bottom: 0 !important;
+  border-bottom: none !important;
+}
+
+.tileItem:last-child .tileItem-content {
+  padding-bottom: 0 !important;
+  border-bottom: none !important;
+}
+
+.tileImageWrapper {
+  display: flex;
+  overflow: hidden;
+  width: 263px;
+  height: 148px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border: 4px solid var(--verde-padrao);
+  background: var(--preto-background);
+}
+
+.tileImage {
+  display: block;
+  width: 263px;
+  height: 148px;
+  object-fit: cover;
+}
+
+.tileTextContent {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.tileBody .description {
+  display: -webkit-box;
+  overflow: hidden;
+  height: auto;
+  min-height: 22px;
+  max-height: calc(3 * 22px);
+  -webkit-box-orient: vertical;
+  color: var(--bege-padrao);
+  font-size: 16px;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  line-height: 22px;
+  text-overflow: ellipsis;
+  white-space: normal;
+}
+
+@media only screen and (max-width: 481px) {
+  .tileItem-content {
+    flex-direction: column;
+  }
+
+  .tileImageWrapper {
+    width: 95% !important;
+    min-width: 0;
+    height: auto;
+    margin: 0 auto 1rem auto;
+  }
+
+  .tileImage {
+    display: block;
+    width: 100% !important;
+    max-width: 100%;
+    height: auto !important;
+    object-fit: cover;
+  }
+
+  .search-filters {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

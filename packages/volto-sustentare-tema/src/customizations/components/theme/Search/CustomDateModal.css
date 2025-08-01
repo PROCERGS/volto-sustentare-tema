@@ -1,0 +1,156 @@
+.custom-date-modal-overlay {
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.custom-date-modal {
+  position: relative;
+  display: flex;
+  min-width: 420px;
+  max-width: 95vw;
+  box-sizing: border-box;
+  flex-direction: column;
+  padding: 32px;
+  border: 4px solid var(--verde-padrao);
+  background: var(--preto-background);
+  color: var(--verde-padrao);
+  font-family: 'Saira', Arial, Helvetica, sans-serif !important;
+  gap: 20px;
+}
+.custom-date-modal .custom-date-modal-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.custom-date-modal .custom-date-modal-header span {
+  font-family: var(--saira-semi-condensed) !important;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-transform: uppercase;
+}
+
+.custom-date-modal-close {
+  border: none;
+  margin-left: 1.5rem;
+  background: none;
+  color: var(--verde-padrao);
+  cursor: pointer;
+  font-size: 2.2rem;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.custom-date-modal-body {
+  display: flex;
+  gap: 40px;
+}
+
+.custom-date-modal-field {
+  display: flex;
+  min-width: 170px;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.custom-date-modal-field label {
+  margin-bottom: 0.2rem;
+  color: var(--bege-padrao);
+  font-size: 1.2rem;
+}
+
+.custom-date-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0.2rem 0.7rem;
+  border: 3px solid var(--verde-padrao);
+  background: var(--preto-background);
+}
+
+.custom-date-input-wrapper
+  input[type='date']::-webkit-calendar-picker-indicator {
+  display: none;
+  opacity: 0;
+}
+.custom-date-input-wrapper input[type='date']::-ms-input-placeholder {
+  color: transparent;
+}
+.custom-date-input-wrapper input[type='date']::-moz-placeholder {
+  color: transparent;
+}
+.custom-date-input-wrapper input[type='date']::-webkit-input-placeholder {
+  color: transparent;
+}
+.custom-date-input-wrapper input[type='date']::-webkit-clear-button,
+.custom-date-input-wrapper input[type='date']::-webkit-inner-spin-button,
+.custom-date-input-wrapper input[type='date']::-webkit-outer-spin-button {
+  display: none;
+  margin: 0;
+  -webkit-appearance: none;
+}
+.custom-date-input-wrapper button.custom-calendar-icon {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  width: 36px;
+  height: 100%;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
+  border-left: 4px solid var(--verde-padrao) !important;
+  margin: 0;
+  background: none;
+}
+
+.custom-date-input-wrapper input[type='date'] {
+  width: fit-content;
+  padding: 8px;
+  border: none;
+  background: transparent;
+  color: var(--bege-padrao);
+  font-family: var(--saira);
+  font-size: 1rem;
+  outline: none;
+}
+
+.custom-date-modal-footer {
+  margin-top: 1.5rem;
+}
+
+.custom-date-modal-apply {
+  padding: 0.5rem 2.2rem;
+  border: 3px solid var(--verde-padrao);
+  background: none;
+  color: var(--verde-padrao);
+  cursor: pointer;
+  font-family: 'Saira', Arial, Helvetica, sans-serif !important;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+
+.custom-date-modal-apply:hover {
+  background: var(--bege-padrao);
+  color: var(--preto-background);
+}
