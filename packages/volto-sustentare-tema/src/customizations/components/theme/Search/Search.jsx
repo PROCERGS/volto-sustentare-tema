@@ -11,7 +11,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { UniversalLink } from '@plone/volto/components';
-import { asyncConnect } from '@plone/volto/helpers';
 import { FormattedMessage } from 'react-intl';
 import { createPortal } from 'react-dom';
 import { Container, Pagination } from 'semantic-ui-react';
@@ -355,16 +354,4 @@ export default compose(
     }),
     { searchContent },
   ),
-  asyncConnect([
-    {
-      key: 'search',
-      promise: ({ location, store: { dispatch } }) =>
-        dispatch(
-          searchContent('', {
-            ...qs.parse(location.search),
-            use_site_search_settings: 1,
-          }),
-        ),
-    },
-  ]),
 )(Search);

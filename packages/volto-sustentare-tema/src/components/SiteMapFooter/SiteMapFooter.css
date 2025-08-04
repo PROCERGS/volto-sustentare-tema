@@ -110,3 +110,20 @@
   color: var(--verde-padrao) !important;
   font-size: 20px;
 }
+
+.co2-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 10px;
+  border: 4px solid var(--verde-padrao);
+  background: var(--preto-background);
+  color: var(--bege-padrao);
+  font-family: var(--saira-semi-condensed);
+  font-size: 16px;
+}
+
+.co2-badge-value {
+  font-weight: bold;
+}
