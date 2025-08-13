@@ -38,7 +38,7 @@
 .footer-images {
   display: flex;
   max-height: 270px;
-  flex-direction: column;
+  flex-direction: row;
   flex-wrap: wrap;
   gap: 20px;
 }
@@ -59,37 +59,49 @@
   background-color: var(--branco);
 }
 
-.footer-images svg,
-.footer-images img {
-  width: 163px;
+/* Remove spacing between images only inside the footer logo */
+.footer-logo .footer-images {
+  justify-content: flex-start;
+  gap: 0;
+}
+
+.footer-logo .footer-images svg,
+.footer-logo .footer-images img {
+  width: 101px;
   max-width: 100%;
-  height: auto;
+  height: 21px;
 }
 
 @media (max-width: 1279px) and (min-width: 768px) {
+  /* Ensure footer logo stays in a row layout on tablet */
+  .footer-logo {
+    flex-direction: row;
+  }
   .footer-images {
     display: flex;
     flex-direction: row !important;
     justify-content: space-around;
   }
-  .footer-images svg,
-  .footer-images img {
-    width: 200px;
+  /* Keep fixed size as requested, scoped to footer logo */
+  .footer-logo .footer-images svg,
+  .footer-logo .footer-images img {
+    width: 101px;
+    height: 21px;
   }
 }
 
 @media (max-width: 767px) {
+  /* Ensure footer logo stays in a row layout on mobile */
+  .footer-logo {
+    flex-direction: row;
+  }
   .footer-images {
     justify-self: center;
   }
-  .footer-images svg,
-  .footer-images img {
-    width: 200px;
-  }
-}
-
-@media (min-width: 1279px) {
-  .footer-images {
-    margin-right: 60px;
+  /* Keep fixed size as requested, scoped to footer logo */
+  .footer-logo .footer-images svg,
+  .footer-logo .footer-images img {
+    width: 101px;
+    height: 21px;
   }
 }
