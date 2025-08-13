@@ -24,6 +24,7 @@ import ScrollHorizontal from './components/blocks/listing/ScrollHorizontal/Scrol
 
 import videoSVG from '@plone/volto/icons/video.svg';
 import imageSVG from '@plone/volto/icons/image.svg';
+import FaviconHelmet from './components/AppExtras/FaviconHelmet';
 
 const applyConfig = (config) => {
   config.blocks.groupBlocksOrder = [
@@ -102,6 +103,13 @@ const applyConfig = (config) => {
       title: 'Grid Scroll Horizontal',
       template: ScrollHorizontal,
     },
+  ];
+
+  // Inject our favicon AppExtra so it overrides the default favicon using Helmet
+  // Register as an object with component for compatibility across Volto versions
+  config.settings.appExtras = [
+    ...(config.settings.appExtras || []),
+    { match: '', component: FaviconHelmet },
   ];
 
   return config;
