@@ -105,8 +105,6 @@ const applyConfig = (config) => {
     },
   ];
 
-  // Inject our favicon AppExtra so it overrides the default favicon using Helmet
-  // Register as an object with component for compatibility across Volto versions
   config.settings.appExtras = [
     ...(config.settings.appExtras || []),
     { match: '', component: FaviconHelmet },
