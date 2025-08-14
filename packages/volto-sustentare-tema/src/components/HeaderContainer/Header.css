@@ -286,7 +286,7 @@ header {
     width: 156px;
   }
   .header-images img {
-    width: 99px;
+    width: 100px;
   }
 
   .logo-nav-wrapper {
@@ -298,21 +298,21 @@ header {
 }
 
 .header-images svg {
-  width: 386px;
+  width: clamp(100px, 24vw, 386px);
   max-width: 100%;
   height: auto;
 }
 .header-images img {
-  width: 254px;
+  width: clamp(100px, 16vw, 254px);
   max-width: 100%;
   height: auto;
 }
 
 @media (max-width: 1279px) and (min-width: 481px) {
   .header-images svg {
-    width: 333px;
+    width: clamp(100px, 26vw, 333px);
   }
   .header-images img {
-    width: 235px;
+    width: clamp(100px, 18vw, 235px);
   }
 }

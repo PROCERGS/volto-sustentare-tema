@@ -382,7 +382,6 @@ const HeaderContainer = ({
                 <img
                   src="/brasao-RS-contraste-mobile.svg"
                   alt="Brasão do RS contraste"
-                  style={{ height: 120 }}
                 />
               </a>
             ) : (
@@ -395,7 +394,6 @@ const HeaderContainer = ({
                 <img
                   src="/brasao-RS-contraste.svg"
                   alt="Brasão do RS contraste"
-                  style={{ height: 120 }}
                 />
               </a>
             )
@@ -406,11 +404,7 @@ const HeaderContainer = ({
               rel="noopener noreferrer"
               aria-label="Ir para o site do Governo do Estado"
             >
-              <img
-                src="/brasao-RS-mobile.svg"
-                alt="Brasão do RS"
-                style={{ height: 120 }}
-              />
+              <img src="/brasao-RS-mobile.svg" alt="Brasão do RS" />
             </a>
           ) : (
             <a
@@ -419,11 +413,7 @@ const HeaderContainer = ({
               rel="noopener noreferrer"
               aria-label="Ir para o site do Governo do Estado"
             >
-              <img
-                src="/brasao-RS.png"
-                alt="Brasão do RS"
-                style={{ height: 120 }}
-              />
+              <img src="/brasao-RS.png" alt="Brasão do RS" />
             </a>
           )}
         </div>
