@@ -94,22 +94,29 @@
     color: var(--preto-background) !important;
   }
 
-  .accordion h3 {
+  .accordion h3,
+  .accordion .title,
+  .accordion button[aria-expanded] {
     background-color: var(--bege-padrao) !important;
   }
 
-  .accordion h3.active {
-    background-color: var(--preto-background) !important;
-    span {
-      color: var(--bege-padrao) !important;
-    }
+  .accordion .accordion-title span,
+  .input-accordion-title input,
+  .accordion .title,
+  .accordion button[aria-expanded] {
+    color: var(--preto-background) !important;
+  }
 
-    &:hover {
-      background-color: var(--bege-padrao) !important;
-      span {
-        color: var(--preto-background) !important;
-      }
-    }
+  .accordion h3.active,
+  .accordion .title.active,
+  .accordion button[aria-expanded='true'] {
+    background-color: var(--preto-background) !important;
+  }
+
+  .accordion .accordion-title.active span,
+  .accordion .title.active,
+  .accordion button[aria-expanded='true'] {
+    color: var(--bege-padrao) !important;
   }
 
   .accordion-block .accordion .content p {
@@ -134,8 +141,25 @@
     a {
       color: var(--bege-padrao) !important;
     }
+    a:hover,
+    .rodape__mapa-site__item > a:hover,
+    .rodape__mapa-site__item > ul > li > a:hover,
+    .rodape__mapa-site .rodape__mapa-site__item ul li a:hover {
+      color: var(--verde-claro) !important;
+    }
   }
   .footer-logo {
     background-color: var(--branco) !important;
+  }
+
+  .co2-badge {
+    color: var(--bege-padrao) !important;
+
+    p,
+    span,
+    strong,
+    .co2-badge-value {
+      color: var(--bege-padrao) !important;
+    }
   }
 }

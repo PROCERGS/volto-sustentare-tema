@@ -49,6 +49,12 @@
   text-decoration: none !important;
 }
 
+.footer-container a,
+.rodape__mapa-site__item > a,
+.rodape__mapa-site__item > ul > li > a {
+  cursor: pointer;
+}
+
 .footer-logo {
   display: flex;
   height: fit-content;

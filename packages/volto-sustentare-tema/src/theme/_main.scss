@@ -8,6 +8,7 @@
 @import './components/ContForm.scss';
 @import './components/BarraAcessibilidade.scss';
 @import './components/BarraEstado.scss';
+@import './components/Sitemap.scss';
 
 *:not(.barra-estado__container, h2, button):not(.barra-estado__container *) {
   font-family: 'Saira', Arial, Helvetica, sans-serif !important;

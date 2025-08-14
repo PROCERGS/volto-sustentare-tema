@@ -43,7 +43,12 @@ const Footer = () => {
             </svg>
           </Link>
 
-          <Link to="/termos_de_uso" aria-label="Ir para os termos de uso">
+          <a
+            href="https://www.estado.rs.gov.br"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Ir para o site do Estado"
+          >
             <svg
               viewBox="0 0 102 21"
               fill="none"
@@ -72,7 +77,7 @@ const Footer = () => {
                 />
               </defs>
             </svg>
-          </Link>
+          </a>
         </div>
       </div>
     </div>
