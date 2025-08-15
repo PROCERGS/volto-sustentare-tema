@@ -112,9 +112,14 @@
 }
 
 .rodape__mapa-site__item a {
-  color: white;
+  color: var(--verde-claro);
   font-weight: bold;
   text-decoration: none;
+}
+
+/* Ensure nested list links are also light green */
+.rodape__mapa-site__item ul li a {
+  color: var(--verde-claro);
 }
 
 .rodape__mapa-site__item a:hover {

@@ -1,36 +1,30 @@
+/* Styles scoped to the /sitemap view only (addon-local) */
+
+/* Volto adds section-sitemap to the body for the Sitemap view */
 .section-sitemap {
   #page-sitemap {
+    /* All links should be light green by default */
     a,
     ul li a,
     li.with-children > a {
-      color: var(--verde-padrao) !important;
-      font-weight: 700;
+      color: var(--verde-claro) !important;
       text-decoration: none;
+      font-weight: 700; /* keep bold like default */
     }
 
+    /* Nested children are usually normal weight; keep color the same */
     ul li ul li a {
-      color: var(--verde-padrao) !important;
+      color: var(--verde-claro) !important;
       font-weight: 400;
     }
 
+    /* Hover/visited should remain light green; add underline for clarity */
     a:hover,
     a:visited,
     ul li a:hover,
     ul li a:visited {
-      color: var(--verde-padrao) !important;
+      color: var(--verde-claro) !important;
       text-decoration: underline;
-    }
-
-    ul li::marker,
-    ol li::marker {
-      color: var(--verde-padrao) !important;
-    }
-
-    ul li::before,
-    ol li::before {
-      border-color: var(--verde-padrao) !important;
-      background-color: var(--verde-padrao) !important;
-      color: var(--verde-padrao) !important;
     }
   }
 }
