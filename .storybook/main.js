@@ -19,9 +19,38 @@ module.exports = {
       '.js',
       '.jsx',
     ]));
+    // Robust alias resolution: prefer sibling source, else installed package (src/dist/lib)
+    const fs = require('fs');
+    const siblingSrc = path.join(
+      __dirname,
+      '..',
+      'packages',
+      'volto-site-componentes',
+      'packages',
+      'volto-site-componentes',
+      'src',
+    );
+    const exists = (p) => p && fs.existsSync(p);
+    let aliasTarget = siblingSrc;
+    if (!exists(siblingSrc)) {
+      try {
+        const pkgRoot = path.dirname(
+          require.resolve('volto-site-componentes/package.json', { paths: [__dirname] }),
+        );
+        const candidates = [
+          path.join(pkgRoot, 'src'),
+          path.join(pkgRoot, 'dist'),
+          path.join(pkgRoot, 'lib'),
+          pkgRoot,
+        ];
+        aliasTarget = candidates.find((c) => exists(c)) || siblingSrc;
+      } catch (e) {
+        aliasTarget = siblingSrc;
+      }
+    }
     config.resolve.alias = {
       ...(config.resolve.alias || {}),
-      'volto-site-componentes': path.join(__dirname, '..', 'packages', 'volto-site-componentes', 'packages', 'volto-site-componentes', 'src'),
+      'volto-site-componentes': aliasTarget,
     };
     // Transpile JSX files in this addon and the root preview
     config.module = config.module || {};
@@ -33,7 +62,7 @@ module.exports = {
         // This addon package src
         path.resolve(__dirname, '..', 'packages', 'volto-sustentare-tema', 'src'),
         // Sibling package sources (aliased)
-    path.resolve(__dirname, '..', 'packages', 'volto-site-componentes', 'packages', 'volto-site-componentes', 'src'),
+    aliasTarget,
     // Root frontend preview file, implicitly pulled by Volto's storybook starter
     path.resolve(__dirname, '../../..', '.storybook'),
   // This .storybook config (so preview.jsx is transpiled)

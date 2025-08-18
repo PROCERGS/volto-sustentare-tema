@@ -5,24 +5,88 @@
 */
 
 const path = require('path');
+const fs = require('fs');
 
-// Inner package lives in: .../packages/volto-sustentare-tema
-// Sibling package is at:  .../packages/volto-site-componentes/packages/volto-site-componentes/src
-const ALIAS_PATH = path.join(
-	__dirname,
-	'..',
-	'volto-site-componentes',
-	'packages',
-	'volto-site-componentes',
-	'src',
-);
+// Resolve alias target robustly to work both locally and in CI
+function resolveAliasBase() {
+	const siblingSrc = path.join(
+		__dirname,
+		'..',
+		'volto-site-componentes',
+		'packages',
+		'volto-site-componentes',
+		'src',
+	);
+	const exists = (p) => p && fs.existsSync(p);
+
+	if (exists(siblingSrc)) return siblingSrc;
+
+	try {
+		const pkgRoot = path.dirname(
+			require.resolve('volto-site-componentes/package.json', { paths: [__dirname] }),
+		);
+		const candidates = [
+			path.join(pkgRoot, 'src'),
+			path.join(pkgRoot, 'dist'),
+			path.join(pkgRoot, 'lib'),
+			pkgRoot,
+		];
+		const found = candidates.find((c) => exists(c));
+		if (found) return found;
+	} catch (e) {
+		// ignore
+	}
+
+	return siblingSrc;
+}
+const ALIAS_BASE = resolveAliasBase();
+
+function resolveComponent(relComponentPath) {
+	const exts = ['.jsx', '.js', '.tsx', '.ts'];
+	const bases = [];
+	bases.push(ALIAS_BASE);
+	try {
+		const pkgRoot = path.dirname(
+			require.resolve('volto-site-componentes/package.json', { paths: [__dirname] }),
+		);
+		bases.push(path.join(pkgRoot, 'src'));
+		bases.push(path.join(pkgRoot, 'dist'));
+		bases.push(path.join(pkgRoot, 'lib'));
+		bases.push(pkgRoot);
+	} catch (e) {}
+	bases.push(
+		path.join(__dirname, '..', 'volto-site-componentes', 'packages', 'volto-site-componentes', 'src'),
+	);
+	for (const base of bases) {
+		if (!base || !fs.existsSync(base)) continue;
+		for (const ext of exts) {
+			const abs = path.join(base, relComponentPath) + ext;
+			if (fs.existsSync(abs)) return abs;
+		}
+	}
+	return null;
+}
 
 function applyAlias(cfg) {
 	cfg.resolve = cfg.resolve || {};
 	const alias = (cfg.resolve && cfg.resolve.alias) || {};
+	const baseAlias = ALIAS_BASE;
+	const barraEstado = resolveComponent('components/BarraEstado/BarraEstado');
+	const barraAcess = resolveComponent('components/BarraAcessibilidade/BarraAcessibilidade');
 	cfg.resolve.alias = {
 		...alias,
-		'volto-site-componentes': ALIAS_PATH,
+		'volto-site-componentes': baseAlias,
+		...(barraEstado
+			? {
+					'volto-site-componentes/components/BarraEstado/BarraEstado': barraEstado,
+			  }
+			: {}),
+		...(barraAcess
+			? {
+					'volto-site-componentes/components/BarraAcessibilidade/BarraAcessibilidade':
+						barraAcess,
+			  }
+			: {}),
 	};
 	return cfg;
 }
@@ -43,14 +107,21 @@ function ensureBabelTranspilesAlias(cfg) {
 			});
 		}
 		if (uses.length) {
+			const includesToAdd = [ALIAS_BASE].filter(Boolean);
+			const compDirs = [barraEstado, barraAcess]
+				.filter(Boolean)
+				.map((f) => path.dirname(f));
 			if (Array.isArray(rule.include)) {
-				if (!rule.include.includes(ALIAS_PATH)) {
-					rule.include.push(ALIAS_PATH);
-				}
+				includesToAdd.forEach((p) => {
+					if (!rule.include.includes(p)) rule.include.push(p);
+				});
+				compDirs.forEach((d) => {
+					if (!rule.include.includes(d)) rule.include.push(d);
+				});
 			} else if (rule.include) {
-				rule.include = [rule.include, ALIAS_PATH];
+				rule.include = [rule.include, ...includesToAdd, ...compDirs];
 			} else {
-				rule.include = [ALIAS_PATH];
+				rule.include = [...includesToAdd, ...compDirs];
 			}
 			return true;
 		}
