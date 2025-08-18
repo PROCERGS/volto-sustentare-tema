@@ -57,10 +57,26 @@ function resolveComponent(relComponentPath) {
 	bases.push(
 		path.join(__dirname, '..', 'volto-site-componentes', 'packages', 'volto-site-componentes', 'src'),
 	);
+
+	const resolveCaseInsensitive = (base, parts) => {
+		let cur = base;
+		for (const part of parts) {
+			if (!fs.existsSync(cur) || !fs.statSync(cur).isDirectory()) return null;
+			const entries = fs.readdirSync(cur);
+			const match = entries.find((e) => e.toLowerCase() === part.toLowerCase());
+			if (!match) return null;
+			cur = path.join(cur, match);
+		}
+		return cur;
+	};
+
+	const parts = relComponentPath.split('/');
 	for (const base of bases) {
 		if (!base || !fs.existsSync(base)) continue;
+		const withoutExt = resolveCaseInsensitive(base, parts);
+		if (!withoutExt) continue;
 		for (const ext of exts) {
-			const abs = path.join(base, relComponentPath) + ext;
+			const abs = withoutExt + ext;
 			if (fs.existsSync(abs)) return abs;
 		}
 	}

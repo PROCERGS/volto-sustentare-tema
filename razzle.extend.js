@@ -43,9 +43,7 @@ const ALIAS_BASE = resolveAliasBase();
 function resolveComponent(relComponentPath) {
 	const exts = ['.jsx', '.js', '.tsx', '.ts'];
 	const bases = [];
-	// If ALIAS_BASE already points to src/dist/lib/root, try that first
 	bases.push(ALIAS_BASE);
-	// If ALIAS_BASE is not an absolute path (unlikely), skip
 	try {
 		const pkgRoot = path.dirname(
 			require.resolve('volto-site-componentes/package.json', { paths: [__dirname] }),
@@ -54,10 +52,7 @@ function resolveComponent(relComponentPath) {
 		bases.push(path.join(pkgRoot, 'dist'));
 		bases.push(path.join(pkgRoot, 'lib'));
 		bases.push(pkgRoot);
-	} catch (e) {
-		// ignore
-	}
-	// Also try sibling src explicitly
+	} catch (e) {}
 	bases.push(
 		path.join(
 			__dirname,
@@ -68,10 +63,26 @@ function resolveComponent(relComponentPath) {
 			'src',
 		),
 	);
+
+	const resolveCaseInsensitive = (base, parts) => {
+		let cur = base;
+		for (const part of parts) {
+			if (!fs.existsSync(cur) || !fs.statSync(cur).isDirectory()) return null;
+			const entries = fs.readdirSync(cur);
+			const match = entries.find((e) => e.toLowerCase() === part.toLowerCase());
+			if (!match) return null;
+			cur = path.join(cur, match);
+		}
+		return cur;
+	};
+
+	const parts = relComponentPath.split('/');
 	for (const base of bases) {
 		if (!base || !fs.existsSync(base)) continue;
+		const withoutExt = resolveCaseInsensitive(base, parts);
+		if (!withoutExt) continue;
 		for (const ext of exts) {
-			const abs = path.join(base, relComponentPath) + ext;
+			const abs = withoutExt + ext;
 			if (fs.existsSync(abs)) return abs;
 		}
 	}
