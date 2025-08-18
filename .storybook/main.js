@@ -1,10 +1,12 @@
 const path = require('path');
 
-const projectRootPath = path.resolve(__dirname, '..', '..', '..');
 const resolveFromHere = (mod) => require.resolve(mod, { paths: [__dirname] });
 
 module.exports = {
-  stories: ['../packages/volto-sustentare-tema/src/stories/**/*.stories.@(js|jsx|ts|tsx)'],
+  // Look for stories inside the inner addon package, relative to this .storybook folder
+  stories: [
+    path.join(__dirname, '..', 'packages', 'volto-sustentare-tema', 'src', 'stories', '**/*.stories.@(js|jsx|ts|tsx)')
+  ],
   addons: [],
   previewAnnotations: () => [],
   framework: {
@@ -19,26 +21,23 @@ module.exports = {
     ]));
     config.resolve.alias = {
       ...(config.resolve.alias || {}),
-      'volto-site-componentes': path.join(
-        projectRootPath,
-        'packages',
-        'volto-site-componentes',
-        'packages',
-        'volto-site-componentes',
-        'src',
-      ),
+      'volto-site-componentes': path.join(__dirname, '..', 'packages', 'volto-site-componentes', 'packages', 'volto-site-componentes', 'src'),
     };
     // Transpile JSX files in this addon and the root preview
     config.module = config.module || {};
     config.module.rules = config.module.rules || [];
     // Put our babel rule first to ensure JSX is handled before other oneOf rules
-    config.module.rules.unshift({
+  config.module.rules.unshift({
       test: /\.(js|jsx)$/,
       include: [
-        // The addon package sources
-        path.resolve(__dirname, '..'),
-        // The frontend root, to cover root .storybook/preview.jsx
-        path.resolve(__dirname, '../../..'),
+        // This addon package src
+        path.resolve(__dirname, '..', 'packages', 'volto-sustentare-tema', 'src'),
+        // Sibling package sources (aliased)
+    path.resolve(__dirname, '..', 'packages', 'volto-site-componentes', 'packages', 'volto-site-componentes', 'src'),
+    // Root frontend preview file, implicitly pulled by Volto's storybook starter
+    path.resolve(__dirname, '../../..', '.storybook'),
+  // This .storybook config (so preview.jsx is transpiled)
+  path.resolve(__dirname),
       ],
       exclude: /node_modules/,
       use: {

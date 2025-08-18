@@ -8,8 +8,8 @@
     ul li a,
     li.with-children > a {
       color: var(--verde-claro) !important;
-      text-decoration: none;
       font-weight: 700; /* keep bold like default */
+      text-decoration: none;
     }
 
     /* Nested children are usually normal weight; keep color the same */
