@@ -39,7 +39,11 @@
   "volto-sustentare-tema": "workspace:*"
   },
   "devDependencies": {
-    "mrs-developer": "^2.2.0"
+  "mrs-developer": "^2.2.0",
+  "@babel/core": "^7.26.0",
+  "@babel/preset-env": "^7.26.0",
+  "@babel/preset-react": "^7.26.3",
+  "babel-loader": "^9.2.1"
   },
   "pnpm": {
     "overrides": {
