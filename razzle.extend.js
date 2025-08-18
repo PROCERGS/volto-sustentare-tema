@@ -78,27 +78,28 @@ function resolveComponent(relComponentPath) {
 	return null;
 }
 
+// Pre-resolve the exact deep-import files so we can alias them and include their dirs in Babel
+const RESOLVED_BARRA_ESTADO = resolveComponent('components/BarraEstado/BarraEstado');
+const RESOLVED_BARRA_ACESS = resolveComponent('components/BarraAcessibilidade/BarraAcessibilidade');
+
 function applyAlias(cfg) {
 	cfg.resolve = cfg.resolve || {};
 	const alias = (cfg.resolve && cfg.resolve.alias) || {};
 	// Base alias for package root (for shallow imports)
 	const baseAlias = ALIAS_BASE;
-	// Per-component deep import aliases to actual files
-	const barraEstado = resolveComponent('components/BarraEstado/BarraEstado');
-	const barraAcess = resolveComponent('components/BarraAcessibilidade/BarraAcessibilidade');
 	cfg.resolve.alias = {
 		...alias,
 		'volto-site-componentes': baseAlias,
 		// Map the deep imports directly to concrete files if resolvable
-		...(barraEstado
+		...(RESOLVED_BARRA_ESTADO
 			? {
-					'volto-site-componentes/components/BarraEstado/BarraEstado': barraEstado,
+					'volto-site-componentes/components/BarraEstado/BarraEstado': RESOLVED_BARRA_ESTADO,
 			  }
 			: {}),
-		...(barraAcess
+		...(RESOLVED_BARRA_ACESS
 			? {
 					'volto-site-componentes/components/BarraAcessibilidade/BarraAcessibilidade':
-						barraAcess,
+						RESOLVED_BARRA_ACESS,
 			  }
 			: {}),
 	};
@@ -123,9 +124,9 @@ function ensureBabelTranspilesAlias(cfg) {
 			});
 		}
 		if (uses.length) {
-			const includesToAdd = [baseAlias].filter(Boolean);
+			const includesToAdd = [ALIAS_BASE].filter(Boolean);
 			// Also include component directories (not files) so HMR/transpile works
-			const compDirs = [barraEstado, barraAcess]
+			const compDirs = [RESOLVED_BARRA_ESTADO, RESOLVED_BARRA_ACESS]
 				.filter(Boolean)
 				.map((f) => path.dirname(f));
 			if (Array.isArray(rule.include)) {
