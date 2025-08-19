@@ -9,17 +9,31 @@ const fs = require('fs');
 
 // Resolve alias target robustly to work both locally and in CI
 function resolveAliasBase() {
-	const siblingSrc = path.join(
-		__dirname,
-		'..',
-		'volto-site-componentes',
-		'packages',
-		'volto-site-componentes',
-		'src',
-	);
+	const candidatesLocal = [
+		// nested sibling from inner package
+		path.join(
+			__dirname,
+			'..',
+			'volto-site-componentes',
+			'packages',
+			'volto-site-componentes',
+			'src',
+		),
+		// top-level sibling under frontend/packages
+		path.join(
+			__dirname,
+			'..',
+			'..',
+			'volto-site-componentes',
+			'packages',
+			'volto-site-componentes',
+			'src',
+		),
+	];
 	const exists = (p) => p && fs.existsSync(p);
 
-	if (exists(siblingSrc)) return siblingSrc;
+	const localFound = candidatesLocal.find((p) => exists(p));
+	if (localFound) return localFound;
 
 	try {
 		const pkgRoot = path.dirname(
@@ -37,9 +51,33 @@ function resolveAliasBase() {
 		// ignore
 	}
 
-	return siblingSrc;
+	return candidatesLocal[0];
 }
 const ALIAS_BASE = resolveAliasBase();
+
+function resolveIndexFile() {
+	const bases = [];
+	if (ALIAS_BASE) bases.push(ALIAS_BASE);
+	try {
+		const pkgRoot = path.dirname(
+			require.resolve('volto-site-componentes/package.json', { paths: [__dirname] }),
+		);
+		bases.push(path.join(pkgRoot, 'src'));
+		bases.push(path.join(pkgRoot, 'dist'));
+		bases.push(path.join(pkgRoot, 'lib'));
+		bases.push(pkgRoot);
+	} catch (e) {}
+	const exts = ['.js', '.jsx', '.ts', '.tsx'];
+	for (const base of bases) {
+		if (!base) continue;
+		for (const ext of exts) {
+			const candidate = path.join(base, 'index' + ext);
+			if (fs.existsSync(candidate)) return candidate;
+		}
+	}
+	return null;
+}
+const ALIAS_INDEX_FILE = resolveIndexFile();
 
 function resolveComponent(relComponentPath) {
 	const exts = ['.jsx', '.js', '.tsx', '.ts'];
@@ -55,7 +93,18 @@ function resolveComponent(relComponentPath) {
 		bases.push(pkgRoot);
 	} catch (e) {}
 	bases.push(
+		// nested sibling
 		path.join(__dirname, '..', 'volto-site-componentes', 'packages', 'volto-site-componentes', 'src'),
+		// top-level sibling under frontend/packages
+		path.join(
+			__dirname,
+			'..',
+			'..',
+			'volto-site-componentes',
+			'packages',
+			'volto-site-componentes',
+			'src',
+		),
 	);
 
 	const resolveCaseInsensitive = (base, parts) => {
@@ -92,6 +141,7 @@ function applyAlias(cfg) {
 	const baseAlias = ALIAS_BASE;
 	cfg.resolve.alias = {
 		...alias,
+		...(ALIAS_INDEX_FILE ? { 'volto-site-componentes$': ALIAS_INDEX_FILE } : {}),
 		'volto-site-componentes': baseAlias,
 		...(RESOLVED_BARRA_ESTADO
 			? {
@@ -163,11 +213,91 @@ function ensureBabelTranspilesAlias(cfg) {
 	return cfg;
 }
 
+function ensureLessIncludesAlias(cfg) {
+	if (!ALIAS_BASE) return cfg;
+	const addInclude = (rule) => {
+		const hasLess =
+			(rule.test && String(rule.test).includes('less')) ||
+			(rule.use && JSON.stringify(rule.use).includes('less-loader')) ||
+			(rule.loader && String(rule.loader).includes('less-loader'));
+		if (!hasLess) return;
+		if (Array.isArray(rule.include)) {
+			if (!rule.include.includes(ALIAS_BASE)) rule.include.push(ALIAS_BASE);
+		} else if (rule.include) {
+			rule.include = [rule.include, ALIAS_BASE];
+		} else {
+			rule.include = [ALIAS_BASE];
+		}
+	};
+	const walk = (rules) => {
+		if (!Array.isArray(rules)) return;
+		rules.forEach((rule) => {
+			if (!rule) return;
+			if (rule.oneOf) {
+				walk(rule.oneOf);
+			} else {
+				addInclude(rule);
+			}
+		});
+	};
+	if (cfg && cfg.module && Array.isArray(cfg.module.rules)) {
+		walk(cfg.module.rules);
+	}
+	return cfg;
+}
+
+function ensureLessRuleForAlias(cfg, { target, dev }) {
+	if (!ALIAS_BASE) return cfg;
+	cfg.module = cfg.module || {};
+	cfg.module.rules = cfg.module.rules || [];
+	const isServer = target !== 'web';
+
+	const alreadyHandled = cfg.module.rules.some((rule) => {
+		if (!rule || !rule.test) return false;
+		const isLess = String(rule.test).includes('less');
+		const include = rule.include;
+		const includesBase = Array.isArray(include)
+			? include.includes(ALIAS_BASE)
+			: include === ALIAS_BASE;
+		return isLess && includesBase;
+	});
+	if (alreadyHandled) return cfg;
+
+	const lessRule = {
+		test: /\.less$/,
+		include: [ALIAS_BASE],
+		use: isServer
+			? [
+					{
+						loader: require.resolve('css-loader'),
+						options: {
+							sourceMap: true,
+							importLoaders: 1,
+							modules: { auto: true, exportOnlyLocals: true },
+						},
+					},
+					{ loader: require.resolve('less-loader'), options: { sourceMap: true } },
+				]
+			: [
+					{ loader: require.resolve('style-loader') },
+					{
+						loader: require.resolve('css-loader'),
+						options: { sourceMap: !!dev, importLoaders: 1, modules: { auto: true } },
+					},
+					{ loader: require.resolve('less-loader'), options: { sourceMap: true } },
+				],
+	};
+	cfg.module.rules.push(lessRule);
+	return cfg;
+}
 module.exports = {
 	plugins: (defaultPlugins) => defaultPlugins,
 	modify: (config /* webpack config */, { target, dev } /* env */) => {
-		const cfg = applyAlias(config);
-		return ensureBabelTranspilesAlias(cfg);
+	let cfg = applyAlias(config);
+	cfg = ensureBabelTranspilesAlias(cfg);
+	cfg = ensureLessIncludesAlias(cfg);
+	cfg = ensureLessRuleForAlias(cfg, { target, dev });
+		return cfg;
 	},
 };
 

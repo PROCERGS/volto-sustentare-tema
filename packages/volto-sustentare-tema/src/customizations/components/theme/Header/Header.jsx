@@ -4,10 +4,7 @@ import { useSelector } from 'react-redux';
 import { useIntl, defineMessages } from 'react-intl';
 import config from '@plone/volto/registry';
 import HeaderContainer from '../../../../components/HeaderContainer/HeaderContainer';
-// eslint-disable-next-line import/no-unresolved
-import BarraAcessibilidade from 'volto-site-componentes/components/BarraAcessibilidade/BarraAcessibilidade';
-// eslint-disable-next-line import/no-unresolved
-import BarraEstado from 'volto-site-componentes/components/BarraEstado/BarraEstado';
+import * as VoltoSiteComponentes from 'volto-site-componentes';
 
 const messages = defineMessages({
   siteLabel: {
@@ -76,8 +73,8 @@ const Header = (props) => {
 
   return (
     <header className="header-wrapper">
-      <BarraEstado />
-      <BarraAcessibilidade svgImage={barraSvg} />
+      <VoltoSiteComponentes.BarraEstado />
+      <VoltoSiteComponentes.BarraAcessibilidade svgImage={barraSvg} />
       <HeaderContainer
         pathname={pathname}
         siteLabel={siteLabel}
