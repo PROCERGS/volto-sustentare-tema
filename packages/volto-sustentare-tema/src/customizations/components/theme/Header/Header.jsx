@@ -6,7 +6,7 @@ import config from '@plone/volto/registry';
 import HeaderContainer from '../../../../components/HeaderContainer/HeaderContainer';
 import * as VoltoSiteComponentes from 'volto-site-componentes';
 
-import icon from '../../../images/govrs.svg'
+import icon from '../../../images/govrs.svg';
 
 const messages = defineMessages({
   siteLabel: {

@@ -29,6 +29,8 @@ function resolveAliasBase() {
 			'volto-site-componentes',
 			'src',
 		),
+		// Local shim (for CI environments where the package isn't present)
+		path.join(__dirname, '..', 'shims', 'volto-site-componentes'),
 	];
 	const exists = (p) => p && fs.existsSync(p);
 
@@ -53,7 +55,11 @@ function resolveAliasBase() {
 
 	return candidatesLocal[0];
 }
-const ALIAS_BASE = resolveAliasBase();
+const SHIM_PATH = path.join(__dirname, '..', 'shims', 'volto-site-componentes');
+let ALIAS_BASE = resolveAliasBase();
+if (!ALIAS_BASE || !fs.existsSync(ALIAS_BASE)) {
+	ALIAS_BASE = SHIM_PATH;
+}
 
 function resolveIndexFile() {
 	const bases = [];
@@ -77,7 +83,10 @@ function resolveIndexFile() {
 	}
 	return null;
 }
-const ALIAS_INDEX_FILE = resolveIndexFile();
+let ALIAS_INDEX_FILE = resolveIndexFile();
+if (!ALIAS_INDEX_FILE && fs.existsSync(path.join(ALIAS_BASE, 'index.js'))) {
+	ALIAS_INDEX_FILE = path.join(ALIAS_BASE, 'index.js');
+}
 
 function resolveComponent(relComponentPath) {
 	const exts = ['.jsx', '.js', '.tsx', '.ts'];

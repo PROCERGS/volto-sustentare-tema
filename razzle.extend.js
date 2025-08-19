@@ -28,6 +28,8 @@ function resolveAliasBase() {
 			'volto-site-componentes',
 			'src',
 		),
+		// Local shim (for CI environments where the package isn't present)
+		path.join(__dirname, 'shims', 'volto-site-componentes'),
 	];
 	const exists = (p) => p && fs.existsSync(p);
 	const localFound = candidatesLocal.find((p) => exists(p));
@@ -50,7 +52,11 @@ function resolveAliasBase() {
 	// Last resort: first local candidate (even if missing)
 	return candidatesLocal[0];
 }
-const ALIAS_BASE = resolveAliasBase();
+const SHIM_PATH = path.join(__dirname, 'shims', 'volto-site-componentes');
+let ALIAS_BASE = resolveAliasBase();
+if (!ALIAS_BASE || !fs.existsSync(ALIAS_BASE)) {
+	ALIAS_BASE = SHIM_PATH;
+}
 
 // Resolve the entry index file for the package (so that `import 'volto-site-componentes'`
 // gets proper named exports detection in webpack)
@@ -76,7 +82,10 @@ function resolveIndexFile() {
 	}
 	return null;
 }
-const ALIAS_INDEX_FILE = resolveIndexFile();
+let ALIAS_INDEX_FILE = resolveIndexFile();
+if (!ALIAS_INDEX_FILE && fs.existsSync(path.join(ALIAS_BASE, 'index.js'))) {
+	ALIAS_INDEX_FILE = path.join(ALIAS_BASE, 'index.js');
+}
 
 // Resolve a specific component file across base directories and extensions
 function resolveComponent(relComponentPath) {
