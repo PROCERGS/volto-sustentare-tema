@@ -2,3 +2,5 @@ packages:
   # Use Volto core packages and this addon package only
   - 'core/packages/*'
   - 'packages/volto-sustentare-tema'
+  # Also include the inner volto-site-componentes package so workspace:* resolves locally
+  - 'packages/volto-site-componentes/packages/volto-site-componentes'

@@ -21,10 +21,25 @@ importers:
       '@plone/volto':
         specifier: workspace:*
         version: link:core/packages/volto
+      volto-site-componentes:
+        specifier: workspace:*
+        version: link:packages/volto-site-componentes/packages/volto-site-componentes
       volto-sustentare-tema:
         specifier: workspace:*
         version: link:packages/volto-sustentare-tema
     devDependencies:
+      '@babel/core':
+        specifier: ^7.26.0
+        version: 7.27.4
+      '@babel/preset-env':
+        specifier: ^7.26.0
+        version: 7.27.2(@babel/core@7.27.4)
+      '@babel/preset-react':
+        specifier: ^7.26.3
+        version: 7.27.1(@babel/core@7.27.4)
+      babel-loader:
+        specifier: ^9.2.1
+        version: 9.2.1(@babel/core@7.27.4)(webpack@5.90.1)
       mrs-developer:
         specifier: ^2.2.0
         version: 2.3.0
@@ -1551,22 +1566,6 @@ importers:
         specifier: ^17.1.1
         version: 17.1.1(typescript@5.8.3)
 
-  packages/volto-site-componentes:
-    dependencies:
-      '@plone/registry':
-        specifier: workspace:*
-        version: link:../../core/packages/registry
-      '@plone/volto':
-        specifier: workspace:*
-        version: link:../../core/packages/volto
-      volto-site-componentes:
-        specifier: workspace:*
-        version: link:packages/volto-site-componentes
-    devDependencies:
-      mrs-developer:
-        specifier: ^2.2.0
-        version: 2.3.0
-
   packages/volto-site-componentes/packages/volto-site-componentes:
     dependencies:
       '@eeacms/volto-accordion-block':
@@ -1633,6 +1632,9 @@ importers:
       react-dom:
         specifier: 18.2.0
         version: 18.2.0(react@18.2.0)
+      volto-site-componentes:
+        specifier: workspace:*
+        version: link:../volto-site-componentes/packages/volto-site-componentes
     devDependencies:
       '@plone/scripts':
         specifier: ^3.6.1
@@ -20859,6 +20861,13 @@ snapshots:
       schema-utils: 4.3.2
       webpack: 5.90.1(esbuild@0.25.5)
 
+  babel-loader@9.2.1(@babel/core@7.27.4)(webpack@5.90.1):
+    dependencies:
+      '@babel/core': 7.27.4
+      find-cache-dir: 4.0.0
+      schema-utils: 4.3.2
+      webpack: 5.90.1
+
   babel-messages@6.23.0:
     dependencies:
       babel-runtime: 6.26.0
@@ -23745,7 +23754,7 @@ snapshots:
 
   fork-ts-checker-webpack-plugin@4.1.6(eslint@8.57.1)(typescript@5.8.3)(vue-template-compiler@2.7.16)(webpack@5.90.1(esbuild@0.25.5)):
     dependencies:
-      '@babel/code-frame': 7.10.4
+      '@babel/code-frame': 7.27.1
       chalk: 2.4.2
       micromatch: 3.1.10
       minimatch: 3.1.2
@@ -30658,6 +30667,15 @@ snapshots:
     optionalDependencies:
       esbuild: 0.25.5
 
+  terser-webpack-plugin@5.3.14(webpack@5.90.1):
+    dependencies:
+      '@jridgewell/trace-mapping': 0.3.25
+      jest-worker: 27.5.1
+      schema-utils: 4.3.2
+      serialize-javascript: 6.0.2
+      terser: 5.43.1
+      webpack: 5.90.1
+
   terser-webpack-plugin@5.3.6(esbuild@0.25.5)(webpack@5.90.1(esbuild@0.25.5)):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.25
@@ -32019,6 +32037,37 @@ snapshots:
   webpack-sources@3.3.3: {}
 
   webpack-virtual-modules@0.6.2: {}
+
+  webpack@5.90.1:
+    dependencies:
+      '@types/eslint-scope': 3.7.7
+      '@types/estree': 1.0.8
+      '@webassemblyjs/ast': 1.14.1
+      '@webassemblyjs/wasm-edit': 1.14.1
+      '@webassemblyjs/wasm-parser': 1.14.1
+      acorn: 8.15.0
+      acorn-import-assertions: 1.9.0(acorn@8.15.0)
+      browserslist: 4.25.1
+      chrome-trace-event: 1.0.4
+      enhanced-resolve: 5.18.2
+      es-module-lexer: 1.7.0
+      eslint-scope: 5.1.1
+      events: 3.3.0
+      glob-to-regexp: 0.4.1
+      graceful-fs: 4.2.11
+      json-parse-even-better-errors: 2.3.1
+      loader-runner: 4.3.0
+      mime-types: 2.1.35
+      neo-async: 2.6.2
+      schema-utils: 3.3.0
+      tapable: 2.2.2
+      terser-webpack-plugin: 5.3.14(webpack@5.90.1)
+      watchpack: 2.4.4
+      webpack-sources: 3.3.3
+    transitivePeerDependencies:
+      - '@swc/core'
+      - esbuild
+      - uglify-js
 
   webpack@5.90.1(esbuild@0.25.5):
     dependencies:

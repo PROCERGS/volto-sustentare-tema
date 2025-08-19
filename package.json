@@ -36,10 +36,15 @@
     "@plone/volto": "workspace:*",
     "@plone/registry": "workspace:*", 
     "@kitconcept/volto-light-theme": "^5.0.2",
-  "volto-sustentare-tema": "workspace:*"
+  "volto-sustentare-tema": "workspace:*",
+  "volto-site-componentes": "workspace:*"
   },
   "devDependencies": {
-    "mrs-developer": "^2.2.0"
+  "mrs-developer": "^2.2.0",
+  "@babel/core": "^7.26.0",
+  "@babel/preset-env": "^7.26.0",
+  "@babel/preset-react": "^7.26.3",
+  "babel-loader": "^9.2.1"
   },
   "pnpm": {
     "overrides": {
