@@ -55,7 +55,12 @@ function resolveAliasBase() {
 
 	return candidatesLocal[0];
 }
-const SHIM_PATH = path.join(__dirname, '..', 'shims', 'volto-site-componentes');
+// Try both likely shim locations (inner and outer package layouts)
+const SHIM_CANDIDATES = [
+	path.join(__dirname, '..', '..', 'shims', 'volto-site-componentes'),
+	path.join(__dirname, '..', 'shims', 'volto-site-componentes'),
+];
+const SHIM_PATH = SHIM_CANDIDATES.find((p) => fs.existsSync(p));
 let ALIAS_BASE = resolveAliasBase();
 if (!ALIAS_BASE || !fs.existsSync(ALIAS_BASE)) {
 	ALIAS_BASE = SHIM_PATH;
@@ -84,65 +89,28 @@ function resolveIndexFile() {
 	return null;
 }
 let ALIAS_INDEX_FILE = resolveIndexFile();
-if (!ALIAS_INDEX_FILE && fs.existsSync(path.join(ALIAS_BASE, 'index.js'))) {
+if (!ALIAS_INDEX_FILE && ALIAS_BASE && fs.existsSync(path.join(ALIAS_BASE, 'index.js'))) {
 	ALIAS_INDEX_FILE = path.join(ALIAS_BASE, 'index.js');
 }
 
-function resolveComponent(relComponentPath) {
-	const exts = ['.jsx', '.js', '.tsx', '.ts'];
-	const bases = [];
-	bases.push(ALIAS_BASE);
+// Removed deep-import pre-resolution: rely on proper directory aliases and standard resolution
+
+function getSubdir(dirName) {
+	if (!ALIAS_BASE) return null;
 	try {
-		const pkgRoot = path.dirname(
-			require.resolve('volto-site-componentes/package.json', { paths: [__dirname] }),
-		);
-		bases.push(path.join(pkgRoot, 'src'));
-		bases.push(path.join(pkgRoot, 'dist'));
-		bases.push(path.join(pkgRoot, 'lib'));
-		bases.push(pkgRoot);
+		const baseName = path.basename(ALIAS_BASE);
+		if (baseName.toLowerCase() === dirName.toLowerCase()) return ALIAS_BASE;
+		const candidate = path.join(ALIAS_BASE, dirName);
+		if (fs.existsSync(candidate) && fs.statSync(candidate).isDirectory()) return candidate;
 	} catch (e) {}
-	bases.push(
-		// nested sibling
-		path.join(__dirname, '..', 'volto-site-componentes', 'packages', 'volto-site-componentes', 'src'),
-		// top-level sibling under frontend/packages
-		path.join(
-			__dirname,
-			'..',
-			'..',
-			'volto-site-componentes',
-			'packages',
-			'volto-site-componentes',
-			'src',
-		),
-	);
-
-	const resolveCaseInsensitive = (base, parts) => {
-		let cur = base;
-		for (const part of parts) {
-			if (!fs.existsSync(cur) || !fs.statSync(cur).isDirectory()) return null;
-			const entries = fs.readdirSync(cur);
-			const match = entries.find((e) => e.toLowerCase() === part.toLowerCase());
-			if (!match) return null;
-			cur = path.join(cur, match);
-		}
-		return cur;
-	};
-
-	const parts = relComponentPath.split('/');
-	for (const base of bases) {
-		if (!base || !fs.existsSync(base)) continue;
-		const withoutExt = resolveCaseInsensitive(base, parts);
-		if (!withoutExt) continue;
-		for (const ext of exts) {
-			const abs = withoutExt + ext;
-			if (fs.existsSync(abs)) return abs;
-		}
-	}
 	return null;
 }
-
-const RESOLVED_BARRA_ESTADO = resolveComponent('components/BarraEstado/BarraEstado');
-const RESOLVED_BARRA_ACESS = resolveComponent('components/BarraAcessibilidade/BarraAcessibilidade');
+const SRC_DIR = getSubdir('src');
+const SRC_INDEX = SRC_DIR
+	? ['.js', '.jsx', '.ts', '.tsx']
+			.map((ext) => path.join(SRC_DIR, 'index' + ext))
+			.find((p) => fs.existsSync(p))
+	: null;
 
 function applyAlias(cfg) {
 	cfg.resolve = cfg.resolve || {};
@@ -152,17 +120,8 @@ function applyAlias(cfg) {
 		...alias,
 		...(ALIAS_INDEX_FILE ? { 'volto-site-componentes$': ALIAS_INDEX_FILE } : {}),
 		'volto-site-componentes': baseAlias,
-		...(RESOLVED_BARRA_ESTADO
-			? {
-					'volto-site-componentes/components/BarraEstado/BarraEstado': RESOLVED_BARRA_ESTADO,
-			  }
-			: {}),
-		...(RESOLVED_BARRA_ACESS
-			? {
-					'volto-site-componentes/components/BarraAcessibilidade/BarraAcessibilidade':
-						RESOLVED_BARRA_ACESS,
-			  }
-			: {}),
+		...(SRC_DIR ? { 'volto-site-componentes/src': SRC_DIR } : {}),
+		...(SRC_INDEX ? { 'volto-site-componentes/src$': SRC_INDEX } : {}),
 	};
 	return cfg;
 }
@@ -183,21 +142,15 @@ function ensureBabelTranspilesAlias(cfg) {
 			});
 		}
 		if (uses.length) {
-			const includesToAdd = [ALIAS_BASE].filter(Boolean);
-			const compDirs = [RESOLVED_BARRA_ESTADO, RESOLVED_BARRA_ACESS]
-				.filter(Boolean)
-				.map((f) => path.dirname(f));
+			const includesToAdd = [ALIAS_BASE, SRC_DIR].filter(Boolean);
 			if (Array.isArray(rule.include)) {
 				includesToAdd.forEach((p) => {
 					if (!rule.include.includes(p)) rule.include.push(p);
 				});
-				compDirs.forEach((d) => {
-					if (!rule.include.includes(d)) rule.include.push(d);
-				});
 			} else if (rule.include) {
-				rule.include = [rule.include, ...includesToAdd, ...compDirs];
+				rule.include = [rule.include, ...includesToAdd];
 			} else {
-				rule.include = [...includesToAdd, ...compDirs];
+				rule.include = [...includesToAdd];
 			}
 			return true;
 		}
@@ -230,12 +183,15 @@ function ensureLessIncludesAlias(cfg) {
 			(rule.use && JSON.stringify(rule.use).includes('less-loader')) ||
 			(rule.loader && String(rule.loader).includes('less-loader'));
 		if (!hasLess) return;
+		const includes = [ALIAS_BASE, SRC_DIR].filter(Boolean);
 		if (Array.isArray(rule.include)) {
-			if (!rule.include.includes(ALIAS_BASE)) rule.include.push(ALIAS_BASE);
+			includes.forEach((p) => {
+				if (!rule.include.includes(p)) rule.include.push(p);
+			});
 		} else if (rule.include) {
-			rule.include = [rule.include, ALIAS_BASE];
+			rule.include = [rule.include, ...includes];
 		} else {
-			rule.include = [ALIAS_BASE];
+			rule.include = includes;
 		}
 	};
 	const walk = (rules) => {
