@@ -21,6 +21,9 @@ importers:
       '@plone/volto':
         specifier: workspace:*
         version: link:core/packages/volto
+      volto-site-componentes:
+        specifier: workspace:*
+        version: link:packages/volto-site-componentes/packages/volto-site-componentes
       volto-sustentare-tema:
         specifier: workspace:*
         version: link:packages/volto-sustentare-tema
