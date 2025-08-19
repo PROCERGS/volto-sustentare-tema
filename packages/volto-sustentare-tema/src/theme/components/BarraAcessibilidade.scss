@@ -9,6 +9,7 @@
 }
 
 .acess-container {
+  padding: 0 var(--padding-default);
   max-width: var(--layout-container-width);
   margin-right: auto;
   margin-left: auto;
@@ -21,8 +22,9 @@
   justify-content: space-between;
 }
 
-.acess-svg {
-  margin-right: 16px;
+.acess-svg > img{
+  width: 25px;
+  height: 32px;
 }
 
 .acess-menus {
