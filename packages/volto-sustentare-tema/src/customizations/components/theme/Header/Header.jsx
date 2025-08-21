@@ -4,20 +4,9 @@ import { useSelector } from 'react-redux';
 import { useIntl, defineMessages } from 'react-intl';
 import config from '@plone/volto/registry';
 import HeaderContainer from '../../../../components/HeaderContainer/HeaderContainer';
+import * as VoltoSiteComponentes from '../../../../../../volto-site-componentes/packages/volto-site-componentes/src';
 
 import icon from '../../../images/govrs.svg';
-// Load 'volto-site-componentes' only if available; fall back to local shim. Use computed name to avoid
-let VoltoSiteComponentes = {};
-try {
-  const r = typeof require === 'function' ? require : null;
-  VoltoSiteComponentes = r ? r(['volto-site-componentes'].join('')) : {};
-} catch (e) {
-  try {
-    VoltoSiteComponentes = require('../../../../shims/volto-site-componentes');
-  } catch (err) {
-    VoltoSiteComponentes = {};
-  }
-}
 
 const messages = defineMessages({
   siteLabel: {
