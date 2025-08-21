@@ -37,7 +37,11 @@ const Header = (props) => {
   return (
     <header className="header-wrapper">
       <VoltoSiteComponentes.BarraEstado />
-      <VoltoSiteComponentes.BarraAcessibilidade svgImage={icon} />
+      <VoltoSiteComponentes.BarraAcessibilidade
+        svgImage={
+          <img src={icon} alt="Logomarca Governo RS" className="govrs-logo" />
+        }
+      />
       <HeaderContainer
         pathname={pathname}
         siteLabel={siteLabel}

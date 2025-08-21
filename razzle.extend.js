@@ -10,19 +10,19 @@ const fs = require('fs');
 // Resolve alias target robustly to work both locally and in CI
 function resolveAliasBase() {
 	const candidatesLocal = [
-		// Nested copy under this addon
+		// Prefer the top-level sibling under frontend/packages (workspace-managed)
 		path.join(
 			__dirname,
-			'packages',
+			'..',
 			'volto-site-componentes',
 			'packages',
 			'volto-site-componentes',
 			'src',
 		),
-		// Top-level sibling under frontend/packages
+		// Fallback: nested copy under this addon (avoid if it has its own node_modules)
 		path.join(
 			__dirname,
-			'..',
+			'packages',
 			'volto-site-componentes',
 			'packages',
 			'volto-site-componentes',
@@ -110,10 +110,31 @@ const SRC_INDEX = SRC_DIR
 function applyAlias(cfg) {
 	cfg.resolve = cfg.resolve || {};
 	const alias = (cfg.resolve && cfg.resolve.alias) || {};
+	// Force a single React instance by resolving from the frontend root
+	function resolveFromRoot(id) {
+		try {
+			const FRONTEND_ROOT = path.resolve(__dirname, '..', '..'); // ../.. -> frontend/
+			return require.resolve(id, { paths: [FRONTEND_ROOT] });
+		} catch (e) {
+			return null;
+		}
+	}
+	function resolveDirFromRoot(id) {
+		const p = resolveFromRoot(id + '/package.json');
+		return p ? path.dirname(p) : null;
+	}
+	const REACT_DIR = resolveDirFromRoot('react');
+	const REACT_DOM_DIR = resolveDirFromRoot('react-dom');
+	const JSX_RUNTIME = resolveFromRoot('react/jsx-runtime');
+	const JSX_DEV_RUNTIME = resolveFromRoot('react/jsx-dev-runtime');
 	// Base alias for package root (for shallow imports)
 	const baseAlias = ALIAS_BASE;
 	cfg.resolve.alias = {
 		...alias,
+	...(REACT_DIR ? { react: REACT_DIR } : {}),
+	...(REACT_DOM_DIR ? { 'react-dom': REACT_DOM_DIR } : {}),
+	...(JSX_RUNTIME ? { 'react/jsx-runtime$': JSX_RUNTIME } : {}),
+	...(JSX_DEV_RUNTIME ? { 'react/jsx-dev-runtime$': JSX_DEV_RUNTIME } : {}),
 	// Map bare specifier to a concrete index file if possible for correct export detection
 	...(ALIAS_INDEX_FILE ? { 'volto-site-componentes$': ALIAS_INDEX_FILE } : {}),
 	'volto-site-componentes': baseAlias,
