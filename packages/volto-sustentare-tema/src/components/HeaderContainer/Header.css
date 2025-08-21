@@ -217,6 +217,13 @@ header {
   color: var(--preto-background) !important;
 }
 
+.govrs-logo {
+  display: inline-block;
+  width: auto;
+  height: 33px;
+  margin-right: 16px;
+}
+
 .icon-home-desktop:hover svg path,
 .icon-search-desktop:hover svg path,
 .icon-home-mobile:hover svg path,
