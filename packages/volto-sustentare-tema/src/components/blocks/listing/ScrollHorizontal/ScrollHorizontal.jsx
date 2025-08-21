@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
+import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import PreviewLink from '../../../PreviewLink/PreviewLink';
 import './ScrollHorizontal.css';
@@ -14,6 +15,8 @@ const ScrollHorizontal = ({
 }) => {
   const containerRef = useRef(null);
   const [canLoad, setCanLoad] = useState(true);
+  const [portalContainer, setPortalContainer] = useState(null);
+  const [computedPadding, setComputedPadding] = useState(null);
   const cardWidth = useCardWidth();
 
   useEffect(() => {
@@ -39,9 +42,62 @@ const ScrollHorizontal = ({
     if (!loading) setCanLoad(true);
   }, [loading]);
 
-  return (
-    <div className="noticias-horizontal-grid">
-      <div className="noticias-horizontal-container" ref={containerRef}>
+  useEffect(() => {
+    // Find the parent block.listing element and insert before it
+    const parentListing = document.querySelector('.block.listing.scroll-horizontal');
+    if (parentListing) {
+      // Create a container div to insert before the parent listing
+      const container = document.createElement('div');
+      container.className = 'scroll-horizontal-portal-container';
+      parentListing.parentNode.insertBefore(container, parentListing);
+      setPortalContainer(container);
+      
+      // Function to calculate and update padding
+      const updatePadding = () => {
+        const targetElement = document.querySelector('.logo-nav-wrapper-content') || parentListing.parentElement;
+        if (targetElement) {
+          const computedStyle = window.getComputedStyle(targetElement);
+          const marginLeft = computedStyle.marginLeft;
+          const marginRight = computedStyle.marginRight;
+          
+          // Calculate the actual auto margin value
+          if (marginLeft === 'auto' || marginRight === 'auto') {
+            const parentWidth = targetElement.parentElement.offsetWidth;
+            const elementWidth = targetElement.offsetWidth;
+            const totalMargin = parentWidth - elementWidth;
+            const autoMarginValue = Math.max(0, totalMargin / 2); // Ensure positive value
+            
+            setComputedPadding(`${autoMarginValue}px`);
+          } else {
+            // Use the computed value directly (it will be in pixels)
+            setComputedPadding(marginLeft);
+          }
+        }
+      };
+      
+      // Initial calculation
+      updatePadding();
+      
+      // Update on window resize
+      const handleResize = () => updatePadding();
+      window.addEventListener('resize', handleResize);
+      
+      // Cleanup on unmount
+      return () => {
+        window.removeEventListener('resize', handleResize);
+        if (container.parentNode) {
+          container.parentNode.removeChild(container);
+        }
+      };
+    }
+  }, []);
+
+  const content = (
+    <div className="noticias-horizontal-grid scroll-horizontal-portal">
+      <div 
+        className="noticias-horizontal-container" 
+        ref={containerRef}
+        style={computedPadding ? { paddingLeft: `calc(var(--padding-default) + ${computedPadding})`, paddingRight: `calc(var(--padding-default) + ${computedPadding})` } : {}}>
         {items.slice(0, 8).map((item) => (
           <div
             className="noticias-horizontal-item"
@@ -102,6 +158,19 @@ const ScrollHorizontal = ({
       )}
     </div>
   );
+
+  // If we have a portal container, render outside the parent
+  if (portalContainer) {
+    return (
+      <>
+        <div className="scroll-horizontal-placeholder" style={{ display: 'none' }}></div>
+        {ReactDOM.createPortal(content, portalContainer)}
+      </>
+    );
+  }
+
+  // Fallback to normal rendering
+  return content;
 };
 
 export default ScrollHorizontal;
