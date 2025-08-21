@@ -6,6 +6,8 @@ const path = require('path');
 
 module.exports = {
   settings: {
+  // Treat this as a core (virtual) module for ESLint import resolution only
+  'import/core-modules': ['volto-site-componentes'],
     'import/resolver': {
       node: {
         // Allow eslint-plugin-import to search these roots when resolving bare specifiers
