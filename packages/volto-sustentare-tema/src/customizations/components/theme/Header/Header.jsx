@@ -4,8 +4,7 @@ import { useSelector } from 'react-redux';
 import { useIntl, defineMessages } from 'react-intl';
 import config from '@plone/volto/registry';
 import HeaderContainer from '../../../../components/HeaderContainer/HeaderContainer';
-// eslint-disable-next-line import/no-unresolved
-import * as VoltoSiteComponentes from '../../../../../../volto-site-componentes/packages/volto-site-componentes/src';
+import * as VoltoSiteComponentes from 'volto-site-componentes';
 
 import icon from '../../../images/govrs.svg';
 
