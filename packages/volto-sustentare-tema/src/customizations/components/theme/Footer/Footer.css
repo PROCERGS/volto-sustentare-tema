@@ -56,15 +56,15 @@
 }
 
 .footer-logo-content {
-  max-width: var(--layout-container-width);
+  display: flex;
   width: 100%;
-  border: auto;
+  max-width: var(--layout-container-width);
+  align-items: center;
+  justify-content: flex-end;
   padding: 0 var(--padding-default);
+  border: auto;
   margin-right: auto;
   margin-left: auto;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
 }
 
 .footer-logo {

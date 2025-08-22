@@ -13,26 +13,26 @@ header {
 
 .header-images {
   display: flex;
+  width: 100%;
+  max-width: var(--layout-container-width);
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  margin: 24px 0px;
-  max-width: var(--layout-container-width);
   padding: 0 var(--padding-default);
+  margin: 24px 0px;
   margin-right: auto;
   margin-left: auto;
-  width: 100%;
 }
 
 .logo-nav-wrapper-content {
   display: flex;
-  max-width: var(--layout-container-width);
   width: 100%;
-  border: auto;
+  width: 100%;
+  max-width: var(--layout-container-width);
   padding: 0 var(--padding-default);
+  border: auto;
   margin-right: auto;
   margin-left: auto;
-  width: 100%;
 }
 
 .header-wrapper .header .logo-nav-wrapper {
@@ -43,11 +43,11 @@ header {
   display: flex;
   height: 80px;
   align-items: stretch;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
   border-top: 4px solid var(--verde-padrao);
   border-bottom: 4px solid var(--verde-padrao);
   gap: 0;
-  padding-bottom: 0 !important;
-  padding-top: 0 !important;
 }
 
 .logo-nav-wrapper button {

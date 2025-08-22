@@ -4,45 +4,45 @@
   margin-bottom: 160px;
 }
 
-.accordion h3,
-.accordion .title,
-.accordion button[aria-expanded] {
+.accordion-block .accordion h3,
+.accordion-block .accordion .title,
+.accordion-block .accordion button[aria-expanded] {
   background-color: var(--preto-background) !important;
 }
 
-.accordion h3.active,
-.accordion .title.active,
-.accordion button[aria-expanded='true'] {
+.accordion-block .accordion h3.active,
+.accordion-block .accordion .title.active,
+.accordion-block .accordion button[aria-expanded='true'] {
   background-color: var(--bege-padrao) !important;
 }
 
-.accordion h3:hover,
-.accordion .title:hover,
-.accordion button[aria-expanded]:hover {
+.accordion-block .accordion h3:hover,
+.accordion-block .accordion .title:hover,
+.accordion-block .accordion button[aria-expanded]:hover {
   background-color: var(--bege-padrao) !important;
 }
 
-.accordion:hover .accordion-title span,
-.accordion .accordion-title:hover input {
+.accordion-block .accordion:hover .accordion-title span,
+.accordion-block .accordion .accordion-title:hover input {
   color: var(--preto-background) !important;
 }
 
-.accordion .accordion-title.active span,
-.accordion .accordion-title.active input {
+.accordion-block .accordion .accordion-title.active span,
+.accordion-block .accordion .accordion-title.active input {
   color: var(--preto-background) !important;
 }
 
-.accordion h3,
-.accordion .title,
-.accordion button[aria-expanded] {
+.accordion-block .accordion h3,
+.accordion-block .accordion .title,
+.accordion-block .accordion button[aria-expanded] {
   padding: 10px 0px 10px 38px !important;
   border: 4px solid var(--verde-padrao) !important;
 }
 
-.accordion .accordion-title span,
-.input-accordion-title input,
-.accordion .title,
-.accordion button[aria-expanded] {
+.accordion-block .accordion .accordion-title span,
+.accordion-block .input-accordion-title input,
+.accordion-block .accordion .title,
+.accordion-block .accordion button[aria-expanded] {
   color: var(--bege-padrao) !important;
   font-size: 24px !important;
   font-weight: 700 !important;
@@ -55,7 +55,7 @@
   font-size: 18px;
 }
 
-.accordion h2.headline,
+.accordion-block .accordion h2.headline,
 .accordion-block .headline {
   margin-bottom: 20px !important;
   font-size: 40px;
@@ -63,15 +63,15 @@
   text-transform: uppercase;
 }
 
-.accordion-title svg,
-.accordion .title svg,
-.accordion button[aria-expanded] svg {
+.accordion-block .accordion-title svg,
+.accordion-block .accordion .title svg,
+.accordion-block .accordion button[aria-expanded] svg {
   display: none;
 }
 
-.accordion-title::before,
-.accordion .title::before,
-.accordion button[aria-expanded]::before {
+.accordion-block .accordion-title::before,
+.accordion-block .accordion .title::before,
+.accordion-block .accordion button[aria-expanded]::before {
   display: inline-block;
   width: 40px;
   height: 40px;
@@ -81,9 +81,9 @@
   content: '';
 }
 
-.accordion .accordion-title.active::before,
-.accordion .title.active::before,
-.accordion button[aria-expanded='true']::before {
+.accordion-block .accordion .accordion-title.active::before,
+.accordion-block .accordion .title.active::before,
+.accordion-block .accordion button[aria-expanded='true']::before {
   display: inline-block;
   width: 40px;
   height: 40px;
@@ -93,7 +93,7 @@
   content: '';
 }
 
-.blocks-group-wrapper {
+.accordion-block .blocks-group-wrapper {
   padding-bottom: 40px;
 }
 
