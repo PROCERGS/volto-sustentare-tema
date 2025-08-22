@@ -37,7 +37,7 @@
 
 .footer-images {
   display: flex;
-  max-height: 270px;
+  max-height: 21px;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 20px;
@@ -55,13 +55,20 @@
   cursor: pointer;
 }
 
-.footer-logo {
+.footer-logo-content {
+  max-width: var(--layout-container-width);
+  width: 100%;
+  border: auto;
+  padding: 0 var(--padding-default);
+  margin-right: auto;
+  margin-left: auto;
   display: flex;
-  height: fit-content;
-  flex-direction: row;
   justify-content: flex-end;
-  padding: 21px 0 20px 0;
-  padding-right: 10%;
+  align-items: center;
+}
+
+.footer-logo {
+  padding: 20px 0 20px 0;
   background-color: var(--branco);
 }
 

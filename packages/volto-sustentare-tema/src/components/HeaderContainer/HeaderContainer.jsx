@@ -433,6 +433,7 @@ const HeaderContainer = ({
           ref={menuRef}
           style={{ alignItems: 'center' }}
         >
+          <div className="logo-nav-wrapper-content">
           <a
             className="nav-item"
             href="/"
@@ -575,6 +576,7 @@ const HeaderContainer = ({
               </div>
             </div>
           )}
+          </div>
         </div>
       </div>
     </>

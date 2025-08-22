@@ -15,6 +15,17 @@
   margin-left: auto;
 }
 
+.acess-svg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.acess-svg > img {
+  width: 25px;
+  height: 32px;
+}
+
 .acess-wrapper {
   display: flex;
   flex-direction: row;
