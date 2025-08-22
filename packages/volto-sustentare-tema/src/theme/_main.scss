@@ -10,7 +10,8 @@
 @import './components/BarraEstado.scss';
 @import './components/Sitemap.scss';
 
-*:not(.barra-estado__container, h2, button):not(.barra-estado__container *) {
+*:not(.barra-estado__container, h2, button):not(.barra-estado__container *)
+  :not([contenteditable]):not([contenteditable] *) {
   font-family: 'Saira', Arial, Helvetica, sans-serif !important;
   -webkit-hyphens: none !important;
   -ms-hyphens: none !important;
@@ -156,4 +157,10 @@ button {
 .block.search .listing-item,
 .column > .block.listing .listing-item {
   border-bottom: 4px solid var(--verde-padrao);
+}
+
+[contenteditable],
+[contenteditable='true'] {
+  white-space: pre-wrap !important; /* fallback */
+  white-space: break-spaces !important; /* keep trailing/multiple spaces */
 }
