@@ -1,0 +1,74 @@
+.block.form {
+  background-color: var(--preto-background);
+}
+
+.block.form .ui.segment,
+.block.form .ui.segments > .segment,
+.block.form .ui.segments > div {
+  border: none;
+  background-color: var(--preto-background) !important;
+  box-shadow: none;
+}
+
+.block.form .ui.form .field > label {
+  color: var(--branco);
+}
+
+.block.form .ui.form .field .help,
+.block.form .ui.message.help,
+.block.form .help {
+  color: var(--verde-claro);
+}
+
+.block.form .ui.vertically.padded.one.column.grid {
+  width: 100% !important;
+}
+
+.block.form .ui.form .field .ui.input,
+.block.form .ui.form .field textarea,
+.block.form .ui.form .field select,
+.block.form .ui.form .field input:not([type='checkbox']):not([type='radio']) {
+  width: 100% !important;
+}
+
+.block.form .ui.form .field .ui.input > input,
+.block.form .ui.form .field textarea,
+.block.form .ui.form .field select,
+.block.form .ui.form .field input:not([type='checkbox']):not([type='radio']) {
+  box-sizing: border-box;
+  background-color: var(--preto-background) !important;
+  color: var(--bege-padrao) !important;
+}
+
+.block.form .ui.form .field ::placeholder {
+  color: var(--bege-padrao);
+  opacity: 0.8;
+}
+
+.block.form .ui.form .field .ui.selection.dropdown {
+  width: 100% !important;
+  background-color: var(--preto-background) !important;
+  color: var(--bege-padrao) !important;
+}
+.block.form .ui.form .field .ui.selection.dropdown .text {
+  color: var(--bege-padrao) !important;
+}
+.block.form .ui.form .field .ui.selection.dropdown .menu {
+  background-color: var(--preto-background);
+}
+.block.form .ui.form .field .ui.selection.dropdown .menu > .item {
+  color: var(--bege-padrao);
+}
+
+.block.form .ui.form .field .ui.grid .column .wrapper > label,
+.block.form .ui.form .inline.field .wrapper > label {
+  color: var(--bege-padrao);
+}
+
+.ui.form .inline.field .help {
+  border-bottom: 1px solid var(--verde-padrao);
+}
+
+#page-document .blocks-group-wrapper > .block.form {
+  padding-bottom: 80px;
+}

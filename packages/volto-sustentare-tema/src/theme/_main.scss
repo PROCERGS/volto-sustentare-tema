@@ -9,6 +9,7 @@
 @import './components/BarraAcessibilidade.scss';
 @import './components/BarraEstado.scss';
 @import './components/Sitemap.scss';
+@import './components/Forms.scss';
 
 *:not(.barra-estado__container, h2, button):not(.barra-estado__container *)
   :not([contenteditable]):not([contenteditable] *) {
@@ -161,6 +162,6 @@ button {
 
 [contenteditable],
 [contenteditable='true'] {
-  white-space: pre-wrap !important; /* fallback */
-  white-space: break-spaces !important; /* keep trailing/multiple spaces */
+  white-space: pre-wrap !important;
+  white-space: break-spaces !important;
 }

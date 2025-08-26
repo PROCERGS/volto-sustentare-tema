@@ -132,9 +132,13 @@
       color: var(--verde-padrao) !important;
     }
     a {
-      color: var(--bege-padrao) !important;
+      color: var(--verde-claro) !important;
     }
-    /* Preserve footer hover color in high-contrast */
+    .rodape__mapa-site__item a,
+    .rodape__mapa-site__item ul li a,
+    .rodape__mapa-site .rodape__mapa-site__item ul li a {
+      color: var(--verde-claro) !important;
+    }
     a:hover,
     .rodape__mapa-site__item > a:hover,
     .rodape__mapa-site__item > ul > li > a:hover,
@@ -155,5 +159,36 @@
     .co2-badge-value {
       color: var(--bege-padrao) !important;
     }
+  }
+
+  .block.form .ui.form .field .ui.input > input,
+  .block.form .ui.form .field textarea,
+  .block.form .ui.form .field select,
+  .block.form .ui.form .field input:not([type='checkbox']):not([type='radio']) {
+    background-color: var(--bege-padrao) !important;
+    color: var(--preto-background) !important;
+  }
+  .block.form .ui.form .field ::placeholder {
+    color: var(--preto-background);
+  }
+  .block.form .ui.form .field .ui.selection.dropdown {
+    background-color: var(--bege-padrao) !important;
+    color: var(--preto-background) !important;
+  }
+  .block.form .ui.form .field .ui.selection.dropdown .text {
+    color: var(--preto-background) !important;
+  }
+  .block.form .ui.form .field .ui.selection.dropdown .menu {
+    background-color: var(--bege-padrao);
+  }
+  .block.form .ui.form .field .ui.selection.dropdown .menu > .item {
+    color: var(--preto-background);
+  }
+  .block.form .ui.form .field .ui.grid .column .wrapper > label,
+  .block.form .ui.form .inline.field .wrapper > label {
+    color: var(--verde-padrao) !important;
+  }
+  #page-document .blocks-group-wrapper > .block.form {
+    background-color: var(--bege-padrao) !important;
   }
 }

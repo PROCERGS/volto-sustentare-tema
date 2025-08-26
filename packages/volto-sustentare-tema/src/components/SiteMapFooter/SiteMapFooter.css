@@ -111,15 +111,16 @@
   }
 }
 
+/* Default: beige links; hover to light green */
 .rodape__mapa-site__item a {
-  color: var(--verde-claro);
+  color: var(--bege-padrao);
   font-weight: bold;
   text-decoration: none;
 }
 
 /* Ensure nested list links are also light green */
 .rodape__mapa-site__item ul li a {
-  color: var(--verde-claro);
+  color: var(--bege-padrao);
 }
 
 .rodape__mapa-site__item a:hover {

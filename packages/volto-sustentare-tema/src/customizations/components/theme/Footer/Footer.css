@@ -37,6 +37,7 @@
 
 .footer-images {
   display: flex;
+  min-height: fit-content;
   max-height: 21px;
   flex-direction: row;
   flex-wrap: wrap;
@@ -101,6 +102,9 @@
 }
 
 @media (max-width: 767px) {
+  .footer-container {
+    padding-top: 30px;
+  }
   .footer-logo {
     flex-direction: row;
   }
