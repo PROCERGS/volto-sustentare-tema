@@ -2,6 +2,10 @@
   margin: 160px auto;
 }
 
+.video-destaque-title-hidden {
+  display: none;
+}
+
 .sust-one-to-another {
   display: flex;
   height: 100%;
@@ -70,10 +74,6 @@
   width: 200px;
   height: 56%;
   flex-direction: column;
-  justify-content: space-between;
-}
-
-.two-vectors-final .two-vectors-container {
   justify-content: space-between;
 }
 
@@ -215,6 +215,10 @@
     width: 20%;
     align-items: center;
     text-align: center;
+  }
+
+  .one {
+    align-items: self-end;
   }
 
   .sust-item .sust-item-text span {

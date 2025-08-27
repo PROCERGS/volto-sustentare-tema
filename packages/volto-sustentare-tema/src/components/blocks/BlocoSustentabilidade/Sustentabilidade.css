@@ -13,7 +13,7 @@
 }
 
 .sustentabilidade-coluna-esquerda h2 {
-  font-size: 41px;
+  font-size: 36px;
   font-weight: 800;
   line-height: 115%;
   text-transform: uppercase;
@@ -47,17 +47,18 @@
 }
 
 .sustentabilidade-coluna-direita {
-  display: grid;
+  display: flex;
   gap: 24px;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
+  flex-wrap: wrap;
+  
 }
 
 .sustentabilidade-box {
   display: flex;
-  width: 279px;
-  height: 213px;
+  min-width: 260px;
+  height: 245px;
   flex-direction: column;
+  flex: 0 0 calc(50% - 12px);
   align-items: center;
   justify-content: center;
   padding: 32px;
@@ -86,17 +87,34 @@
   line-height: 150%;
 }
 
+.sustentabilidade-link-hidden {
+  display: none;
+}
+
 @media only screen and (max-width: 1279px) and (min-width: 768px) {
   .bloco-sustentabilidade {
     flex-direction: column;
   }
 
   .sustentabilidade-coluna-esquerda h2 {
-    font-size: 54px;
+    font-size: 46px;
+  }
+
+  .sustentabilidade-coluna-esquerda a {
+    display: none;
+  }
+
+  .sustentabilidade-link-hidden {
+    display: block !important;
+  }
+
+  .sustentabilidade-box {
+    flex: 0 0 calc(50% - 12px);
+    min-width: 200px;
   }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 767px) {
   .bloco-sustentabilidade {
     flex-direction: column;
   }
@@ -107,12 +125,16 @@
 
   .sustentabilidade-coluna-direita {
     align-self: center;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(4, 1fr);
+    flex-direction: column;
+  }
+
+  .sustentabilidade-box {
+    flex: 1 1 100%;
+    min-width: 260px;
   }
 
   .sustentabilidade-coluna-esquerda h2 {
-    font-size: 24px;
+    font-size: 30px;
   }
 
   .sustentabilidade-coluna-esquerda p {
@@ -127,7 +149,11 @@
     font-size: 16px;
   }
 
-  .sustentabilidade-box {
-    width: 80vw;
+  .sustentabilidade-coluna-esquerda a {
+    display: none;
+  }
+
+  .sustentabilidade-link-hidden {
+    display: block !important;
   }
 }

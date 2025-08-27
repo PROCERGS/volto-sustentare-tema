@@ -120,6 +120,9 @@ const View = ({ data }) => {
           <VideoThumb video={video} key={idx} />
         ))}
       </div>
+      <a href="/" className="videos-lista-link">
+        MAIS VÍDEOS
+      </a>
     </div>
   );
 };
