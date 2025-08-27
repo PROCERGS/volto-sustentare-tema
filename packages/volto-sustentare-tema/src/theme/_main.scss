@@ -35,6 +35,15 @@ body:not(.barra-estado__container) {
   }
 }
 
+.toolbar-content {
+  color: var(--preto) !important;
+  font-family: revert !important;
+}
+.toolbar-content a {
+  color: var(--preto) !important;
+  text-decoration: revert !important;
+}
+
 h1,
 h2,
 h3,
