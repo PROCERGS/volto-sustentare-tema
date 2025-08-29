@@ -48,17 +48,16 @@
 
 .sustentabilidade-coluna-direita {
   display: flex;
-  gap: 24px;
   flex-wrap: wrap;
-  
+  gap: 24px;
 }
 
 .sustentabilidade-box {
   display: flex;
   min-width: 260px;
   height: 245px;
-  flex-direction: column;
   flex: 0 0 calc(50% - 12px);
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 32px;
@@ -109,8 +108,8 @@
   }
 
   .sustentabilidade-box {
-    flex: 0 0 calc(50% - 12px);
     min-width: 200px;
+    flex: 0 0 calc(50% - 12px);
   }
 }
 
@@ -124,13 +123,13 @@
   }
 
   .sustentabilidade-coluna-direita {
-    align-self: center;
     flex-direction: column;
+    align-self: center;
   }
 
   .sustentabilidade-box {
-    flex: 1 1 100%;
     min-width: 260px;
+    flex: 1 1 100%;
   }
 
   .sustentabilidade-coluna-esquerda h2 {

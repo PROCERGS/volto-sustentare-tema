@@ -19,7 +19,9 @@ const View = ({ data }) => {
     <div
       className={`block video-destaque-block video-${data.video_position || 'left'}`}
     >
-      {data.title && <h2 className="video-destaque-title-hidden">{data.title}</h2>}
+      {data.title && (
+        <h2 className="video-destaque-title-hidden">{data.title}</h2>
+      )}
       <div className="video-destaque-inner">
         <div className="video-destaque-video">
           {youtubeId && !showIframe && (
@@ -118,9 +120,7 @@ const View = ({ data }) => {
           )}
         </div>
         <div className="video-destaque-content">
-          {data.title && (
-            <h2 className="video-destaque-title">{data.title}</h2>
-          )}
+          {data.title && <h2 className="video-destaque-title">{data.title}</h2>}
           {data.text && <p>{data.text}</p>}
           {data.show_button && data.button_text && (
             <button

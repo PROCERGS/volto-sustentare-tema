@@ -30,18 +30,18 @@
   display: flex;
   width: 100%;
   max-width: 457.5px;
-  aspect-ratio: 16 / 9;
   flex: 1;
   align-items: center;
   justify-content: center;
+  aspect-ratio: 16 / 9;
 }
 
 .video-destaque-iframe {
   display: block;
   width: 100%;
   max-width: 457.5px;
-  aspect-ratio: 16 / 9;
   border: 4px solid var(--verde-padrao);
+  aspect-ratio: 16 / 9;
 }
 
 .video-destaque-block input[type='checkbox'] {
@@ -54,8 +54,8 @@
 }
 
 .video-destaque-block h2 {
-  font-size: 44px;
   margin-top: 0;
+  font-size: 44px;
 }
 
 .video-destaque-block p {
@@ -72,10 +72,10 @@
   overflow: hidden;
   width: 100%;
   max-width: 457.5px;
-  aspect-ratio: 16 / 9;
   align-items: center;
   justify-content: center;
   border: 4px solid var(--verde-padrao);
+  aspect-ratio: 16 / 9;
   cursor: pointer;
 }
 
