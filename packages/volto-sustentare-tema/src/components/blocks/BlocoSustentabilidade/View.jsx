@@ -63,6 +63,11 @@ const BlocoSustentabilidade = ({ data = {} }) => (
         </span>
       </div>
     </div>
+    <div className="sustentabilidade-coluna-esquerda">
+      <a className="sustentabilidade-link-hidden" href="/">
+        SAIBA MAIS
+      </a>
+    </div>
   </section>
 );
 

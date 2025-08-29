@@ -73,10 +73,6 @@
   justify-content: space-between;
 }
 
-.two-vectors-final .two-vectors-container {
-  justify-content: space-between;
-}
-
 .sust-two-vector {
   display: flex;
   height: 100px;
@@ -215,6 +211,10 @@
     width: 20%;
     align-items: center;
     text-align: center;
+  }
+
+  .one {
+    align-items: self-end;
   }
 
   .sust-item .sust-item-text span {
