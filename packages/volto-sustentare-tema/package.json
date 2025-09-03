@@ -56,5 +56,8 @@
   ,
   "sass": "^1.70.0",
   "sass-loader": "^13.2.0"
+  ,
+  "style-loader": "^3.3.2",
+  "css-loader": "^6.8.1"
   }
 }

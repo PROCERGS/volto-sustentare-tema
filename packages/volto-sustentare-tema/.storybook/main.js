@@ -7,6 +7,9 @@ module.exports = {
   framework: {
     name: '@storybook/react-webpack5',
   },
+  core: {
+    builder: 'webpack5',
+  },
   webpackFinal: async (config) => {
     config.module = config.module || {};
     config.module.rules = config.module.rules || [];
@@ -29,8 +32,8 @@ module.exports = {
       test: /\.scss$/,
       use: [
         // these loaders will be resolved from the addon's node_modules
-        resolveFromHere('style-loader'),
-        resolveFromHere('css-loader'),
+        { loader: resolveFromHere('style-loader') },
+        { loader: resolveFromHere('css-loader') },
         {
           loader: resolveFromHere('sass-loader'),
           options: {
@@ -40,6 +43,15 @@ module.exports = {
         },
       ],
       include: [path.resolve(__dirname, '..', 'src')],
+    });
+
+    // Add asset handling for images referenced from SCSS
+    config.module.rules.unshift({
+      test: /\.(png|jpe?g|gif|svg)$/i,
+      type: 'asset/resource',
+      generator: {
+        filename: 'static/media/[name][ext]'
+      }
     });
 
   // Allow imports like '../../customizations/...' from theme SCSS to resolve
