@@ -39,8 +39,7 @@ export const Playground = Template.bind({});
 Playground.args = {
   image_position: 'left',
   title: 'Título do bloco Imagem + Texto + Aba',
-  text:
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus euismod, nisl at consequat ultricies, lorem nulla posuere arcu.',
+  text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus euismod, nisl at consequat ultricies, lorem nulla posuere arcu.',
   highlight_text: 'Texto em destaque que aparece logo após o texto principal.',
   show_button: true,
   button_text: 'Saiba Mais',

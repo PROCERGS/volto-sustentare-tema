@@ -12,7 +12,7 @@ export default {
     // Campos do schema com rótulos em PT-BR
     video_url: { control: 'text', name: 'URL do vídeo' },
     title: { control: 'text', name: 'Título' },
-  text: { control: 'text', name: 'Texto (pode ser multilinha)' },
+    text: { control: 'text', name: 'Texto (pode ser multilinha)' },
     video_position: {
       name: 'Posição do vídeo',
       control: { type: 'inline-radio' },
@@ -20,7 +20,10 @@ export default {
       labels: { left: 'Esquerda', right: 'Direita' },
     },
     border_color: { control: 'color', name: 'Cor da borda do vídeo' },
-    show_button: { control: 'boolean', name: 'Exibir botão de redirecionamento' },
+    show_button: {
+      control: 'boolean',
+      name: 'Exibir botão de redirecionamento',
+    },
     button_text: {
       control: 'text',
       name: 'Texto do botão',
@@ -40,8 +43,7 @@ export const Playground = Template.bind({});
 Playground.args = {
   video_url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
   title: 'Responsabilidade pública, sustentabilidade e inclusão',
-  text:
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus euismod, nisl at consequat ultricies, lorem nulla posuere arcu, a luctus nisi tortor a arcu.',
+  text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus euismod, nisl at consequat ultricies, lorem nulla posuere arcu, a luctus nisi tortor a arcu.',
   video_position: 'right',
   border_color: '#000000',
   show_button: true,
