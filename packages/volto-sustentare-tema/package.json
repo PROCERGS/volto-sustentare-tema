@@ -25,7 +25,7 @@
   "release": "release-it",
   "release-major-alpha": "release-it major --preRelease=alpha",
   "release-alpha": "release-it --preRelease=alpha",
-  "storybook": "storybook dev -c ./.storybook -p 6007",
+  "storybook": "pnpm exec -- storybook dev -c ./.storybook -p 6007",
   "build-storybook": "pnpm exec -- storybook build -c ./.storybook -o ./storybook-static"
   },
   "addons": [],
