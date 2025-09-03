@@ -30,7 +30,7 @@
     "release-major-alpha": "pnpm --filter volto-sustentare-tema release-major-alpha",
     "release-alpha": "pnpm --filter volto-sustentare-tema release-alpha",
   "storybook": "pnpm --filter ./packages/volto-sustentare-tema run storybook -- -c ./.storybook -p 6007",
-  "storybook-build": "VOLTOCONFIG=$(pwd)/volto.config.js pnpm --filter @plone/volto build-storybook -c $(pwd)/.storybook"
+  "storybook-build": "cd ./packages/volto-sustentare-tema && npm run storybook"
   },
   "dependencies": {
     "@plone/volto": "workspace:*",
