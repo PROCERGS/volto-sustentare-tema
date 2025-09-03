@@ -29,8 +29,8 @@
     "release": "pnpm --filter volto-sustentare-tema release",
     "release-major-alpha": "pnpm --filter volto-sustentare-tema release-major-alpha",
     "release-alpha": "pnpm --filter volto-sustentare-tema release-alpha",
-  "storybook": "cd ./packages/volto-sustentare-tema && npm run storybook",
-  "storybook-build": "cd ./packages/volto-sustentare-tema && npm run build-storybook"
+  "storybook": "pnpm --filter ./packages/volto-sustentare-tema run storybook -- -c ./.storybook -p 6007",
+  "storybook-build": "pnpm --filter ./packages/volto-sustentare-tema run build-storybook -- -c ./.storybook -o ./storybook-static"
   },
   "dependencies": {
     "@plone/volto": "workspace:*",
