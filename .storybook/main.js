@@ -7,7 +7,10 @@ module.exports = {
   stories: [
     path.join(__dirname, '..', 'packages', 'volto-sustentare-tema', 'src', 'stories', '**/*.stories.@(js|jsx|ts|tsx)')
   ],
-  addons: [],
+  addons: [
+    '@storybook/addon-links',
+    '@storybook/addon-essentials',
+  ],
   previewAnnotations: () => [],
   framework: {
     name: '@storybook/react-webpack5',
