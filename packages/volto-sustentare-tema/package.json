@@ -25,8 +25,8 @@
   "release": "release-it",
   "release-major-alpha": "release-it major --preRelease=alpha",
   "release-alpha": "release-it --preRelease=alpha",
-  "storybook": "pnpm exec -- storybook dev -c ./.storybook -p 6007",
-  "build-storybook": "pnpm exec -- storybook build -c ./.storybook -o ./storybook-static"
+  "storybook": "sh -c 'pnpm exec -- storybook dev -c ./.storybook -p 6007 || npx --no-install storybook dev -c ./.storybook -p 6007'",
+  "build-storybook": "sh -c 'VOLTOCONFIG=$(pwd)/volto.config.js pnpm exec -- storybook build -c ./.storybook -o ./storybook-static || VOLTOCONFIG=$(pwd)/volto.config.js npx --no-install storybook build -c ./.storybook -o ./storybook-static'"
   },
   "addons": [],
   "dependencies": {
