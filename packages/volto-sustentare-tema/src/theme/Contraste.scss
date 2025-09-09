@@ -116,6 +116,36 @@
     color: var(--bege-padrao) !important;
   }
 
+  .accordion-block .accordion h3,
+  .accordion-block .accordion .title,
+  .accordion-block .accordion button[aria-expanded] {
+    background-color: var(--bege-padrao) !important;
+  }
+
+  .accordion-block .accordion h3 span,
+  .accordion-block .accordion .title span,
+  .accordion-block .accordion button[aria-expanded] span {
+    color: var(--preto-background) !important;
+  }
+
+  .accordion-block .accordion h3:hover,
+  .accordion-block .accordion .title:hover,
+  .accordion-block .accordion button[aria-expanded]:hover,
+  .accordion-block .accordion h3.active,
+  .accordion-block .accordion .title.active,
+  .accordion-block .accordion button[aria-expanded][aria-expanded='true'] {
+    background-color: var(--preto-background) !important;
+  }
+
+  .accordion-block .accordion h3:hover span,
+  .accordion-block .accordion .title:hover span,
+  .accordion-block .accordion button[aria-expanded]:hover span,
+  .accordion-block .accordion h3.active span,
+  .accordion-block .accordion .title.active span,
+  .accordion-block .accordion button[aria-expanded][aria-expanded='true'] span {
+    color: var(--bege-padrao) !important;
+  }
+
   .sustentabilidade-coluna-esquerda a {
     background-color: var(--bege-padrao) !important;
     color: var(--preto-background) !important;
