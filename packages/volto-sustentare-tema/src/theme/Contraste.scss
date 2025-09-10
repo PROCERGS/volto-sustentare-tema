@@ -152,7 +152,14 @@
   }
 
   #footer {
+    padding-top: 2rem !important;
+    margin-top: clamp(
+      3rem,
+      6vh,
+      6rem
+    ) !important; /* mesmo buffer em contraste */
     background-color: var(--preto-background) !important;
+    clear: both;
     color: var(--bege-padrao) !important;
 
     p {
@@ -220,5 +227,12 @@
   }
   #page-document .blocks-group-wrapper > .block.form {
     background-color: var(--bege-padrao) !important;
+  }
+
+  #page-document .blocks-group-wrapper > .block.form:last-child {
+    padding-bottom: 6rem !important;
+  }
+  .blocks-group-wrapper > .block.form:last-child + #footer {
+    margin-top: clamp(2rem, 4vh, 4rem) !important;
   }
 }

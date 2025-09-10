@@ -72,3 +72,13 @@
 #page-document .blocks-group-wrapper > .block.form {
   padding-bottom: 80px;
 }
+
+#page-document .blocks-group-wrapper > .block.form:last-child {
+  padding-bottom: 6rem;
+}
+
+@media (max-width: 992px) {
+  #page-document .blocks-group-wrapper > .block.form:last-child {
+    padding-bottom: 5rem;
+  }
+}
