@@ -22,6 +22,7 @@
 
 .block.form .ui.vertically.padded.one.column.grid {
   width: 100% !important;
+  height: fit-content;
 }
 
 .block.form .ui.form .field .ui.input,
@@ -71,14 +72,4 @@
 
 #page-document .blocks-group-wrapper > .block.form {
   padding-bottom: 80px;
-}
-
-#page-document .blocks-group-wrapper > .block.form:last-child {
-  padding-bottom: 6rem;
-}
-
-@media (max-width: 992px) {
-  #page-document .blocks-group-wrapper > .block.form:last-child {
-    padding-bottom: 5rem;
-  }
 }
