@@ -1,15 +1,15 @@
 import React, { useState, useMemo } from 'react';
 import './Cards.css';
-import { flattenToAppURL } from '@plone/volto/helpers';
+import { toPublicURL } from '@plone/volto/helpers';
 
 const Card = ({ card }) => {
   const [hover, setHover] = useState(false);
   const image_data = useMemo(() => card, [card]);
   const image_url = image_data?.image
-    ? `${flattenToAppURL(image_data.image)}/@@images/image`
+    ? `${toPublicURL(image_data.image)}/@@images/image`
     : '';
   const image_hover_url = image_data?.image_hover
-    ? `${flattenToAppURL(image_data.image_hover)}/@@images/image`
+    ? `${toPublicURL(image_data.image_hover)}/@@images/image`
     : '';
   const image_name = image_data?.title || '';
 
