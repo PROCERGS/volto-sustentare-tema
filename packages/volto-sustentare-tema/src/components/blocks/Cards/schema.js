@@ -53,7 +53,8 @@ export default function CardsSchema({ formData } = {}) {
             button_url: {
               title: 'URL do botão',
               type: 'string',
-              widget: 'url',
+              widget: 'text',
+              description: 'Informe um caminho relativo, ex.: /pagina',
             },
           },
           required: [],
