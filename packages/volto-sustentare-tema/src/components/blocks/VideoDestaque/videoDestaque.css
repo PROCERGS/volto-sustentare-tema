@@ -16,10 +16,10 @@
 
 .video-destaque-inner {
   display: flex;
-  align-items: flex-start;
-  gap: 24px;
   width: 100%;
   box-sizing: border-box;
+  align-items: flex-start;
+  gap: 24px;
 }
 
 .video-destaque-block.video-right .video-destaque-inner {
