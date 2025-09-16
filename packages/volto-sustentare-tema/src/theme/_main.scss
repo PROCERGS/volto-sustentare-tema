@@ -10,6 +10,7 @@
 @import './components/BarraEstado.scss';
 @import './components/Sitemap.scss';
 @import './components/Forms.scss';
+@import './components/Pesquisa.scss';
 
 *:not(.barra-estado__container, h2, button):not(.barra-estado__container *)
   :not([contenteditable]):not([contenteditable] *) {
@@ -19,7 +20,6 @@
   hyphens: none !important;
   overflow-wrap: normal !important;
   white-space: normal !important;
-  word-break: normal !important;
 }
 
 body:not(.barra-estado__container) {
