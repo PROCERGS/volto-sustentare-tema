@@ -1,15 +1,22 @@
 import React, { useState, useMemo } from 'react';
 import './Cards.css';
-import { flattenToAppURL } from '@plone/volto/helpers';
 
-const Card = ({ card }) => {
+const Card = ({ card, buttonUrl }) => {
   const [hover, setHover] = useState(false);
   const image_data = useMemo(() => card, [card]);
   const image_url = image_data?.image
-    ? `${flattenToAppURL(image_data.image)}/@@images/image`
+    ? `${
+        typeof image_data.image === 'string'
+          ? image_data.image
+          : image_data.image?.['@id'] || ''
+      }/@@images/image`
     : '';
   const image_hover_url = image_data?.image_hover
-    ? `${flattenToAppURL(image_data.image_hover)}/@@images/image`
+    ? `${
+        typeof image_data.image_hover === 'string'
+          ? image_data.image_hover
+          : image_data.image_hover?.['@id'] || ''
+      }/@@images/image`
     : '';
   const image_name = image_data?.title || '';
 
@@ -31,15 +38,17 @@ const Card = ({ card }) => {
       <div className="card-content">
         {image_data.title && <h3>{image_data.title}</h3>}
         {image_data.text && <p>{image_data.text}</p>}
-        {image_data.button_text && image_data.button_url ? (
-          <a
+        {image_data.button_text && buttonUrl ? (
+          <button
+            type="button"
             className="link-button"
-            href={image_data.button_url}
-            target="_blank"
-            rel="noopener noreferrer"
+            onClick={() =>
+              buttonUrl &&
+              window.open(buttonUrl, '_blank', 'noopener,noreferrer')
+            }
           >
             {image_data.button_text}
-          </a>
+          </button>
         ) : image_data.button_text ? (
           <button className="card-button">{image_data.button_text}</button>
         ) : null}
@@ -53,7 +62,7 @@ const View = ({ data }) => {
   return (
     <div className="block cards-block">
       {cards.map((card, idx) => (
-        <Card card={card} key={idx} />
+        <Card card={card} buttonUrl={card?.button_url} key={idx} />
       ))}
     </div>
   );

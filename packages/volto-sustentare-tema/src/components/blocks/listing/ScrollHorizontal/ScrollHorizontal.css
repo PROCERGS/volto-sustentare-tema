@@ -3,7 +3,10 @@
 }
 
 .noticias-horizontal-grid {
+  /* Center children (the scroller) */
+  display: flex;
   width: 100%;
+  justify-content: center;
   margin: 160px 0 40px 0;
 }
 
@@ -14,11 +17,34 @@
 
 .noticias-horizontal-container {
   display: flex;
+  /* Constrain visible scroller to 85% of viewport and center it */
+  width: 80vw;
+  max-width: 80vw;
   flex-direction: row;
+  padding-right: 0 !important;
+  /* Override inline padding from JS for strict centering */
+  padding-left: 0 !important;
+  margin-right: auto;
+  margin-left: auto;
   gap: 24px;
   overflow-x: auto;
   scroll-behavior: smooth;
-  scrollbar-width: none;
+  /* Show horizontal scrollbar (was hidden before) */
+  scrollbar-width: auto; /* Firefox */
+}
+
+/* WebKit-based browsers */
+.noticias-horizontal-container::-webkit-scrollbar {
+  height: 10px; /* Horizontal scrollbar thickness */
+}
+
+.noticias-horizontal-container::-webkit-scrollbar-track {
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.noticias-horizontal-container::-webkit-scrollbar-thumb {
+  border-radius: 8px;
 }
 
 .noticias-horizontal-item {
