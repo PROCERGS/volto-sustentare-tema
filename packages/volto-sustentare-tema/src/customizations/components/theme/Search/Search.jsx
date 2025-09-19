@@ -95,7 +95,7 @@ function Search({
       options.sort_order = 'ascending';
     } else if (pendingActive === 'effective') {
       options.sort_on = 'effective';
-      options.sort_order = 'descending';
+      delete options.sort_order;
     }
     delete options.effective_year;
     options.b_size = 1000;
