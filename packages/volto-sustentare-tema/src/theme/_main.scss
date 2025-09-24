@@ -137,18 +137,10 @@ button {
   }
 }
 
-.acessibilidade {
-  background-color: #e5e5e5;
-}
-
 .acess-wrapper {
   max-width: 100%;
   justify-content: space-between;
   color: var(--preto-background);
-
-  .acess-ul > * > * {
-    color: var(--preto-background);
-  }
 }
 
 .barra-estado {
