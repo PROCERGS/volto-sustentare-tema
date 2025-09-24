@@ -35,6 +35,19 @@ body:not(.barra-estado__container) {
   }
 }
 
+.ui.raised.segments {
+  background: white !important;
+
+  > div {
+    background: initial !important;
+    color: initial !important;
+  }
+}
+
+.dropzone-text{
+  color: var(--preto) !important;
+}
+
 .toolbar-content {
   color: var(--preto) !important;
   font-family: revert !important;
@@ -184,4 +197,16 @@ button {
 
 .blocks-group-wrapper > .block.form:last-child + #footer {
   margin-top: clamp(2rem, 4vh, 4rem);
+}
+
+.sidebar-container-enter-done{
+  color: initial !important;
+}
+
+.header.pulled{
+  flex-direction: row;
+}
+
+.rc-time-picker-panel-select{
+  color: initial;
 }
