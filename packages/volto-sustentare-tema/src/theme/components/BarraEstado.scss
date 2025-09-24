@@ -1,7 +1,12 @@
 /*@import url(//fonts.googleapis.com/css?family=Roboto);*/
-#rs-gov {
+.barra-estado__logo {
+  position: absolute;
+  width: 77px;
+  height: 16px;
+  margin-top: 6px;
   color: var(--green-matriz-link);
   vertical-align: initial;
+  fill: white;
 }
 
 #barra-estado__toggle,
@@ -52,7 +57,7 @@
 
 .barra-estado {
   height: 32px;
-  background-color: var(--gray-02);
+  background-color: var(--cinza-barraEstado);
 }
 
 .barra-estado__container {
@@ -65,13 +70,6 @@
 }
 .barra-estado__container a {
   text-decoration: none;
-}
-
-.barra-estado__logo {
-  position: absolute;
-  width: 77px;
-  height: 16px;
-  margin-top: 6px;
 }
 
 .barra-estado__menu svg path {
@@ -108,9 +106,11 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   padding: 13px 40px;
-  color: #1a7235;
-  font-size: 12px;
-  font-weight: 700;
+  color: var(--branco);
+  font-size: 11px;
+  font-weight: 400;
+  font-family: 'Roboto', Arial, sans-serif;
+  text-transform: uppercase;
   line-height: 1;
   -webkit-transition: box-shadow 0.25s linear;
   -moz-transition: box-shadow 0.25s linear;
@@ -157,7 +157,7 @@
   }
   .barra-estado__menu > li > a {
     padding: 9px 13px;
-    font-size: 12px;
+    font-size: 11px;
   }
   .barra-estado__menu > li > a:focus,
   .barra-estado__menu > li > a:hover {

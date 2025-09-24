@@ -12,8 +12,7 @@
 @import './components/Forms.scss';
 @import './components/Pesquisa.scss';
 
-*:not(.barra-estado__container, h2, button):not(.barra-estado__container *)
-  :not([contenteditable]):not([contenteditable] *) {
+*:not(.barra-estado__container, h2, button):not(.barra-estado__container *):not([contenteditable]):not([contenteditable] *) {
   font-family: 'Saira', Arial, Helvetica, sans-serif !important;
   -webkit-hyphens: none !important;
   -ms-hyphens: none !important;
@@ -137,30 +136,10 @@ button {
   }
 }
 
-.acessibilidade {
-  background-color: #e5e5e5;
-}
-
 .acess-wrapper {
   max-width: 100%;
   justify-content: space-between;
   color: var(--preto-background);
-
-  .acess-ul > * > * {
-    color: var(--preto-background);
-  }
-}
-
-.barra-estado {
-  background-color: var(--cinza-barraEstado);
-
-  .barra-estado__menu > li > a {
-    color: var(--branco);
-  }
-
-  #rs-gov {
-    fill: var(--branco) !important;
-  }
 }
 
 .figure > figcaption > div > p {
