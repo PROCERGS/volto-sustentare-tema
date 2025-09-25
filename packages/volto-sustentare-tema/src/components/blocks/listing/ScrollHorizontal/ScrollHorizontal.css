@@ -2,6 +2,10 @@
   margin-top: 0 !important;
 }
 
+.noticias-horizontal-content{
+  width: 400px;
+}
+
 .noticias-horizontal-grid {
   /* Center children (the scroller) */
   display: flex;
@@ -77,7 +81,6 @@
   display: flex;
   flex: 1;
   flex-direction: column;
-  justify-content: space-between;
   padding: 20px;
   line-break: anywhere;
 }
