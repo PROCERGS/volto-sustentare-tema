@@ -10,6 +10,10 @@ import CardsView from './components/blocks/Cards/View';
 import CardsEdit from './components/blocks/Cards/Edit';
 import CardsSchema from './components/blocks/Cards/schema';
 
+import BlocoEspacadorView from './components/blocks/BlocoEspacador/View';
+import BlocoEspacadorEdit from './components/blocks/BlocoEspacador/Edit';
+import {BlocoEspacadorSchema} from './components/blocks/BlocoEspacador/schema';
+
 import BlocoSustentabilidadeView from './components/blocks/BlocoSustentabilidade/View';
 import BlocoSustentabilidadeEdit from './components/blocks/BlocoSustentabilidade/Edit';
 import BlocoSustentabilidadeSchema from './components/blocks/BlocoSustentabilidade/schema';
@@ -25,6 +29,7 @@ import ScrollHorizontal from './components/blocks/listing/ScrollHorizontal/Scrol
 import videoSVG from '@plone/volto/icons/video.svg';
 import imageSVG from '@plone/volto/icons/image.svg';
 import FaviconHelmet from './components/AppExtras/FaviconHelmet';
+import verticalSVG from '@plone/volto/icons/vertical.svg';
 
 const applyConfig = (config) => {
   config.blocks.groupBlocksOrder = [
@@ -63,6 +68,22 @@ const applyConfig = (config) => {
     edit: CardsEdit,
     schema: CardsSchema,
     sidebarTab: 1,
+  };
+
+  config.blocks.blocksConfig.blocoEspacador = {
+    id: 'blocoEspacador',
+    title: 'Espaçador',
+    icon: verticalSVG,
+    group: 'sustentare',
+    view: BlocoEspacadorView,
+    edit: BlocoEspacadorEdit,
+    schema: BlocoEspacadorSchema,
+    restricted: false,
+    mostUsed: true,
+    sidebarTab: 1,
+    data: {
+      height: 30, 
+    },
   };
 
   config.blocks.blocksConfig.blocoSustentabilidade = {
