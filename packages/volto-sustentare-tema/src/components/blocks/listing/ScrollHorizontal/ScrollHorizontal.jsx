@@ -126,7 +126,6 @@ const ScrollHorizontal = ({
             </div>
             <div
               className="noticias-horizontal-content"
-              style={cardWidth ? { width: cardWidth - 10 } : {}}
             >
               <h3>{item.title}</h3>
               {item.description && <p>{item.description}</p>}
