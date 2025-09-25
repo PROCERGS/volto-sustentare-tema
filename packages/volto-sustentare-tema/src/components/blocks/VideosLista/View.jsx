@@ -120,9 +120,19 @@ const View = ({ data }) => {
           <VideoThumb video={video} key={idx} />
         ))}
       </div>
-      <a href="/" className="videos-lista-link">
-        MAIS VÍDEOS
-      </a>
+      {data.show_button && (
+            <button
+              type="button"
+              className="videos-lista-botao"
+              onClick={() => {
+                if (data.button_url) {
+                  window.open(data.button_url, '_blank', 'noopener,noreferrer');
+                }
+              }}
+            >
+              MAIS VÍDEOS
+            </button>
+      )}
     </div>
   );
 };

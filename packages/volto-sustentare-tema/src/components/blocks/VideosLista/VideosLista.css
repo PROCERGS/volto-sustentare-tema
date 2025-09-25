@@ -5,7 +5,7 @@
   gap: 40px;
 }
 
-.videos-lista-link {
+.videos-lista-botao {
   width: fit-content;
   align-self: center;
   padding: 10px 20px;
@@ -18,7 +18,7 @@
   text-transform: uppercase;
 }
 
-.videos-lista-link:hover {
+.videos-lista-botao:hover {
   background: var(--bege-padrao);
   color: var(--preto-background);
 }
@@ -125,7 +125,7 @@
 }
 
 @media only screen and (max-width: 480px) {
-  .videos-lista-link {
+  .videos-lista-botao {
     align-self: flex-start;
   }
 }

@@ -10,7 +10,7 @@
 
 .acess-container {
   max-width: var(--layout-container-width);
-  padding: 5px var(--padding-default);
+  padding: 0px var(--padding-default);
   margin-right: auto;
   margin-left: auto;
 }
@@ -31,6 +31,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  padding: 5px 0px;
 }
 
 .acess-menus {
