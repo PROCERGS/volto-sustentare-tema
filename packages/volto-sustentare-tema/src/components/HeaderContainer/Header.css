@@ -122,6 +122,44 @@ header {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+.btn-scroll {
+  cursor: pointer;
+  padding: 25px 29px;
+  color: #fff;
+  background-color: var(--verde-padrao);
+  border-radius: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+  border: 3px solid transparent;
+  animation-name: appear;
+  animation-timeline: scroll(y);
+  &:hover {
+    border-color: #fff !important;
+    background-color: var(--verde-escuro) !important;
+    color: #fff !important;
+  }
+}
+
+/* Posição fixa do botão scroll */
+.btn-scroll {
+  position: fixed;
+  z-index: 9999;
+  right: 10%;
+  bottom: 45px;
+}
+
+body.has-sidebar .btn-scroll {
+  right: 385px;
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+}
+
 @keyframes fadeInDown {
   from {
     opacity: 0;
