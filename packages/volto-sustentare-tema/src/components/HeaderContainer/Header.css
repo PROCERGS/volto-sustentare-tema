@@ -22,6 +22,7 @@ header {
   margin: 24px 0px;
   margin-right: auto;
   margin-left: auto;
+  gap: 30px;
 }
 
 .logo-nav-wrapper-content {
@@ -33,6 +34,7 @@ header {
   border: auto;
   margin-right: auto;
   margin-left: auto;
+  height: inherit;
 }
 
 .header-wrapper .header .logo-nav-wrapper {
