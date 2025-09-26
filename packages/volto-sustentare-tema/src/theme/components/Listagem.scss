@@ -1,0 +1,82 @@
+/* --- AJUSTE POSICIONAMENTO BOTÕES GALERIA DE IMAGENS --- */
+.block.listing .image-gallery .ui.button.image-gallery-left-nav {
+  left: 150px;
+}
+
+.block.listing .image-gallery .ui.button.image-gallery-right-nav {
+  right: 150px;
+}
+
+@media (min-height: 400px) {
+  .block.listing .image-gallery .ui.button.image-gallery-left-nav {
+    left: 80px;
+  }
+
+  .block.listing .image-gallery .ui.button.image-gallery-right-nav {
+    right: 80px;
+  }
+}
+
+@media (min-height: 500px) {
+  .block.listing .image-gallery .ui.button.image-gallery-left-nav {
+    left: 20px;
+  }
+
+  .block.listing .image-gallery .ui.button.image-gallery-right-nav {
+    right: 20px;
+  }
+}
+
+@media (min-height: 600px) {
+  .block.listing .image-gallery .ui.button.image-gallery-left-nav {
+    left: -40px;
+  }
+
+  .block.listing .image-gallery .ui.button.image-gallery-right-nav {
+    right: -40px;
+  }
+}
+
+@media (min-height: 700px) {
+  .block.listing .image-gallery .ui.button.image-gallery-left-nav {
+    left: -110px;
+  }
+
+  .block.listing .image-gallery .ui.button.image-gallery-right-nav {
+    right: -110px;
+  }
+}
+
+@media (min-height: 810px) {
+  .block.listing .image-gallery .ui.button.image-gallery-left-nav {
+    left: -116px;
+  }
+
+  .block.listing .image-gallery .ui.button.image-gallery-right-nav {
+    right: -116px;
+  }
+}
+
+.block.listing .image-gallery .ui.button.image-gallery-play-button {
+  right: 106px;
+}
+
+/* --- AJUSTE CORES BOTÕES DA GALERIA --- */
+.block.listing .image-gallery .ui.basic.button {
+  color: var(--verde-padrao);
+
+  svg path {
+    color: var(--verde-padrao);
+    stroke: var(--verde-padrao);
+  }
+
+  &:hover {
+    background-color: var(--bege-padrao) !important;
+    color: var(--preto-background);
+
+    svg path {
+      stroke: var(--preto-background);
+      color: var(--preto-background) !important;
+    }
+  }
+}
