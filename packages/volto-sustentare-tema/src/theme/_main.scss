@@ -11,6 +11,7 @@
 @import './components/Sitemap.scss';
 @import './components/Forms.scss';
 @import './components/Pesquisa.scss';
+@import './components/Listagem.scss';
 
 *:not(.barra-estado__container, h2, button):not(.barra-estado__container *)
   :not([contenteditable]):not([contenteditable] *) {
