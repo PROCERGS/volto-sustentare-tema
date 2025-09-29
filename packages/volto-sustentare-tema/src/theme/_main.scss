@@ -197,3 +197,7 @@ button {
 .rc-time-picker-panel-select{
   color: initial;
 }
+
+.content-area .q.container a.external:after, .content-area .q.container a.external:after{
+  filter: hue-rotate(240deg) saturate(2) brightness(1.1) contrast(1.8);
+}
