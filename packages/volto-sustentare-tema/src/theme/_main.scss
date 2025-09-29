@@ -30,7 +30,10 @@ body:not(.barra-estado__container) {
     text-decoration: underline;
     &:hover {
       color: var(--bege-padrao) !important;
-    }
+    }    
+  }
+  .custom-checkbox{
+    color: initial;
   }
 }
 
@@ -54,6 +57,10 @@ body:not(.barra-estado__container) {
 .toolbar-content a {
   color: var(--preto) !important;
   text-decoration: revert !important;
+}
+
+p{
+  line-height: 30px;
 }
 
 h1,
