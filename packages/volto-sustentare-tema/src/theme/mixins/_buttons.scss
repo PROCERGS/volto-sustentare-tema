@@ -1,0 +1,21 @@
+// Mixin de botão temático reutilizável
+@mixin themed-button {
+  width: fit-content;
+  padding: 10px 20px !important;
+  border: 4px solid var(--verde-padrao) !important;
+  background: var(--preto-background) !important;
+  color: var(--verde-padrao) !important;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+
+  &:hover {
+    background: var(--bege-padrao) !important;
+    color: var(--preto-background) !important;
+  }
+
+  @media (max-width: 767px) {
+    font-size: 16px;
+  }
+}

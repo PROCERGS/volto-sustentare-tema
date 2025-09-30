@@ -133,7 +133,7 @@ const ScrollHorizontal = ({
             </div>
             <Link to={item['@id']}>
               <button
-                className="button-noticias-horizontal"
+                className="button-noticias-horizontal themed-button"
                 aria-label={`Ver notícia: ${item.title}`}
               >
                 <svg

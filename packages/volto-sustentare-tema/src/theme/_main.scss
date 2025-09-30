@@ -10,7 +10,9 @@
 @import './components/BarraEstado.scss';
 @import './components/Sitemap.scss';
 @import './components/Forms.scss';
+@import './mixins/buttons';
 @import './components/Pesquisa.scss';
+@import './components/Listing.scss';
 
 *:not(.barra-estado__container, h2, button):not(.barra-estado__container *)
   :not([contenteditable]):not([contenteditable] *) {
@@ -84,26 +86,12 @@ button {
   }
 }
 
-.block button:not(.delete-button),
-.block .link-button {
-  width: fit-content;
-  padding: 10px 20px !important;
-  border: 4px solid var(--verde-padrao) !important;
-  background: var(--preto-background) !important;
-  color: var(--verde-padrao) !important;
-  cursor: pointer;
-  font-size: 20px;
-  font-weight: bold;
-  text-transform: uppercase;
-
-  &:hover {
-    background: var(--bege-padrao) !important;
-    color: var(--preto-background) !important;
-  }
-
-  @media only screen and (max-width: 767px) {
-    font-size: 16px;
-  }
+// Botões temáticos
+.block.__button .button.container .ui.button, // Também estilizar automaticamente o bloco Button padrão do Volto
+.block.__button .ui.button:not(.basic):not(.icon):not(.delete-button):not(.block-add-button), // Aplicar estilo temático também ao bloco padrão de Button do Volto
+.themed-button {
+  // Classe para botões temáticos personalizados
+  @include themed-button;
 }
 
 .content-area .delete-button svg path {

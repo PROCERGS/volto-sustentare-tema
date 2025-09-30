@@ -41,7 +41,7 @@ const Card = ({ card, buttonUrl }) => {
         {image_data.button_text && buttonUrl ? (
           <button
             type="button"
-            className="link-button"
+            className="link-button themed-button"
             onClick={() =>
               buttonUrl &&
               window.open(buttonUrl, '_blank', 'noopener,noreferrer')
@@ -50,7 +50,9 @@ const Card = ({ card, buttonUrl }) => {
             {image_data.button_text}
           </button>
         ) : image_data.button_text ? (
-          <button className="card-button">{image_data.button_text}</button>
+          <button className="card-button themed-button">
+            {image_data.button_text}
+          </button>
         ) : null}
       </div>
     </div>

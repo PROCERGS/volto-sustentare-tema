@@ -1,22 +1,24 @@
-// Local ESLint settings for the addon package: ensure eslint-plugin-import resolves
-// workspace packages like 'volto-site-componentes' by name during Code Analysis.
-// No runtime impact; acceptance unaffected.
-
+// Local ESLint settings for the addon package.
+// Reintroduz detecção condicional de 'volto-site-componentes' para evitar erro quando ausente.
 const path = require('path');
+let hasVoltoSiteComponentes = false;
+try {
+  require.resolve('volto-site-componentes/package.json', { paths: [__dirname] });
+  hasVoltoSiteComponentes = true;
+} catch (_) {
+  // pacote não presente; não vamos declarar como core-module
+}
 
 module.exports = {
   settings: {
-  // Treat this as a core (virtual) module for ESLint import resolution only
-  'import/core-modules': ['volto-site-componentes'],
+    // declarar como core-module apenas se resolvível
+    ...(hasVoltoSiteComponentes
+      ? { 'import/core-modules': ['volto-site-componentes'] }
+      : {}),
     'import/resolver': {
       node: {
         // Allow eslint-plugin-import to search these roots when resolving bare specifiers
-        paths: [
-          // sibling packages folder (contains 'volto-site-componentes')
-          path.join(__dirname, '..'),
-          // also consider the top-level frontend packages (in case of different layouts)
-          path.join(__dirname, '..', '..'),
-        ],
+        paths: [path.join(__dirname, '..'), path.join(__dirname, '..', '..')],
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
       },
     },

@@ -122,7 +122,7 @@ const Edit = (props) => {
           {data.show_button && data.button_text && (
             <button
               type="button"
-              className="video-destaque-botao"
+              className="video-destaque-botao themed-button"
               onClick={() => {
                 if (data.button_url) {
                   window.open(data.button_url, '_blank', 'noopener,noreferrer');

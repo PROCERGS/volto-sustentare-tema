@@ -1,0 +1,13 @@
+.block.listing.summary .listing-item h3,
+.column > .block.listing.summary .listing-item h3,
+.block.search.summary .listing-item h3,
+.block-editor-search.summary .listing-item h3 {
+  color: var(
+    --verde-padrao
+  ); // ou color: var(--verde-padrao) !important; se a ordem não garantir
+  font-weight: 900 !important;
+}
+
+h1.documentFirstHeading span {
+  font-weight: 900 !important;
+}

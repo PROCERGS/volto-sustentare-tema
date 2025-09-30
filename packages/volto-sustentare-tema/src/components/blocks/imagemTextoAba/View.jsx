@@ -737,7 +737,7 @@ const View = ({ data }) => {
           {data.show_button && data.button_text && (
             <button
               type="button"
-              className="imagem-texto-varia-botao"
+              className="imagem-texto-varia-botao themed-button"
               onClick={() => {
                 if (data.button_url) {
                   window.open(data.button_url, '_blank', 'noopener,noreferrer');
