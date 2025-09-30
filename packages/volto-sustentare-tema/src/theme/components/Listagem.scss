@@ -75,8 +75,8 @@
     color: var(--preto-background);
 
     svg path {
-      stroke: var(--preto-background);
       color: var(--preto-background) !important;
+      stroke: var(--preto-background);
     }
   }
 }

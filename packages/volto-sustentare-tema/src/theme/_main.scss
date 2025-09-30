@@ -10,10 +10,14 @@
 @import './components/BarraEstado.scss';
 @import './components/Sitemap.scss';
 @import './components/Forms.scss';
+@import './mixins/buttons';
 @import './components/Pesquisa.scss';
+@import './components/Listing.scss';
 @import './components/Listagem.scss';
 
-*:not(.barra-estado__container, h2, button):not(.barra-estado__container *):not([contenteditable]):not([contenteditable] *) {
+*:not(.barra-estado__container, h2, button):not(.barra-estado__container *):not(
+    [contenteditable]
+  ):not([contenteditable] *) {
   font-family: 'Saira', Arial, Helvetica, sans-serif !important;
   -webkit-hyphens: none !important;
   -ms-hyphens: none !important;
@@ -31,9 +35,9 @@ body:not(.barra-estado__container) {
     text-decoration: underline;
     &:hover {
       color: var(--bege-padrao) !important;
-    }    
+    }
   }
-  .custom-checkbox{
+  .custom-checkbox {
     color: initial;
   }
 }
@@ -47,7 +51,7 @@ body:not(.barra-estado__container) {
   }
 }
 
-.dropzone-text{
+.dropzone-text {
   color: var(--preto) !important;
 }
 
@@ -60,7 +64,7 @@ body:not(.barra-estado__container) {
   text-decoration: revert !important;
 }
 
-p{
+p {
   line-height: 30px;
 }
 
@@ -104,26 +108,12 @@ button {
   }
 }
 
-.block button:not(.delete-button),
-.block .link-button {
-  width: fit-content;
-  padding: 10px 20px !important;
-  border: 4px solid var(--verde-padrao) !important;
-  background: var(--preto-background) !important;
-  color: var(--verde-padrao) !important;
-  cursor: pointer;
-  font-size: 20px;
-  font-weight: bold;
-  text-transform: uppercase;
-
-  &:hover {
-    background: var(--bege-padrao) !important;
-    color: var(--preto-background) !important;
-  }
-
-  @media only screen and (max-width: 767px) {
-    font-size: 16px;
-  }
+// Botões temáticos
+.block.__button .button.container .ui.button, // Também estilizar automaticamente o bloco Button padrão do Volto
+.block.__button .ui.button:not(.basic):not(.icon):not(.delete-button):not(.block-add-button), // Aplicar estilo temático também ao bloco padrão de Button do Volto
+.themed-button {
+  // Classe para botões temáticos personalizados
+  @include themed-button;
 }
 
 .content-area .delete-button svg path {
@@ -151,8 +141,8 @@ button {
 }
 
 .figure > figcaption > div > p {
+  color: var(--bege-padrao);
   font-size: 16px !important;
-  color: var(--bege-padrao)
 }
 
 .blocks-group-wrapper > ul {
@@ -187,18 +177,19 @@ button {
   margin-top: clamp(2rem, 4vh, 4rem);
 }
 
-.sidebar-container-enter-done{
+.sidebar-container-enter-done {
   color: initial !important;
 }
 
-.header.pulled{
+.header.pulled {
   flex-direction: row;
 }
 
-.rc-time-picker-panel-select{
+.rc-time-picker-panel-select {
   color: initial;
 }
 
-.content-area .q.container a.external:after, .content-area .q.container a.external:after{
+.content-area .q.container a.external:after,
+.content-area .q.container a.external:after {
   filter: hue-rotate(240deg) saturate(2) brightness(1.1) contrast(1.8);
 }

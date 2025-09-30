@@ -28,7 +28,7 @@ export const BlocoEspacadorSchema = (props) => {
     properties: {
       height: {
         title: props.intl.formatMessage(messages.height),
-        type: 'number', 
+        type: 'number',
         description: 'Altura em pixels (px)',
         default: 30,
       },

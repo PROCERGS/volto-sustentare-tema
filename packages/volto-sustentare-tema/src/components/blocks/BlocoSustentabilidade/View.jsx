@@ -19,7 +19,9 @@ const BlocoSustentabilidade = ({ data = {} }) => (
         Dados coletados até o ano de 2022, do funcionamento do Sustentare desde
         sua implementação em 2016.
       </p>
-      <a href="/">SAIBA MAIS</a>
+      <a href="/" className="themed-button">
+        SAIBA MAIS
+      </a>
     </div>
     <div className="sustentabilidade-coluna-direita">
       <div className="sustentabilidade-box">
@@ -64,7 +66,7 @@ const BlocoSustentabilidade = ({ data = {} }) => (
       </div>
     </div>
     <div className="sustentabilidade-coluna-esquerda">
-      <a className="sustentabilidade-link-hidden" href="/">
+      <a className="sustentabilidade-link-hidden themed-button" href="/">
         SAIBA MAIS
       </a>
     </div>

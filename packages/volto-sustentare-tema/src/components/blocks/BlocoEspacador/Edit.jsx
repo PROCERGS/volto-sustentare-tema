@@ -10,12 +10,11 @@ const Edit = ({ data, onChangeBlock, block, selected }) => {
 
   return (
     <>
-      <div 
+      <div
         style={{
-          height: `${height}px`
+          height: `${height}px`,
         }}
-      >
-      </div>
+      ></div>
 
       <SidebarPortal selected={selected}>
         <BlockDataForm
