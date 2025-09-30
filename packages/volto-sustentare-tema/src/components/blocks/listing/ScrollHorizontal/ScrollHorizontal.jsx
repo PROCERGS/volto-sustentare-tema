@@ -114,7 +114,6 @@ const ScrollHorizontal = ({
           <div
             className="noticias-horizontal-item"
             key={item['@id']}
-            style={cardWidth ? { width: cardWidth } : {}}
           >
             <div className="noticias-horizontal-image">
               <PreviewLink
@@ -126,7 +125,6 @@ const ScrollHorizontal = ({
             </div>
             <div
               className="noticias-horizontal-content"
-              style={cardWidth ? { width: cardWidth - 10 } : {}}
             >
               <h3>{item.title}</h3>
               {item.description && <p>{item.description}</p>}

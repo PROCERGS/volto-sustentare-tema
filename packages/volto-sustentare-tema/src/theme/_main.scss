@@ -13,9 +13,9 @@
 @import './mixins/buttons';
 @import './components/Pesquisa.scss';
 @import './components/Listing.scss';
+@import './components/Listagem.scss';
 
-*:not(.barra-estado__container, h2, button):not(.barra-estado__container *)
-  :not([contenteditable]):not([contenteditable] *) {
+*:not(.barra-estado__container, h2, button):not(.barra-estado__container *):not([contenteditable]):not([contenteditable] *) {
   font-family: 'Saira', Arial, Helvetica, sans-serif !important;
   -webkit-hyphens: none !important;
   -ms-hyphens: none !important;
@@ -33,8 +33,24 @@ body:not(.barra-estado__container) {
     text-decoration: underline;
     &:hover {
       color: var(--bege-padrao) !important;
-    }
+    }    
   }
+  .custom-checkbox{
+    color: initial;
+  }
+}
+
+.ui.raised.segments {
+  background: white !important;
+
+  > div {
+    background: initial !important;
+    color: initial !important;
+  }
+}
+
+.dropzone-text{
+  color: var(--preto) !important;
 }
 
 .toolbar-content {
@@ -44,6 +60,10 @@ body:not(.barra-estado__container) {
 .toolbar-content a {
   color: var(--preto) !important;
   text-decoration: revert !important;
+}
+
+p{
+  line-height: 30px;
 }
 
 h1,
@@ -112,34 +132,15 @@ button {
   }
 }
 
-.acessibilidade {
-  background-color: #e5e5e5;
-}
-
 .acess-wrapper {
   max-width: 100%;
   justify-content: space-between;
   color: var(--preto-background);
-
-  .acess-ul > * > * {
-    color: var(--preto-background);
-  }
-}
-
-.barra-estado {
-  background-color: var(--cinza-barraEstado);
-
-  .barra-estado__menu > li > a {
-    color: var(--branco);
-  }
-
-  #rs-gov {
-    fill: var(--branco) !important;
-  }
 }
 
 .figure > figcaption > div > p {
   font-size: 16px !important;
+  color: var(--bege-padrao)
 }
 
 .blocks-group-wrapper > ul {
@@ -172,4 +173,20 @@ button {
 
 .blocks-group-wrapper > .block.form:last-child + #footer {
   margin-top: clamp(2rem, 4vh, 4rem);
+}
+
+.sidebar-container-enter-done{
+  color: initial !important;
+}
+
+.header.pulled{
+  flex-direction: row;
+}
+
+.rc-time-picker-panel-select{
+  color: initial;
+}
+
+.content-area .q.container a.external:after, .content-area .q.container a.external:after{
+  filter: hue-rotate(240deg) saturate(2) brightness(1.1) contrast(1.8);
 }

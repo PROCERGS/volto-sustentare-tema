@@ -6,6 +6,9 @@ import config from '@plone/volto/registry';
 import HeaderContainer from '../../../../components/HeaderContainer/HeaderContainer';
 import * as VoltoSiteComponentes from 'volto-site-componentes';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
+
 import icon from '../../../images/govrs.svg';
 
 const messages = defineMessages({
@@ -37,11 +40,7 @@ const Header = (props) => {
   return (
     <header className="header-wrapper">
       <VoltoSiteComponentes.BarraEstado />
-      <VoltoSiteComponentes.BarraAcessibilidade
-        svgImage={
-          <img src={icon} alt="Logomarca Governo RS" className="govrs-logo" />
-        }
-      />
+      <VoltoSiteComponentes.BarraAcessibilidade/>
       <HeaderContainer
         pathname={pathname}
         siteLabel={siteLabel}
@@ -49,6 +48,14 @@ const Header = (props) => {
         siteAction={siteAction}
         siteTitle={siteTitle}
       />
+      <div style={{ textAlign: 'right' }}>
+          <a
+            href="#main"
+            className="btn-scroll"
+          >
+            <FontAwesomeIcon icon={faChevronUp} />
+          </a>
+        </div>
     </header>
   );
 };
