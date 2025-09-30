@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import { Link } from 'react-router-dom';
 import PreviewLink from '../../../PreviewLink/PreviewLink';
 import './ScrollHorizontal.css';
-import { useCardWidth } from './useCardWidth';
 
 const ScrollHorizontal = ({
   items = [],
@@ -17,7 +16,6 @@ const ScrollHorizontal = ({
   const [canLoad, setCanLoad] = useState(true);
   const [portalContainer, setPortalContainer] = useState(null);
   const [computedPadding, setComputedPadding] = useState(null);
-  const cardWidth = useCardWidth();
 
   useEffect(() => {
     const container = containerRef.current;
@@ -111,10 +109,7 @@ const ScrollHorizontal = ({
         }
       >
         {items.slice(0, 8).map((item) => (
-          <div
-            className="noticias-horizontal-item"
-            key={item['@id']}
-          >
+          <div className="noticias-horizontal-item" key={item['@id']}>
             <div className="noticias-horizontal-image">
               <PreviewLink
                 item={item}
@@ -123,9 +118,7 @@ const ScrollHorizontal = ({
                 loading="lazy"
               />
             </div>
-            <div
-              className="noticias-horizontal-content"
-            >
+            <div className="noticias-horizontal-content">
               <h3>{item.title}</h3>
               {item.description && <p>{item.description}</p>}
             </div>

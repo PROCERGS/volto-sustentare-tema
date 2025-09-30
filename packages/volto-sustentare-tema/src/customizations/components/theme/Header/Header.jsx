@@ -9,8 +9,6 @@ import * as VoltoSiteComponentes from 'volto-site-componentes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
 
-import icon from '../../../images/govrs.svg';
-
 const messages = defineMessages({
   siteLabel: {
     id: 'siteLabel',
@@ -40,7 +38,7 @@ const Header = (props) => {
   return (
     <header className="header-wrapper">
       <VoltoSiteComponentes.BarraEstado />
-      <VoltoSiteComponentes.BarraAcessibilidade/>
+      <VoltoSiteComponentes.BarraAcessibilidade />
       <HeaderContainer
         pathname={pathname}
         siteLabel={siteLabel}
@@ -49,13 +47,10 @@ const Header = (props) => {
         siteTitle={siteTitle}
       />
       <div style={{ textAlign: 'right' }}>
-          <a
-            href="#main"
-            className="btn-scroll"
-          >
-            <FontAwesomeIcon icon={faChevronUp} />
-          </a>
-        </div>
+        <a href="#main" className="btn-scroll">
+          <FontAwesomeIcon icon={faChevronUp} />
+        </a>
+      </div>
     </header>
   );
 };

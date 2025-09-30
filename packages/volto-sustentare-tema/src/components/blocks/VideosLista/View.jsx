@@ -121,17 +121,17 @@ const View = ({ data }) => {
         ))}
       </div>
       {data.show_button && (
-            <button
-              type="button"
-              className="videos-lista-botao"
-              onClick={() => {
-                if (data.button_url) {
-                  window.open(data.button_url, '_blank', 'noopener,noreferrer');
-                }
-              }}
-            >
-              MAIS VÍDEOS
-            </button>
+        <button
+          type="button"
+          className="videos-lista-botao"
+          onClick={() => {
+            if (data.button_url) {
+              window.open(data.button_url, '_blank', 'noopener,noreferrer');
+            }
+          }}
+        >
+          MAIS VÍDEOS
+        </button>
       )}
     </div>
   );

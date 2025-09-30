@@ -7,8 +7,12 @@ export default function VideosListaSchema({ formData } = {}) {
       {
         id: 'default',
         title: 'Default',
-        fields: ['title', 'videos','show_button',
-          ...(showButtonFields ? ['button_url'] : []),],
+        fields: [
+          'title',
+          'videos',
+          'show_button',
+          ...(showButtonFields ? ['button_url'] : []),
+        ],
       },
     ],
     properties: {

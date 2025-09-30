@@ -5,8 +5,8 @@
   height: 16px;
   margin-top: 6px;
   color: var(--green-matriz-link);
-  vertical-align: initial;
   fill: white;
+  vertical-align: initial;
 }
 
 #barra-estado__toggle,
@@ -107,11 +107,11 @@
   box-sizing: border-box;
   padding: 13px 40px;
   color: var(--branco);
+  font-family: 'Roboto', Arial, sans-serif;
   font-size: 11px;
   font-weight: 400;
-  font-family: 'Roboto', Arial, sans-serif;
-  text-transform: uppercase;
   line-height: 1;
+  text-transform: uppercase;
   -webkit-transition: box-shadow 0.25s linear;
   -moz-transition: box-shadow 0.25s linear;
   -o-transition: box-shadow 0.25s linear;

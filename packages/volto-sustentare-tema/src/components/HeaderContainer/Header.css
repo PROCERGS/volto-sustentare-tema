@@ -30,11 +30,11 @@ header {
   width: 100%;
   width: 100%;
   max-width: var(--layout-container-width);
+  height: inherit;
   padding: 0 var(--padding-default);
   border: auto;
   margin-right: auto;
   margin-left: auto;
-  height: inherit;
 }
 
 .header-wrapper .header .logo-nav-wrapper {
@@ -123,15 +123,15 @@ header {
 }
 
 .btn-scroll {
-  cursor: pointer;
   padding: 25px 29px;
-  color: #fff;
-  background-color: var(--verde-padrao);
-  border-radius: 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
   border: 3px solid transparent;
+  border-radius: 20px;
   animation-name: appear;
   animation-timeline: scroll(y);
+  background-color: var(--verde-padrao);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+  color: #fff;
+  cursor: pointer;
   &:hover {
     border-color: #fff !important;
     background-color: var(--verde-escuro) !important;

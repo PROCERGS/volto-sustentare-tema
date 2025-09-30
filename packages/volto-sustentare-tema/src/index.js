@@ -12,7 +12,7 @@ import CardsSchema from './components/blocks/Cards/schema';
 
 import BlocoEspacadorView from './components/blocks/BlocoEspacador/View';
 import BlocoEspacadorEdit from './components/blocks/BlocoEspacador/Edit';
-import {BlocoEspacadorSchema} from './components/blocks/BlocoEspacador/schema';
+import { BlocoEspacadorSchema } from './components/blocks/BlocoEspacador/schema';
 
 import BlocoSustentabilidadeView from './components/blocks/BlocoSustentabilidade/View';
 import BlocoSustentabilidadeEdit from './components/blocks/BlocoSustentabilidade/Edit';
@@ -82,7 +82,7 @@ const applyConfig = (config) => {
     mostUsed: true,
     sidebarTab: 1,
     data: {
-      height: 30, 
+      height: 30,
     },
   };
 
