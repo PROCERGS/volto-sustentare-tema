@@ -479,7 +479,7 @@ const HeaderContainer = ({
                 <div
                   key={item.url || idx}
                   className={`nav-item-wrapper${hasSubitems ? ' has-submenu' : ''}${isActive ? ' active' : ''}`}
-                  style={{ position: 'relative', display: 'inline-block' }}
+                  style={{ position: 'relative', display: 'flex' }}
                 >
                   {hasSubitems ? (
                     <button

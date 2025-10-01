@@ -325,9 +325,31 @@ body.has-sidebar .btn-scroll {
   .logo-nav-wrapper button {
     padding: 15px 8px;
     font-size: 13px;
+    border: 0 !important;
   }
   .logo-nav-wrapper.home-icon a {
     padding: 15px 8px;
+    border-left: 0;
+  }
+
+  .logo-nav-wrapper .nav-search-icon {
+    border-right: 0 !important;
+    border-left: 2px solid var(--verde-padrao) !important;
+  }
+
+  .logo-nav-wrapper .nav-item {
+    font-size: 4.7vw !important;
+  }
+
+  .nav-item-wrapper.has-submenu{
+    border-left: 2px solid var(--verde-padrao);
+    border-right: 2px solid var(--verde-padrao);
+    flex: 1;
+    justify-items: center;
+  }
+  .nav-item-wrapper.has-submenu button{
+    flex: 1;
+    justify-content: space-between;
   }
 
   .nav-item {
@@ -358,6 +380,9 @@ body.has-sidebar .btn-scroll {
   }
   .logo-nav-wrapper button {
     padding: 15px 8px !important;
+  }
+  .logo-nav-wrapper-content {
+    padding: 0;
   }
 }
 
