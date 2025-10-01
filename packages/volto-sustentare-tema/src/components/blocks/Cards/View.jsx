@@ -42,10 +42,11 @@ const Card = ({ card, buttonUrl }) => {
           <button
             type="button"
             className="link-button themed-button"
-            onClick={() =>
-              buttonUrl &&
-              window.open(buttonUrl, '_blank', 'noopener,noreferrer')
-            }
+            onClick={() => {
+              if (buttonUrl) {
+                window.location.href = buttonUrl;
+              }
+            }}
           >
             {image_data.button_text}
           </button>

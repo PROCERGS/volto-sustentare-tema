@@ -125,7 +125,7 @@ const Edit = (props) => {
               className="video-destaque-botao themed-button"
               onClick={() => {
                 if (data.button_url) {
-                  window.open(data.button_url, '_blank', 'noopener,noreferrer');
+                  window.location.href = data.button_url;
                 }
               }}
             >

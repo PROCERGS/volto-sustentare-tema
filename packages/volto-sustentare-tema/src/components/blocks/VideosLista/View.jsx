@@ -126,7 +126,7 @@ const View = ({ data }) => {
           className="videos-lista-botao"
           onClick={() => {
             if (data.button_url) {
-              window.open(data.button_url, '_blank', 'noopener,noreferrer');
+              window.location.href = data.button_url;
             }
           }}
         >
