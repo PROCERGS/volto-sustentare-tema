@@ -83,7 +83,6 @@
   flex: 1;
   flex-direction: column;
   padding: 20px;
-  line-break: anywhere;
 }
 
 .noticias-horizontal-content h3 {
@@ -95,7 +94,6 @@
   line-height: 34px;
   overflow-wrap: break-word;
   white-space: normal;
-  word-break: normal;
 }
 
 .noticias-horizontal-content p {
