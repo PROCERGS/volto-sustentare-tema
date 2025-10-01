@@ -1,26 +1,23 @@
 // Local ESLint settings for the addon package.
-// Reintroduz detecção condicional de 'volto-site-componentes' para evitar erro quando ausente.
+// Simplificação: tratamos 'volto-site-componentes' sempre como core module de lint.
+// Isso evita falhas de import/no-unresolved quando o pacote não está presente no workspace (ex: CI minimal).
 const path = require('path');
-let hasVoltoSiteComponentes = false;
-try {
-  require.resolve('volto-site-componentes/package.json', { paths: [__dirname] });
-  hasVoltoSiteComponentes = true;
-} catch (_) {
-  // pacote não presente; não vamos declarar como core-module
-}
 
 module.exports = {
   settings: {
-    // declarar como core-module apenas se resolvível
-    ...(hasVoltoSiteComponentes
-      ? { 'import/core-modules': ['volto-site-componentes'] }
-      : {}),
+    'import/core-modules': ['volto-site-componentes'],
     'import/resolver': {
       node: {
-        // Allow eslint-plugin-import to search these roots when resolving bare specifiers
         paths: [path.join(__dirname, '..'), path.join(__dirname, '..', '..')],
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
       },
     },
+  },
+  rules: {
+    // Segurança adicional caso o plugin import não trate core-modules como resolvidos em algum ambiente
+    'import/no-unresolved': [
+      'error',
+      { ignore: ['^volto-site-componentes$'] },
+    ],
   },
 };
