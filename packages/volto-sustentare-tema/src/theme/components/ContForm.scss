@@ -33,13 +33,14 @@
 }
 
 .ui.icon.negative.attached.message{
-  border: 1px solid rgb(135, 35, 35) !important;
-  background: rgb(135, 35, 35) !important;
+  border: 1px solid var(--vermelho-alerta) !important;
+  background: var(--vermelho-alerta-transparente) !important;
   border-radius: 5px !important;
 }
 
 .ui.icon.negative.attached.message > div > div {
-  color: white !important;
+  color: var(--vermelho-alerta) !important;
+  font-size: 20px !important;
 }
 
 .ui.icon.negative.attached.message > div > p {
@@ -47,7 +48,8 @@
 }
 
 .ui.red.basic.label.form-error-label{
-  background: rgb(135, 35, 35) !important;
+  background: var(--vermelho-alerta-transparente) !important;
+  border: 1px solid var(--vermelho-alerta) !important;
   padding-left: 20px !important;
 }
 
@@ -60,11 +62,11 @@
 }
 
 #contact-form > * > * > * > * > * > * > :nth-child(2) {
-  color: red !important;
-  fill: red !important;
+  color: var(--vermelho-alerta) !important;
+  fill: var(--vermelho-alerta) !important;
 }
 
-#contact-form > * > * > * > * > * > * > * > * > * > * > * {
+#contact-form > * > * > * > * > * > * > * > * > * > * > *:not(.ui.red.basic.label.form-error-label, textarea) {
   border: none !important;
   box-shadow: none !important;
   color: white !important;
@@ -80,7 +82,7 @@
 }
 
 .ui.form .field.error input[type='text']{
-  border-color: rgb(135, 35, 35) !important;
+  border-color: var(--vermelho-alerta) !important;
 }
 
 #contact-form > * > * > * > * > * > * > * > * > * > * > textarea {
@@ -103,10 +105,15 @@
 }
 
 .Toastify__toast-container--bottom-center .Toastify__toast--error {
-  background: rgb(135, 35, 35) !important;
+  background: var(--vermelho-alerta)!important;
   color: white !important;
+  border: 1px solid var(--vermelho-alerta) !important;
 }
 
 .toast-inner-content h4{
+  color: white !important;
+}
+
+#contact-form > * > * > * > * > * > * > * > * > * > * > * {
   color: white !important;
 }
