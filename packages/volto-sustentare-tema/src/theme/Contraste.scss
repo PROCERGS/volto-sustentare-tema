@@ -235,4 +235,23 @@
   .blocks-group-wrapper > .block.form:last-child + #footer {
     margin-top: clamp(2rem, 4vh, 4rem) !important;
   }
+  #contact-form > * > * > * > * > * > * > * > * > * > * > * > * {
+    color: var(--preto-background) !important;
+  }
+
+  #contact-form > * > * > * > * > * > * > * > * > * > * > textarea {
+    color: var(--preto-background) !important;
+  }
+
+  .ui.icon.negative.attached.message > div > * {
+    color: var(--vermelho-alerta) !important;
+  }
+
+  .toast-inner-content > h4{
+    color: white !important;
+  }
+
+  #contact-form > * > * > * > * > * > * > * > * > * > * > * {
+    color: var(--vermelho-alerta) !important;
+}
 }

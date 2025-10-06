@@ -193,3 +193,6 @@ button {
 .content-area .q.container a.external:after {
   filter: hue-rotate(240deg) saturate(2) brightness(1.1) contrast(1.8);
 }
+#page-document > * > * {
+  padding: 0 var(--padding-default);
+}
