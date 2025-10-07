@@ -323,7 +323,10 @@ const HeaderContainer = ({
                 }}
               >
                 <div style={{ width: '100%', padding: 16 }}>
-                  <SearchWidget />
+                  <SearchWidget
+                    pathname={pathname}
+                    onSearchComplete={() => setShowBar(false)}
+                  />
                 </div>
               </div>
             )}

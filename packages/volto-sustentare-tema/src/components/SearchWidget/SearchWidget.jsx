@@ -30,6 +30,7 @@ class SearchWidget extends Component {
    */
   static propTypes = {
     pathname: PropTypes.string,
+    onSearchComplete: PropTypes.func,
   };
 
   /**
@@ -76,7 +77,11 @@ class SearchWidget extends Component {
       `/search?SearchableText=${encodeURIComponent(this.state.text)}${path}`,
     );
     event.preventDefault();
-    this.setState({ active: false });
+    this.setState({ active: false }, () => {
+      if (this.props.onSearchComplete) {
+        this.props.onSearchComplete();
+      }
+    });
   }
 
   componentDidMount() {
@@ -159,5 +164,10 @@ class SearchWidget extends Component {
     );
   }
 }
+
+SearchWidget.defaultProps = {
+  onSearchComplete: null,
+  pathname: undefined,
+};
 
 export default compose(withRouter, injectIntl)(SearchWidget);
