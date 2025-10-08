@@ -1,8 +1,12 @@
 // SemanticUI-free pre-@plone/components
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useIntl, defineMessages } from 'react-intl';
 import config from '@plone/volto/registry';
+import { logout, purgeMessages } from '@plone/volto/actions';
+import { toast } from 'react-toastify';
 import HeaderContainer from '../../../../components/HeaderContainer/HeaderContainer';
 import * as VoltoSiteComponentes from 'volto-site-componentes';
 
@@ -20,6 +24,8 @@ const Header = (props) => {
   const { pathname } = props;
   let siteLabel = config.settings.siteLabel;
   const token = useSelector((state) => state.userSession.token);
+  const dispatch = useDispatch();
+  const history = useHistory();
   const siteAction = useSelector(
     (state) => state.content.data?.['@components']?.actions?.site_actions,
   );
@@ -34,6 +40,32 @@ const Header = (props) => {
     (translatedSiteLabel !== 'siteLabel' && translatedSiteLabel !== ' '
       ? translatedSiteLabel
       : siteLabel);
+
+  useEffect(() => {
+    const handler = (e) => {
+      const target = e.target.closest && e.target.closest('#toolbar-logout');
+      if (target) {
+        e.preventDefault();
+        if (typeof dispatch === 'function') {
+          dispatch(logout());
+          dispatch(purgeMessages());
+          try {
+            toast.dismiss('loggedOut');
+          } catch (err) {}
+        }
+        if (history && typeof history.replace === 'function') {
+          history.replace('/login');
+        } else {
+          window.location.assign('/login');
+        }
+      }
+    };
+
+    document.addEventListener('click', handler, true);
+    return () => {
+      document.removeEventListener('click', handler, true);
+    };
+  }, [dispatch, history]);
 
   return (
     <header className="header-wrapper">
@@ -54,6 +86,8 @@ const Header = (props) => {
     </header>
   );
 };
+
+// (effect moved inside the component so it runs at mount time)
 
 Header.propTypes = {
   token: PropTypes.string,
