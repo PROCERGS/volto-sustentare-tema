@@ -9,6 +9,37 @@ import { HomeIconDesktop, HomeIconMobile } from '../icons/HomeIcon';
 import { SearchIconDesktop, SearchIconMobile } from '../icons/SearchIcon';
 import ArrowIcon from '../icons/ArrowIcon';
 
+const NAVIGATION_STORAGE_KEY = 'navigationItems';
+
+function readCachedNavigation() {
+  if (typeof window === 'undefined') {
+    return [];
+  }
+
+  try {
+    return JSON.parse(
+      window.sessionStorage.getItem(NAVIGATION_STORAGE_KEY) || '[]',
+    );
+  } catch (error) {
+    return [];
+  }
+}
+
+function writeCachedNavigation(items) {
+  if (typeof window === 'undefined') {
+    return;
+  }
+
+  try {
+    window.sessionStorage.setItem(
+      NAVIGATION_STORAGE_KEY,
+      JSON.stringify(items),
+    );
+  } catch (error) {
+    // ignore write errors (e.g., storage quota)
+  }
+}
+
 const HeaderContainer = ({
   pathname,
   siteLabel,
@@ -20,13 +51,11 @@ const HeaderContainer = ({
     (state) => state.navigation || {},
   );
   const navigationItems =
-    !loading && items.length
-      ? items
-      : JSON.parse(sessionStorage.getItem('navigationItems') || '[]');
+    !loading && items.length ? items : readCachedNavigation();
 
   useEffect(() => {
     if (items.length) {
-      sessionStorage.setItem('navigationItems', JSON.stringify(items));
+      writeCachedNavigation(items);
     }
   }, [items]);
 
