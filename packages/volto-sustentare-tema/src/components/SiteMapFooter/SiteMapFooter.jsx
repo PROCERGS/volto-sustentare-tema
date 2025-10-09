@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { injectIntl } from 'react-intl';
 import { Container as SemanticContainer } from 'semantic-ui-react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import config from '@plone/volto/registry';
 import { getNavigation } from '@plone/volto/actions';
 import { toBackendLang } from '@plone/volto/helpers';
@@ -11,22 +11,42 @@ import { useCO2Estimate } from '../../hooks/useCO2Estimate';
 import './SiteMapFooter.css';
 import GOVRSLogo from './img/GOVRS_tons_branco_RGB_Horizontal_conceito.png';
 
-function getSitemapPath(pathname = '', lang) {
-  const prefix = pathname.replace(/\/sitemap$/gm, '').replace(/^\//, '');
-  const path = prefix || lang || '';
-  return path;
+function readCachedNavigation() {
+  if (typeof window === 'undefined') {
+    return [];
+  }
+
+  try {
+    return JSON.parse(window.sessionStorage.getItem('navigationItems') || '[]');
+  } catch (error) {
+    return [];
+  }
 }
 
 function SitemapFooter({ items, lang, getNavigation }) {
-  const location = useLocation();
   const co2 = useCO2Estimate();
+  const [cachedItems, setCachedItems] = useState(() => readCachedNavigation());
 
   useEffect(() => {
     const { settings } = config;
     const language = settings.isMultilingual ? toBackendLang(lang) : null;
-    const path = getSitemapPath(location.pathname, language);
-    getNavigation(path, 4);
-  }, [location.pathname, lang, getNavigation]);
+    const rootPath = settings.isMultilingual && language ? `/${language}` : '/';
+    getNavigation(rootPath, 4);
+  }, [lang, getNavigation]);
+
+  useEffect(() => {
+    if (!items?.length) {
+      return;
+    }
+
+    setCachedItems(items);
+
+    if (typeof window !== 'undefined') {
+      window.sessionStorage.setItem('navigationItems', JSON.stringify(items));
+    }
+  }, [items]);
+
+  const navigationItems = items?.length ? items : cachedItems;
 
   const renderItems = (items) => {
     return (
@@ -192,7 +212,7 @@ function SitemapFooter({ items, lang, getNavigation }) {
           <span className="co2-badge-label">por visualização</span>
         </div>
       </div>
-      {items && renderItems(items, 2)}
+      {navigationItems?.length ? renderItems(navigationItems, 2) : null}
       <li className="rodape__procergs">
         <p className="font-weight-bold">PROCERGS</p>
         <p>
@@ -223,7 +243,7 @@ SitemapFooter.defaultProps = {
 export default injectIntl(
   connect(
     (state) => ({
-      items: state.navigation.items,
+      items: state.navigation?.items || [],
       lang: state.intl.locale,
     }),
     { getNavigation },
