@@ -26,12 +26,18 @@ function readCachedNavigation() {
 function SitemapFooter({ items, lang, getNavigation }) {
   const co2 = useCO2Estimate();
   const [cachedItems, setCachedItems] = useState(() => readCachedNavigation());
+  const [localData, setLocalData] = useState(null);
 
   useEffect(() => {
     const { settings } = config;
     const language = settings.isMultilingual ? toBackendLang(lang) : null;
     const rootPath = settings.isMultilingual && language ? `/${language}` : '/';
     getNavigation(rootPath, 4);
+    fetch('/++api++/?navroot&expand.navigation.depth=3')
+      .then((r) => r.json())
+      .then((data) => {
+        setLocalData(data.local.data);
+      });
   }, [lang, getNavigation]);
 
   useEffect(() => {
@@ -47,6 +53,25 @@ function SitemapFooter({ items, lang, getNavigation }) {
   }, [items]);
 
   const navigationItems = items?.length ? items : cachedItems;
+
+  const address = (() => {
+    if (!localData) return '';
+    const parts = [];
+    if (localData.logradouro) parts.push(localData.logradouro);
+    if (localData.numero) parts.push(localData.numero);
+    if (localData.bairro) parts.push(localData.bairro);
+    if (localData.municipio || localData.estado) {
+      const muniEstado = [localData.municipio, localData.estado]
+        .filter(Boolean)
+        .join(' - ');
+      if (muniEstado) parts.push(muniEstado);
+    }
+    if (localData.cep) parts.push(`CEP ${localData.cep}`);
+    return parts.join(', ');
+  })();
+
+  const telefoneFax = localData?.telefone_fax;
+  const email = localData?.email;
 
   const renderItems = (items) => {
     return (
@@ -215,16 +240,9 @@ function SitemapFooter({ items, lang, getNavigation }) {
       {navigationItems?.length ? renderItems(navigationItems, 2) : null}
       <li className="rodape__procergs">
         <p className="font-weight-bold">PROCERGS</p>
-        <p>
-          Praça dos Açorianos S/N, Centro Histórico, Porto Alegre - RS. CEP
-          90010-340
-        </p>
-        <p className="font-weight-bold">
-          (51) 3210-3837 | (51) 3210-3487
-          <br />
-          (51) 3210-3829 | (51) 3210-3537
-        </p>
-        <p className="font-weight-bold">sustentare@procergs.rs.gov.br</p>
+        {address ? <p>{address}</p> : null}
+        {telefoneFax ? <p className="font-weight-bold">{telefoneFax}</p> : null}
+        {email ? <p className="font-weight-bold">{email}</p> : null}
       </li>
     </Container>
   );
