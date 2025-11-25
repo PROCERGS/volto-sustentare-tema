@@ -33,12 +33,25 @@ function SitemapFooter({ items, lang, getNavigation }) {
     const language = settings.isMultilingual ? toBackendLang(lang) : null;
     const rootPath = settings.isMultilingual && language ? `/${language}` : '/';
     getNavigation(rootPath, 4);
-    fetch('/++api++/?navroot&expand.navigation.depth=3')
-      .then((r) => r.json())
-      .then((data) => {
-        setLocalData(data.local.data);
-      });
-  }, [lang, getNavigation]);
+    const fetchLocal = async () => {
+      try {
+        const res = await fetch('/++api++/?navroot&expand.navigation.depth=3');
+        if (!res.ok) {
+          return;
+        }
+        const data = await res.json();
+        const local = data?.local?.data ?? null;
+        setLocalData(local);
+        console.log('Fetched local data:', local);
+      } catch (err) {
+        // eslint-disable-next-line no-console
+        console.warn('[SiteMapFooter] fetch local failed', err);
+      }
+    };
+
+    fetchLocal();
+
+  } , [lang, getNavigation]);
 
   useEffect(() => {
     if (!items?.length) {
