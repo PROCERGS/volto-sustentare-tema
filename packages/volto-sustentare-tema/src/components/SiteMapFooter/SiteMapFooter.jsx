@@ -42,7 +42,6 @@ function SitemapFooter({ items, lang, getNavigation }) {
         const data = await res.json();
         const local = data?.local?.data ?? null;
         setLocalData(local);
-        console.log('Fetched local data:', local);
       } catch (err) {
         // eslint-disable-next-line no-console
         console.warn('[SiteMapFooter] fetch local failed', err);
@@ -50,8 +49,7 @@ function SitemapFooter({ items, lang, getNavigation }) {
     };
 
     fetchLocal();
-
-  } , [lang, getNavigation]);
+  }, [lang, getNavigation]);
 
   useEffect(() => {
     if (!items?.length) {
