@@ -36,7 +36,8 @@
     "@kitconcept/volto-light-theme": "^5.0.2",
     "@plone/registry": "workspace:*",
   "@plone/volto": "workspace:*",
-  "volto-site-componentes": "link:../../../volto-site-componentes/packages/volto-site-componentes"
+  "volto-site-componentes": "link:../../../volto-site-componentes/packages/volto-site-componentes",
+  "volto-google-analytics": "link:packages/volto-google-analytics"
   },
   "peerDependencies": {
     "react": "18.2.0",

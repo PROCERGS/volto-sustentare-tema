@@ -49,6 +49,9 @@ importers:
       '@plone/volto':
         specifier: workspace:*
         version: link:core/packages/volto
+      volto-google-analytics:
+        specifier: link:packages/volto-google-analytics
+        version: link:packages/volto-google-analytics
       volto-site-componentes:
         specifier: link:../../volto-site-componentes/packages/volto-site-componentes
         version: link:../../volto-site-componentes/packages/volto-site-componentes
@@ -1636,6 +1639,9 @@ importers:
       react-dom:
         specifier: 18.2.0
         version: 18.2.0(react@18.2.0)
+      volto-google-analytics:
+        specifier: link:packages/volto-google-analytics
+        version: link:packages/volto-google-analytics
       volto-site-componentes:
         specifier: link:../../../volto-site-componentes/packages/volto-site-componentes
         version: link:../../../volto-site-componentes/packages/volto-site-componentes
@@ -21173,7 +21179,7 @@ snapshots:
       sirv: 3.0.1
       tinyglobby: 0.2.14
       tinyrainbow: 1.2.0
-      vitest: 2.1.9(@types/node@20.19.1)(@vitest/ui@2.1.9)(jsdom@22.1.0)(less@3.11.1)(lightningcss@1.30.1)(sass@1.89.2)(terser@5.43.1)
+      vitest: 2.1.9(@types/node@22.15.33)(@vitest/ui@2.1.9)(jsdom@21.1.2)(less@3.11.1)(lightningcss@1.30.1)(sass@1.89.2)(terser@5.43.1)
     optional: true
 
   '@vitest/ui@2.1.9(vitest@3.2.4)':
