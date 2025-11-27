@@ -16,7 +16,7 @@ function hasVoltoGoogleAnalytics() {
   }
 }
 
-const addons = ['@kitconcept/volto-light-theme', 'volto-sustentare-tema']
+const addons = ['@kitconcept/volto-light-theme', 'volto-sustentare-tema', 'volto-google-analytics']
   .concat(hasVoltoSiteComponentes() ? ['volto-site-componentes'] : [])
   .concat(hasVoltoGoogleAnalytics() ? ['volto-google-analytics'] : []);
 
