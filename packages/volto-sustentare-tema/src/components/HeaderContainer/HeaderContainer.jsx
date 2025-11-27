@@ -8,6 +8,7 @@ import SustentareLogoHighContrast from '../icons/SustentareLogoHighContrast';
 import { HomeIconDesktop, HomeIconMobile } from '../icons/HomeIcon';
 import { SearchIconDesktop, SearchIconMobile } from '../icons/SearchIcon';
 import ArrowIcon from '../icons/ArrowIcon';
+import { useGoogleAnalytics } from '../../../../volto-google-analytics/src/index';
 
 const NAVIGATION_STORAGE_KEY = 'navigationItems';
 
@@ -69,6 +70,7 @@ const HeaderContainer = ({
   const [isMobile, setIsMobile] = useState(false);
   const [isHighContrast, setIsHighContrast] = useState(false);
   const menuRef = useRef();
+  useGoogleAnalytics();
 
   useEffect(() => {
     function checkHighContrast() {

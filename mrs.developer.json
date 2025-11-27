@@ -7,4 +7,12 @@
     "tag": "18.23.0",
     "filterBlobs": true
   }
+  ,
+  "volto-google-analytics": {
+    "url": "git@github.com:collective/volto-google-analytics.git",
+    "package": "volto-google-analytics",
+    "https": "https://github.com/collective/volto-google-analytics.git",
+    "branch": "master",
+    "output": "./packages/"
+  }
 }

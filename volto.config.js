@@ -7,9 +7,18 @@ function hasVoltoSiteComponentes() {
   }
 }
 
-const addons = ['@kitconcept/volto-light-theme', 'volto-sustentare-tema'].concat(
-  hasVoltoSiteComponentes() ? ['volto-site-componentes'] : [],
-);
+function hasVoltoGoogleAnalytics() {
+  try {
+    require.resolve('volto-google-analytics/package.json', { paths: [__dirname] });
+    return true;
+  } catch (_) {
+    return false;
+  }
+}
+
+const addons = ['@kitconcept/volto-light-theme', 'volto-sustentare-tema']
+  .concat(hasVoltoSiteComponentes() ? ['volto-site-componentes'] : [])
+  .concat(hasVoltoGoogleAnalytics() ? ['volto-google-analytics'] : []);
 
 const theme = '@kitconcept/volto-light-theme';
 
