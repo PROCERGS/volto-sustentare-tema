@@ -8,7 +8,7 @@ import SustentareLogoHighContrast from '../icons/SustentareLogoHighContrast';
 import { HomeIconDesktop, HomeIconMobile } from '../icons/HomeIcon';
 import { SearchIconDesktop, SearchIconMobile } from '../icons/SearchIcon';
 import ArrowIcon from '../icons/ArrowIcon';
-import { useGoogleAnalytics } from '../../../../volto-google-analytics';
+import { useGoogleAnalytics } from 'volto-google-analytics';
 
 const NAVIGATION_STORAGE_KEY = 'navigationItems';
 
