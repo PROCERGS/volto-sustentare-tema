@@ -1,6 +1,8 @@
 import React from 'react';
 import './Sustentabilidade.css';
 
+const year = new Date().getFullYear();
+
 const BlocoSustentabilidade = ({ data = {} }) => (
   <section className="bloco-sustentabilidade">
     <div className="sustentabilidade-coluna-esquerda">
@@ -16,7 +18,7 @@ const BlocoSustentabilidade = ({ data = {} }) => (
         GESTÃO PÚBLICA
       </h2>
       <p>
-        Dados coletados até o ano de 2022, do funcionamento do Sustentare desde
+        Dados coletados até o ano de {year}, do funcionamento do Sustentare desde
         sua implementação em 2016.
       </p>
       <a href="/" className="themed-button">
@@ -31,7 +33,7 @@ const BlocoSustentabilidade = ({ data = {} }) => (
         <span className="sustentabilidade-descricao">
           Equipamentos eletroeletrônicos
           <br />
-          recolhidos
+          recebidos
         </span>
       </div>
       <div className="sustentabilidade-box">
