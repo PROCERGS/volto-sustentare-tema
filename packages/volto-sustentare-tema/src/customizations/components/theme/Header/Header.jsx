@@ -1,10 +1,11 @@
-// SemanticUI-free pre-@plone/components
+/* SemanticUI-free pre-@plone/components */
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useIntl, defineMessages } from 'react-intl';
 import config from '@plone/volto/registry';
+import { getNavigation } from '@plone/volto/actions';
 import { logout, purgeMessages } from '@plone/volto/actions';
 import { toast } from 'react-toastify';
 import HeaderContainer from '../../../../components/HeaderContainer/HeaderContainer';
@@ -67,6 +68,17 @@ const Header = (props) => {
     };
   }, [dispatch, history]);
 
+  useEffect(() => {
+    const { settings } = config;
+    const language = settings.isMultilingual
+      ? pathname.split('/').filter(Boolean)[0]
+      : null;
+    const rootPath = settings.isMultilingual && language ? `/${language}` : '/';
+    const depth = settings?.navigationDepthHeader || 2;
+    if (typeof dispatch === 'function')
+      dispatch(getNavigation(rootPath, depth));
+  }, [dispatch, pathname]);
+
   return (
     <header className="header-wrapper">
       <VoltoSiteComponentes.BarraEstado />
@@ -86,8 +98,6 @@ const Header = (props) => {
     </header>
   );
 };
-
-// (effect moved inside the component so it runs at mount time)
 
 Header.propTypes = {
   token: PropTypes.string,

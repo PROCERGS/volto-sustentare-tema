@@ -12,6 +12,39 @@ import { useGoogleAnalytics } from 'volto-google-analytics';
 
 const NAVIGATION_STORAGE_KEY = 'navigationItems';
 
+const FETCHED_CHILDREN_STORAGE_KEY = 'navigationFetchedChildren';
+
+function normalizePathname(pathname) {
+  if (!pathname) return '';
+  try {
+    const url = new URL(
+      pathname,
+      typeof window !== 'undefined'
+        ? window.location.origin
+        : 'http://localhost',
+    );
+    pathname = url.pathname;
+  } catch (err) {}
+  if (pathname.length > 1 && pathname.endsWith('/')) {
+    return pathname.slice(0, -1);
+  }
+  return pathname || '/';
+}
+
+function isImmediateChild(parentPath, childPath) {
+  const parent = normalizePathname(parentPath) || '/';
+  const child = normalizePathname(childPath) || '';
+
+  if (!child || child === parent) return false;
+
+  const parentParts = parent.split('/').filter(Boolean).length;
+  const childParts = child.split('/').filter(Boolean).length;
+  const isDirectPrefix =
+    parent === '/' ? child.startsWith('/') : child.startsWith(`${parent}/`);
+
+  return isDirectPrefix && childParts === parentParts + 1;
+}
+
 function readCachedNavigation() {
   if (typeof window === 'undefined') {
     return [];
@@ -36,9 +69,7 @@ function writeCachedNavigation(items) {
       NAVIGATION_STORAGE_KEY,
       JSON.stringify(items),
     );
-  } catch (error) {
-    // ignore write errors (e.g., storage quota)
-  }
+  } catch (error) {}
 }
 
 const HeaderContainer = ({
@@ -53,6 +84,66 @@ const HeaderContainer = ({
   );
   const navigationItems =
     !loading && items.length ? items : readCachedNavigation();
+
+  const [fetchedChildren, setFetchedChildren] = useState(() => {
+    if (typeof window === 'undefined') return {};
+    try {
+      return JSON.parse(
+        window.sessionStorage.getItem(FETCHED_CHILDREN_STORAGE_KEY) || '{}',
+      );
+    } catch (err) {
+      return {};
+    }
+  });
+
+  useEffect(() => {
+    try {
+      window.sessionStorage.setItem(
+        FETCHED_CHILDREN_STORAGE_KEY,
+        JSON.stringify(fetchedChildren),
+      );
+    } catch (err) {}
+  }, [fetchedChildren]);
+
+  useEffect(() => {
+    if (!navigationItems || !navigationItems.length) return;
+
+    const topItems = navigationItems.slice(1);
+    topItems.forEach((item) => {
+      const key = item['@id'] || item.url || item.id;
+      const hasSub = item.items && item.items.length > 0;
+      if (hasSub || fetchedChildren[key]) return;
+
+      const parentPath = normalizePathname(item['@id'] || item.url || '');
+      if (!parentPath) return;
+
+      try {
+        const searchUrl = new URL('/++api++/@search', window.location.origin);
+        searchUrl.searchParams.set('path', parentPath);
+        searchUrl.searchParams.set('depth', '1');
+        searchUrl.searchParams.append('portal_type', 'Document');
+        searchUrl.searchParams.append('portal_type', 'Page');
+        searchUrl.searchParams.set('review_state', 'published');
+        searchUrl.searchParams.set('sort_on', 'getObjPositionInParent');
+
+        fetch(searchUrl.toString())
+          .then((res) => {
+            if (!res.ok) throw new Error('search failed');
+            return res.json();
+          })
+          .then((json) => {
+            const children = (json.items || []).filter((child) =>
+              isImmediateChild(parentPath, child['@id'] || child.url || ''),
+            );
+
+            if (children.length) {
+              setFetchedChildren((prev) => ({ ...prev, [key]: children }));
+            }
+          })
+          .catch(() => {});
+      } catch (err) {}
+    });
+  }, [navigationItems, fetchedChildren]);
 
   useEffect(() => {
     if (items.length) {
@@ -285,7 +376,10 @@ const HeaderContainer = ({
               </span>
             </a>
             {navigationItems.slice(1).map((item, idx) => {
-              const hasSubitems = item.items && item.items.length > 0;
+              const key = item['@id'] || item.url || item.id;
+              const fallbackSub = fetchedChildren[key] || [];
+              const hasSubitems =
+                (item.items && item.items.length > 0) || fallbackSub.length > 0;
               const isActive = openMenu === idx;
               return (
                 <div
@@ -313,10 +407,13 @@ const HeaderContainer = ({
                   )}
                   {hasSubitems && isActive && (
                     <div className="submenu">
-                      {item.items.map((sub, subIdx) => (
+                      {(item.items && item.items.length
+                        ? item.items
+                        : fallbackSub
+                      ).map((sub, subIdx) => (
                         <a
-                          key={sub.url || subIdx}
-                          href={sub.url}
+                          key={sub.url || sub['@id'] || subIdx}
+                          href={sub.url || sub['@id']}
                           className="submenu-item"
                         >
                           {sub.title}

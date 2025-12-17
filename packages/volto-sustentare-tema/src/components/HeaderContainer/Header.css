@@ -63,8 +63,25 @@ header {
   margin: 0;
   background: var(--preto-background);
   color: var(--bege-padrao) !important;
+  font-family: 'Saira Condensed', Arial, Helvetica, sans-serif !important;
   font-size: 24px;
   font-weight: 900;
+}
+
+.header-wrapper .header .logo-nav-wrapper a.nav-item {
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  border-right: 2px solid var(--verde-padrao) !important;
+  border-left: 2px solid var(--verde-padrao) !important;
+  margin: 0;
+  background: var(--preto-background);
+  color: var(--bege-padrao) !important;
+  font-family: 'Saira Condensed', Arial, Helvetica, sans-serif !important;
+  font-size: 24px;
+  font-weight: 900;
+  text-decoration: none;
+  text-transform: uppercase;
 }
 
 .logo-nav-wrapper.home-icon a {
@@ -73,7 +90,8 @@ header {
   border-left: 4px solid var(--verde-padrao);
 }
 
-.logo-nav-wrapper button:hover {
+.logo-nav-wrapper button:hover,
+.header-wrapper .header .logo-nav-wrapper a.nav-item:hover {
   background-color: var(--bege-padrao) !important;
   color: var(--preto-background) !important;
 }
@@ -139,7 +157,6 @@ header {
   }
 }
 
-/* Posição fixa do botão scroll */
 .btn-scroll {
   position: fixed;
   z-index: 9999;
