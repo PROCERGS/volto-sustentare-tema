@@ -1,38 +1,125 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { injectIntl } from 'react-intl';
 import { Container as SemanticContainer } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import config from '@plone/volto/registry';
-import { getNavigation } from '@plone/volto/actions';
-import { toBackendLang } from '@plone/volto/helpers';
 import { useCO2Estimate } from '../../hooks/useCO2Estimate';
 import './SiteMapFooter.css';
 import GOVRSLogo from './img/GOVRS_tons_branco_RGB_Horizontal_conceito.png';
 
-function readCachedNavigation() {
-  if (typeof window === 'undefined') {
-    return [];
-  }
-
+function normalizePathname(pathname) {
+  if (!pathname) return '';
   try {
-    return JSON.parse(window.sessionStorage.getItem('navigationItems') || '[]');
-  } catch (error) {
-    return [];
+    const url = new URL(
+      pathname,
+      typeof window !== 'undefined'
+        ? window.location.origin
+        : 'http://localhost',
+    );
+    pathname = url.pathname;
+  } catch (err) {}
+  if (pathname.length > 1 && pathname.endsWith('/')) {
+    return pathname.slice(0, -1);
   }
+  return pathname || '/';
 }
 
-function SitemapFooter({ items, lang, getNavigation }) {
+function isImmediateChild(parentPath, childPath) {
+  const parent = normalizePathname(parentPath) || '/';
+  const child = normalizePathname(childPath) || '';
+  if (!child || child === parent) return false;
+  const parentParts = parent.split('/').filter(Boolean).length;
+  const childParts = child.split('/').filter(Boolean).length;
+  const isDirectPrefix =
+    parent === '/' ? child.startsWith('/') : child.startsWith(`${parent}/`);
+  return isDirectPrefix && childParts === parentParts + 1;
+}
+
+function toRelativeUrl(url) {
+  if (!url) return '';
+  if (typeof window === 'undefined') return url;
+  const origin = window.location.origin;
+  return url.startsWith(origin) ? url.slice(origin.length) || '/' : url;
+}
+
+function SitemapFooter() {
   const co2 = useCO2Estimate();
-  const [cachedItems, setCachedItems] = useState(() => readCachedNavigation());
+  const [navigationItems, setNavigationItems] = useState([]);
   const [localData, setLocalData] = useState(null);
 
   useEffect(() => {
     const { settings } = config;
-    const language = settings.isMultilingual ? toBackendLang(lang) : null;
-    const rootPath = settings.isMultilingual && language ? `/${language}` : '/';
-    getNavigation(rootPath, 4);
+    const pathname =
+      typeof window !== 'undefined' ? window.location.pathname : '/';
+    const languageSegment = pathname.split('/').filter(Boolean)[0];
+    const isMultilingual = settings.isMultilingual;
+    const supportedLanguages = settings.supportedLanguages || [];
+    const language =
+      isMultilingual && supportedLanguages.includes(languageSegment)
+        ? languageSegment
+        : null;
+    const rootPath = isMultilingual && language ? `/${language}` : '/';
+
+    try {
+      const searchUrl = new URL('/++api++/@search', window.location.origin);
+      searchUrl.searchParams.set('path.query', rootPath);
+      searchUrl.searchParams.set('path.depth', '2');
+      searchUrl.searchParams.set('review_state', 'published');
+      searchUrl.searchParams.set('sort_on', 'getObjPositionInParent');
+      searchUrl.searchParams.append('metadata_fields', 'exclude_from_nav');
+
+      fetch(searchUrl.toString(), { cache: 'no-store' })
+        .then((res) => (res.ok ? res.json() : Promise.reject()))
+        .then((json) => {
+          const normalizedRoot = normalizePathname(rootPath);
+          const results = (json.items || []).filter(
+            (it) => !it.exclude_from_nav,
+          );
+          const map = {};
+
+          const getRelUrl = (id, url) => {
+            const rel = id?.replace(window.location.origin, '') || url || '';
+            return rel || '/';
+          };
+
+          const entries = results.map((it) => {
+            const id = it['@id'] || it.url || '';
+            const entry = {
+              '@id': id,
+              url: getRelUrl(id, it.url),
+              title: it.title,
+              items: [],
+            };
+            map[normalizePathname(id)] = entry;
+            return entry;
+          });
+
+          const topItems = [];
+          entries.forEach((entry) => {
+            const entryPath = normalizePathname(
+              entry['@id'] || entry.url || '',
+            );
+            const parentPathParts = entryPath.split('/').filter(Boolean);
+            parentPathParts.pop();
+            const parentPath = `/${parentPathParts.join('/')}` || '/';
+            const parent = map[parentPath];
+
+            if (isImmediateChild(normalizedRoot, entryPath)) {
+              topItems.push(entry);
+            } else if (parent && isImmediateChild(parentPath, entryPath)) {
+              parent.items.push(entry);
+            }
+          });
+
+          const rootItem = {
+            '@id': window.location.origin + rootPath,
+            url: rootPath,
+            title: '',
+          };
+          setNavigationItems([rootItem, ...topItems]);
+        })
+        .catch(() => {});
+    } catch (err) {}
+
     const fetchLocal = async () => {
       try {
         const res = await fetch('/++api++/?navroot&expand.navigation.depth=3');
@@ -42,28 +129,23 @@ function SitemapFooter({ items, lang, getNavigation }) {
         const data = await res.json();
         const local = data?.local?.data ?? null;
         setLocalData(local);
-      } catch (err) {
-        // eslint-disable-next-line no-console
-        console.warn('[SiteMapFooter] fetch local failed', err);
-      }
+      } catch (err) {}
     };
 
     fetchLocal();
-  }, [lang, getNavigation]);
+  }, []);
 
-  useEffect(() => {
-    if (!items?.length) {
-      return;
-    }
-
-    setCachedItems(items);
-
-    if (typeof window !== 'undefined') {
-      window.sessionStorage.setItem('navigationItems', JSON.stringify(items));
-    }
-  }, [items]);
-
-  const navigationItems = items?.length ? items : cachedItems;
+  const navigationWithChildren = navigationItems.slice(1).map((item) => {
+    const children = (item.items || []).map((child) => {
+      const url = toRelativeUrl(child.url || child['@id']);
+      return { ...child, url, '@id': child['@id'] || child.url };
+    });
+    return {
+      ...item,
+      items: children,
+      url: toRelativeUrl(item.url || item['@id']),
+    };
+  });
 
   const address = (() => {
     if (!localData) return '';
@@ -248,7 +330,9 @@ function SitemapFooter({ items, lang, getNavigation }) {
           <span className="co2-badge-label">por visualização</span>
         </div>
       </div>
-      {navigationItems?.length ? renderItems(navigationItems, 2) : null}
+      {navigationWithChildren?.length
+        ? renderItems(navigationWithChildren, 2)
+        : null}
       <li className="rodape__procergs">
         <p className="font-weight-bold">PROCERGS</p>
         {address ? <p>{address}</p> : null}
@@ -259,22 +343,4 @@ function SitemapFooter({ items, lang, getNavigation }) {
   );
 }
 
-SitemapFooter.propTypes = {
-  getNavigation: PropTypes.func.isRequired,
-  items: PropTypes.array,
-  lang: PropTypes.string.isRequired,
-};
-
-SitemapFooter.defaultProps = {
-  items: [],
-};
-
-export default injectIntl(
-  connect(
-    (state) => ({
-      items: state.navigation?.items || [],
-      lang: state.intl.locale,
-    }),
-    { getNavigation },
-  )(SitemapFooter),
-);
+export default SitemapFooter;

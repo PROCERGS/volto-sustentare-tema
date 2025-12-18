@@ -1,11 +1,8 @@
 /* SemanticUI-free pre-@plone/components */
 import PropTypes from 'prop-types';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useIntl, defineMessages } from 'react-intl';
-import config from '@plone/volto/registry';
-import { getNavigation } from '@plone/volto/actions';
 import { logout, purgeMessages } from '@plone/volto/actions';
 import { toast } from 'react-toastify';
 import HeaderContainer from '../../../../components/HeaderContainer/HeaderContainer';
@@ -14,33 +11,10 @@ import * as VoltoSiteComponentes from 'volto-site-componentes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
 
-const messages = defineMessages({
-  siteLabel: {
-    id: 'siteLabel',
-    defaultMessage: ' ',
-  },
-});
-
 const Header = (props) => {
   const { pathname } = props;
-  let siteLabel = config.settings.siteLabel;
-  const token = useSelector((state) => state.userSession.token);
   const dispatch = useDispatch();
   const history = useHistory();
-  const siteAction = useSelector(
-    (state) => state.content.data?.['@components']?.actions?.site_actions,
-  );
-  const intl = useIntl();
-  const translatedSiteLabel = intl.formatMessage(messages.siteLabel);
-  const site = useSelector((state) => state.site.data);
-
-  const siteTitle = site['plone.site_title'];
-
-  siteLabel =
-    siteLabel &&
-    (translatedSiteLabel !== 'siteLabel' && translatedSiteLabel !== ' '
-      ? translatedSiteLabel
-      : siteLabel);
 
   useEffect(() => {
     const handler = (e) => {
@@ -68,28 +42,11 @@ const Header = (props) => {
     };
   }, [dispatch, history]);
 
-  useEffect(() => {
-    const { settings } = config;
-    const language = settings.isMultilingual
-      ? pathname.split('/').filter(Boolean)[0]
-      : null;
-    const rootPath = settings.isMultilingual && language ? `/${language}` : '/';
-    const depth = settings?.navigationDepthHeader || 2;
-    if (typeof dispatch === 'function')
-      dispatch(getNavigation(rootPath, depth));
-  }, [dispatch, pathname]);
-
   return (
     <header className="header-wrapper">
       <VoltoSiteComponentes.BarraEstado />
       <VoltoSiteComponentes.BarraAcessibilidade />
-      <HeaderContainer
-        pathname={pathname}
-        siteLabel={siteLabel}
-        token={token}
-        siteAction={siteAction}
-        siteTitle={siteTitle}
-      />
+      <HeaderContainer pathname={pathname} />
       <div style={{ textAlign: 'right' }}>
         <a href="#main" className="btn-scroll">
           <FontAwesomeIcon icon={faChevronUp} />
@@ -100,12 +57,7 @@ const Header = (props) => {
 };
 
 Header.propTypes = {
-  token: PropTypes.string,
   pathname: PropTypes.string.isRequired,
-};
-
-Header.defaultProps = {
-  token: null,
 };
 
 export default Header;

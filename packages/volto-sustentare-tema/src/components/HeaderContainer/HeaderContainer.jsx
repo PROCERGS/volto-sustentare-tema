@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import './Header.css';
+import config from '@plone/volto/registry';
 import SearchWidget from '../SearchWidget/SearchWidget';
 import SustentareLogo from '../icons/SustentareLogo';
 import SustentareLogoHighContrast from '../icons/SustentareLogoHighContrast';
@@ -9,10 +9,6 @@ import { HomeIconDesktop, HomeIconMobile } from '../icons/HomeIcon';
 import { SearchIconDesktop, SearchIconMobile } from '../icons/SearchIcon';
 import ArrowIcon from '../icons/ArrowIcon';
 import { useGoogleAnalytics } from 'volto-google-analytics';
-
-const NAVIGATION_STORAGE_KEY = 'navigationItems';
-
-const FETCHED_CHILDREN_STORAGE_KEY = 'navigationFetchedChildren';
 
 function normalizePathname(pathname) {
   if (!pathname) return '';
@@ -45,111 +41,81 @@ function isImmediateChild(parentPath, childPath) {
   return isDirectPrefix && childParts === parentParts + 1;
 }
 
-function readCachedNavigation() {
-  if (typeof window === 'undefined') {
-    return [];
-  }
-
-  try {
-    return JSON.parse(
-      window.sessionStorage.getItem(NAVIGATION_STORAGE_KEY) || '[]',
-    );
-  } catch (error) {
-    return [];
-  }
-}
-
-function writeCachedNavigation(items) {
-  if (typeof window === 'undefined') {
-    return;
-  }
-
-  try {
-    window.sessionStorage.setItem(
-      NAVIGATION_STORAGE_KEY,
-      JSON.stringify(items),
-    );
-  } catch (error) {}
-}
-
-const HeaderContainer = ({
-  pathname,
-  siteLabel,
-  token,
-  siteAction,
-  siteTitle,
-}) => {
-  const { items = [], loading } = useSelector(
-    (state) => state.navigation || {},
-  );
-  const navigationItems =
-    !loading && items.length ? items : readCachedNavigation();
-
-  const [fetchedChildren, setFetchedChildren] = useState(() => {
-    if (typeof window === 'undefined') return {};
-    try {
-      return JSON.parse(
-        window.sessionStorage.getItem(FETCHED_CHILDREN_STORAGE_KEY) || '{}',
-      );
-    } catch (err) {
-      return {};
-    }
-  });
+const HeaderContainer = ({ pathname }) => {
+  const [navigationItems, setNavigationItems] = useState([]);
 
   useEffect(() => {
+    const settings = config?.settings || {};
+    const languageSegment = pathname.split('/').filter(Boolean)[0];
+    const isMultilingual = settings.isMultilingual;
+    const supportedLanguages = settings.supportedLanguages || [];
+    const language =
+      isMultilingual && supportedLanguages.includes(languageSegment)
+        ? languageSegment
+        : null;
+    const rootPath = isMultilingual && language ? `/${language}` : '/';
+
     try {
-      window.sessionStorage.setItem(
-        FETCHED_CHILDREN_STORAGE_KEY,
-        JSON.stringify(fetchedChildren),
-      );
-    } catch (err) {}
-  }, [fetchedChildren]);
+      const searchUrl = new URL('/++api++/@search', window.location.origin);
+      searchUrl.searchParams.set('path.query', rootPath);
+      searchUrl.searchParams.set('path.depth', '2');
+      searchUrl.searchParams.set('review_state', 'published');
+      searchUrl.searchParams.set('sort_on', 'getObjPositionInParent');
+      searchUrl.searchParams.append('metadata_fields', 'exclude_from_nav');
 
-  useEffect(() => {
-    if (!navigationItems || !navigationItems.length) return;
+      fetch(searchUrl.toString())
+        .then((res) => (res.ok ? res.json() : Promise.reject()))
+        .then((json) => {
+          const normalizedRoot = normalizePathname(rootPath);
+          const results = (json.items || []).filter(
+            (it) => !it.exclude_from_nav,
+          );
+          const map = {};
 
-    const topItems = navigationItems.slice(1);
-    topItems.forEach((item) => {
-      const key = item['@id'] || item.url || item.id;
-      const hasSub = item.items && item.items.length > 0;
-      if (hasSub || fetchedChildren[key]) return;
+          const getRelUrl = (id, url) => {
+            const rel = id?.replace(window.location.origin, '') || url || '';
+            return rel || '/';
+          };
 
-      const parentPath = normalizePathname(item['@id'] || item.url || '');
-      if (!parentPath) return;
+          const entries = results.map((it) => {
+            const id = it['@id'] || it.url || '';
+            const entry = {
+              '@id': id,
+              url: getRelUrl(id, it.url),
+              title: it.title,
+              items: [],
+            };
+            map[normalizePathname(id)] = entry;
+            return entry;
+          });
 
-      try {
-        const searchUrl = new URL('/++api++/@search', window.location.origin);
-        searchUrl.searchParams.set('path', parentPath);
-        searchUrl.searchParams.set('depth', '1');
-        searchUrl.searchParams.append('portal_type', 'Document');
-        searchUrl.searchParams.append('portal_type', 'Page');
-        searchUrl.searchParams.set('review_state', 'published');
-        searchUrl.searchParams.set('sort_on', 'getObjPositionInParent');
-
-        fetch(searchUrl.toString())
-          .then((res) => {
-            if (!res.ok) throw new Error('search failed');
-            return res.json();
-          })
-          .then((json) => {
-            const children = (json.items || []).filter((child) =>
-              isImmediateChild(parentPath, child['@id'] || child.url || ''),
+          const topItems = [];
+          entries.forEach((entry) => {
+            const entryPath = normalizePathname(
+              entry['@id'] || entry.url || '',
             );
+            const parentPathParts = entryPath.split('/').filter(Boolean);
+            parentPathParts.pop();
+            const parentPath = `/${parentPathParts.join('/')}` || '/';
+            const parent = map[parentPath];
 
-            if (children.length) {
-              setFetchedChildren((prev) => ({ ...prev, [key]: children }));
+            if (isImmediateChild(normalizedRoot, entryPath)) {
+              topItems.push(entry);
+            } else if (parent && isImmediateChild(parentPath, entryPath)) {
+              parent.items.push(entry);
             }
-          })
-          .catch(() => {});
-      } catch (err) {}
-    });
-  }, [navigationItems, fetchedChildren]);
+          });
 
-  useEffect(() => {
-    if (items.length) {
-      writeCachedNavigation(items);
-    }
-  }, [items]);
+          const rootItem = {
+            '@id': window.location.origin + rootPath,
+            url: rootPath,
+            title: '',
+          };
+          setNavigationItems([rootItem, ...topItems]);
+        })
+        .catch(() => {});
+    } catch (err) {}
+  }, [pathname]);
 
   const [showBar, setShowBar] = useState(false);
   const buttonRef = useRef(null);
@@ -376,10 +342,7 @@ const HeaderContainer = ({
               </span>
             </a>
             {navigationItems.slice(1).map((item, idx) => {
-              const key = item['@id'] || item.url || item.id;
-              const fallbackSub = fetchedChildren[key] || [];
-              const hasSubitems =
-                (item.items && item.items.length > 0) || fallbackSub.length > 0;
+              const hasSubitems = item.items && item.items.length > 0;
               const isActive = openMenu === idx;
               return (
                 <div
@@ -407,10 +370,7 @@ const HeaderContainer = ({
                   )}
                   {hasSubitems && isActive && (
                     <div className="submenu">
-                      {(item.items && item.items.length
-                        ? item.items
-                        : fallbackSub
-                      ).map((sub, subIdx) => (
+                      {item.items.map((sub, subIdx) => (
                         <a
                           key={sub.url || sub['@id'] || subIdx}
                           href={sub.url || sub['@id']}
