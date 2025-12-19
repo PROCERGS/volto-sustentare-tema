@@ -138,6 +138,23 @@ button {
   }
 }
 
+/* Global trash icon colors used by widgets (ListaAnexosWidget and others) */
+.icon-trash,
+.icon-trash-svg,
+.lista-anexos-remove .icon-trash-svg {
+  color: var(--verde-padrao) !important;
+  fill: currentColor;
+  transition: color 0.2s;
+}
+.icon-trash:hover,
+.icon-trash:focus,
+.lista-anexos-remove:hover,
+.lista-anexos-remove:focus,
+.icon-trash-svg:hover,
+.icon-trash-svg:focus {
+  color: var(--verde-escuro) !important;
+}
+
 .acess-wrapper {
   max-width: 100%;
   justify-content: space-between;
