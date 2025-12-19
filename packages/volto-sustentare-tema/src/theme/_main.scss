@@ -37,6 +37,9 @@ body:not(.barra-estado__container) {
       color: var(--bege-padrao) !important;
     }
   }
+  p strong a {
+    color: var(--verde-padrao) !important;
+  }
   .custom-checkbox {
     color: initial;
   }
