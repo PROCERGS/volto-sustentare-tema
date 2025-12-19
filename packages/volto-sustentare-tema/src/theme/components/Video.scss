@@ -1,0 +1,14 @@
+.video-inner .ui.embed .icon:before {
+  display: block;
+  width: 56px;
+  height: 68px;
+  margin: 0 auto;
+  /* normal: stroke in verde-padrao */
+  content: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 56 68'><path fill='%23000000' d='M4.45459 0.300964V59.411L51.2444 29.856L4.45459 0.300964Z'/><path fill='none' stroke='%2300b033' stroke-width='4' d='M47.4985 29.8557L6.45459 55.7814V3.92987L47.4985 29.8557Z'/></svg>");
+}
+
+.video-inner .ui.embed:hover .icon:before,
+.video-inner .ui.embed:focus-within .icon:before,
+.video-inner .ui.embed .icon:hover:before {
+  content: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 56 68'><path fill='%23000000' d='M4.45459 0.300964V59.411L51.2444 29.856L4.45459 0.300964Z'/><path fill='none' stroke='%23f0ead7' stroke-width='4' d='M47.4985 29.8557L6.45459 55.7814V3.92987L47.4985 29.8557Z'/></svg>");
+}
