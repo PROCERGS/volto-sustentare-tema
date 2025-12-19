@@ -55,3 +55,7 @@ h1.documentFirstHeading span {
 .block.listing .pagination-wrapper .pagination-label .text {
   white-space: nowrap;
 }
+
+.ui.pagination.menu .item.disabled {
+  color: #000 !important;
+}
