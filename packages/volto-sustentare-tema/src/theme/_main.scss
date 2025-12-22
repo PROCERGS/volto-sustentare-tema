@@ -189,6 +189,19 @@ button {
   text-decoration: underline !important;
 }
 
+/* Ensure image gallery description text is white */
+.image-gallery-description,
+.image-gallery-description *,
+.image-gallery-slide .image-gallery-description,
+.block.listing .image-gallery .image-gallery-description {
+  color: #fff !important;
+}
+
+.block.listing .image-gallery .image-gallery-fullscreen-button,
+.block.listing .image-gallery .image-gallery-play-button {
+  border: 1px solid var(--verde-padrao) !important;
+}
+
 [contenteditable],
 [contenteditable='true'] {
   white-space: pre-wrap !important;

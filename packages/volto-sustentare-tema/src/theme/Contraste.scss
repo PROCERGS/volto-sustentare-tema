@@ -267,4 +267,11 @@
   .header-wrapper .header .logo-nav-wrapper a.nav-item {
     background-color: var(--bege-padrao) !important;
   }
+
+  .image-gallery-description,
+  .image-gallery-description *,
+  .image-gallery-slide .image-gallery-description,
+  .block.listing .image-gallery .image-gallery-description {
+    color: #666 !important;
+  }
 }

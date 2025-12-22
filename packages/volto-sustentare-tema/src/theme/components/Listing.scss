@@ -59,3 +59,9 @@ h1.documentFirstHeading span {
 .ui.pagination.menu .item.disabled {
   color: #000 !important;
 }
+
+.credits,
+.download,
+.download a {
+  color: var(--verde-padrao);
+}
