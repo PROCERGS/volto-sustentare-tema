@@ -195,7 +195,7 @@ const BlocoSustView = () => {
               </div>
             </div>
             <div className="hidden subtexto-reaproveitamento">
-              <h1 className="hidden">Em caso de não reaproveitamento:</h1>
+              <h3 className="hidden">Em caso de não reaproveitamento:</h3>
               <div className="sust-one-to-another">
                 <div className="sust-item hidden">
                   <img
