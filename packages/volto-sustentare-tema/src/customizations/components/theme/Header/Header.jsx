@@ -7,6 +7,7 @@ import { logout, purgeMessages } from '@plone/volto/actions';
 import { toast } from 'react-toastify';
 import HeaderContainer from '../../../../components/HeaderContainer/HeaderContainer';
 import * as VoltoSiteComponentes from 'volto-site-componentes';
+import SkipLinks from '@plone/volto/components/theme/SkipLinks/SkipLinks';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
@@ -44,6 +45,7 @@ const Header = (props) => {
 
   return (
     <header className="header-wrapper">
+      <SkipLinks />
       <VoltoSiteComponentes.BarraEstado />
       <VoltoSiteComponentes.BarraAcessibilidade />
       <HeaderContainer pathname={pathname} />

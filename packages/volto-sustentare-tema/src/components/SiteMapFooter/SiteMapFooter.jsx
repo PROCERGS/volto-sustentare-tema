@@ -333,12 +333,16 @@ function SitemapFooter() {
       {navigationWithChildren?.length
         ? renderItems(navigationWithChildren, 2)
         : null}
-      <li className="rodape__procergs">
-        <p className="font-weight-bold">PROCERGS</p>
-        {address ? <p>{address}</p> : null}
-        {telefoneFax ? <p className="font-weight-bold">{telefoneFax}</p> : null}
-        {email ? <p className="font-weight-bold">{email}</p> : null}
-      </li>
+      <ul className="rodape__info-list" aria-label="Dados de contato">
+        <li className="rodape__procergs">
+          <p className="font-weight-bold">PROCERGS</p>
+          {address ? <p>{address}</p> : null}
+          {telefoneFax ? (
+            <p className="font-weight-bold">{telefoneFax}</p>
+          ) : null}
+          {email ? <p className="font-weight-bold">{email}</p> : null}
+        </li>
+      </ul>
     </Container>
   );
 }
