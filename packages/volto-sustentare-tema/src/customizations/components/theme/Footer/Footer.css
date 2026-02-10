@@ -10,9 +10,9 @@
 }
 
 .rodape__info-list {
-  list-style: none;
-  margin: 0;
   padding: 0;
+  margin: 0;
+  list-style: none;
 }
 
 .footer-container {
