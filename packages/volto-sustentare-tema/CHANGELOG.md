@@ -8,6 +8,13 @@
 
 <!-- towncrier release notes start -->
 
+## 1.0.1 (2026-02-12)
+
+### Bugfix
+
+- Corrigida versão no package.json que estava incorretamente marcada como 1.0.0-alpha.0 ao invés de 1.0.0 @samoel-silva [#101](https://github.com/PROCERGS/volto-sustentare-tema/issue/101)
+
+
 ## 1.0.0 (2026-02-10)
 
 ### Feature
