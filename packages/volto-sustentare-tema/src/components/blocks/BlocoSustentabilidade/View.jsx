@@ -18,8 +18,8 @@ const BlocoSustentabilidade = ({ data = {} }) => (
         GESTÃO PÚBLICA
       </h2>
       <p>
-        Dados coletados até o ano de {year}, do funcionamento do Sustentare desde
-        sua implementação em 2016.
+        Dados coletados até o ano de {year}, do funcionamento do Sustentare
+        desde sua implementação em 2016.
       </p>
       <a href="/" className="themed-button">
         SAIBA MAIS
