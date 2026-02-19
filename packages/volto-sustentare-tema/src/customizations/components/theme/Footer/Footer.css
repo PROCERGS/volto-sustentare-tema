@@ -9,6 +9,12 @@
   text-align: left;
 }
 
+.rodape__info-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
 .footer-container {
   max-width: var(--layout-container-width);
   padding: 0 var(--padding-default);
