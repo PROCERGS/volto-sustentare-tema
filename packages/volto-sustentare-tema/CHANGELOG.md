@@ -8,6 +8,14 @@
 
 <!-- towncrier release notes start -->
 
+## 1.0.2 (2026-02-19)
+
+### Bugfix
+
+- ajusta hierarquia de headers para acessibilidade (@andressasias-procergs)
+- Atualiza versão do volto para 18.32.1 (@samoel-silva)
+
+
 ## 1.0.1 (2026-02-12)
 
 ### Bugfix

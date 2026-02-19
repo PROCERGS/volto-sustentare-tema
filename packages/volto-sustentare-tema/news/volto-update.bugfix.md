@@ -1,1 +1,0 @@
-Atualiza versão do volto para 18.32.1 (@samoel-silva)
