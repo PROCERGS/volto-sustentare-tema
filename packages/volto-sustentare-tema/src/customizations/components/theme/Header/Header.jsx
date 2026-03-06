@@ -50,7 +50,7 @@ const Header = (props) => {
       <VoltoSiteComponentes.BarraAcessibilidade />
       <HeaderContainer pathname={pathname} />
       <div style={{ textAlign: 'right' }}>
-        <a href="#main" className="btn-scroll">
+        <a aria-label="voltar ao topo" href="#main" className="btn-scroll">
           <FontAwesomeIcon icon={faChevronUp} />
         </a>
       </div>
