@@ -21,7 +21,7 @@ const BlocoSustentabilidade = ({ data = {} }) => (
         Dados coletados até o ano de {year}, do funcionamento do Sustentare
         desde sua implementação em 2016.
       </p>
-      <a href="/" className="themed-button">
+      <a href="/o-programa/resultados" className="themed-button">
         SAIBA MAIS
       </a>
     </div>

@@ -328,6 +328,7 @@ const HeaderContainer = ({ pathname }) => {
             <a
               className="nav-item"
               href="/"
+              aria-label="página inicial"
               style={{
                 display: 'flex',
                 alignItems: 'center',
