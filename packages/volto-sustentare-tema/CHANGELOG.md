@@ -8,6 +8,14 @@
 
 <!-- towncrier release notes start -->
 
+## 1.0.3 (2026-03-10)
+
+
+### Bugfix
+
+- Ajusta acessibilidade de links (@andressasias-procergs)
+
+
 ## 1.0.2 (2026-02-19)
 
 ### Bugfix
