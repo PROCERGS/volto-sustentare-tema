@@ -1,6 +1,6 @@
 {
   "name": "volto-sustentare-tema",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Tema específico para Sustentare",
   "main": "src/index.js",
   "license": "MIT",
