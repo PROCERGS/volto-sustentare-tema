@@ -44,17 +44,19 @@ const Header = (props) => {
   }, [dispatch, history]);
 
   return (
-    <header className="header-wrapper">
+    <>
       <SkipLinks />
-      <VoltoSiteComponentes.BarraEstado />
-      <VoltoSiteComponentes.BarraAcessibilidade />
-      <HeaderContainer pathname={pathname} />
-      <div style={{ textAlign: 'right' }}>
-        <a aria-label="voltar ao topo" href="#main" className="btn-scroll">
-          <FontAwesomeIcon icon={faChevronUp} />
-        </a>
-      </div>
-    </header>
+      <header className="header-wrapper">
+        <VoltoSiteComponentes.BarraEstado />
+        <VoltoSiteComponentes.BarraAcessibilidade />
+        <HeaderContainer pathname={pathname} />
+        <div style={{ textAlign: 'right' }}>
+          <a aria-label="voltar ao topo" href="#main" className="btn-scroll">
+            <FontAwesomeIcon icon={faChevronUp} />
+          </a>
+        </div>
+      </header>
+    </>
   );
 };
 
