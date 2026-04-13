@@ -136,6 +136,7 @@ const BarraAcessibilidade = ({ svgImage }) => {
                     role="button"
                     tabIndex={0}
                     style={{ cursor: 'pointer' }}
+                    aria-label="Alternar alto contraste"
                   >
                     <FontAwesomeIcon
                       icon={faCircleHalfStroke}

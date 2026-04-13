@@ -26,7 +26,7 @@ import vector6 from './vectors/Vector6.svg';
 const BlocoSustView = () => {
   return (
     <div className="bloco-comoFunciona">
-      <h1 className="sust-title">como o sustentare funciona</h1>
+      <span className="sust-title">como o sustentare funciona</span>
       <div className="sust-container">
         <div className="sust-one-to-another first">
           <div className="sust-item one">
