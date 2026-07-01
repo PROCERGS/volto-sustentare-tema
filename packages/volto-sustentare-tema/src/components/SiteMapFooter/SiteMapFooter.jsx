@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import config from '@plone/volto/registry';
 import { useCO2Estimate } from '../../hooks/useCO2Estimate';
 import './SiteMapFooter.css';
-import GOVRSLogo from './img/GOVRS_tons_branco_RGB_Horizontal_conceito.png';
+import GOVRSLogo from 'brasao-RS.png';
 
 function normalizePathname(pathname) {
   if (!pathname) return '';
@@ -314,7 +314,7 @@ function SitemapFooter() {
           aria-label="Ir para o site do Estado"
         >
           <img
-            src={GOVRSLogo}
+            src="/brasao-RS.png"
             alt="Logo do Governo do Estado do Rio Grande do Sul"
             width="200"
           />
