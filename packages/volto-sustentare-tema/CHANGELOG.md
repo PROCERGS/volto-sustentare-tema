@@ -8,6 +8,15 @@
 
 <!-- towncrier release notes start -->
 
+
+## 1.0.4 (2026-07-01)
+
+### Feature
+
+- Modifica logo no rodapé
+
+
+
 ## 1.0.3 (2026-03-10)
 
 
