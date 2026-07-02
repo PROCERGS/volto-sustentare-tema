@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import config from '@plone/volto/registry';
 import { useCO2Estimate } from '../../hooks/useCO2Estimate';
 import './SiteMapFooter.css';
-import GOVRSLogo from 'brasao-RS.png';
 
 function normalizePathname(pathname) {
   if (!pathname) return '';

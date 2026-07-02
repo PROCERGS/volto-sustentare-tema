@@ -11,7 +11,7 @@
 
 ## 1.0.4 (2026-07-01)
 
-### Feature
+### Bugfix
 
 - Modifica logo no rodapé
 
