@@ -8,6 +8,11 @@
 
 <!-- towncrier release notes start -->
 
+## 1.0.5 (2026-07-01)
+
+### Bugfix
+
+- Corrige importação de logo no rodapé
 
 ## 1.0.4 (2026-07-01)
 
